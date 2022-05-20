@@ -2,13 +2,13 @@
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.4.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_4_0.dtd">
 
 <service-builder dependency-injector="ds" package-path="com.liferay.amf">
-	<namespace>FOO</namespace>
-	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
-	<entity local-service="true" name="Foo" remote-service="true" uuid="true">
+	<namespace>AMF</namespace>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Account" remote-service="false" session-factory="sampleSessionFactory" table="Account" tx-manager="sampleTransactionManager uuid="true"">-->
+	<entity local-service="true" name="Account" remote-service="true" uuid="true">
 
-		<!-- PK fields -->
+		<!-- PK fields --> 
 
-		<column name="fooId" primary="true" type="long" />
+		<column name="accountId" primary="true" type="long" />
 
 		<!-- Group instance -->
 
@@ -24,23 +24,26 @@
 
 		<!-- Other fields -->
 
-		<column name="field1" type="String" />
-		<column name="field2" type="boolean" />
-		<column name="field3" type="int" />
-		<column name="field4" type="Date" />
-		<column name="field5" type="String" />
+		<column name="first_name" type="String" />
+		<column name="last_name" type="String" />
+		<column name="email_address" type="String" />
+		<column name="username" type="String" />
+		<column name="gender" type="String" />
+		<column name="birthday" type="Date" />
+		<column name="password" type="String" />
+		<column name="home_phone" type="int" />
+		<column name="mobile_phone" type="int" />
+		<column name="address" type="String" />
+		<column name="address2" type="String" />
+		<column name="city" type="String" />
+		<column name="state" type="String" />
+		<column name="zip" type="int" />
 
 		<!-- Order -->
 
 		<order by="asc">
-			<order-column name="field1" />
+			<order-column name="first_name" />
 		</order>
-
-		<!-- Finder methods -->
-
-		<finder name="Field2" return-type="Collection">
-			<finder-column name="field2" />
-		</finder>
 
 		<!-- References -->
 
