@@ -35,6 +35,7 @@ import java.util.Map;
 )
 public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
+	@Override
 	public Account createAccount(long accountId, String firstname, String lastname, String emailAddress,
 								 String username, String gender, Date birthday, String  password, int  homePhone,
 								 int mobilePhone, String address, String address2, String city, String statezip) {
@@ -57,9 +58,9 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		account.setCity(city);
 		account.setState(statezip);
 
-		return accountPersistence.create(accountId);
+		return accountPersistence.update(accountId);
 	}
-
+	@Override
 	public Account deleteAccount(long accountId) throws PortalException {
 
 		return accountPersistence.remove(accountId);
@@ -89,8 +90,6 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		account.setAddress2(address2);
 		account.setCity(city);
 		account.setState(statezip);
-
-		account = super.updateAccount(account);
 
 		return accountPersistence.update(account);
 	}
