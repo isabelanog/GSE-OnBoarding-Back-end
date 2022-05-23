@@ -14,10 +14,17 @@
 
 package com.liferay.amf.service.impl;
 
+import com.liferay.amf.model.Account;
 import com.liferay.amf.service.base.AccountLocalServiceBaseImpl;
+import com.liferay.amf.service.persistence.AccountPersistence;
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import org.osgi.service.component.annotations.Component;
+
+import java.util.Date;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
@@ -27,4 +34,65 @@ import org.osgi.service.component.annotations.Component;
 	service = AopService.class
 )
 public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
+
+	public Account createAccount(long accountId, String firstname, String lastname, String emailAddress,
+								 String username, String gender, Date birthday, String  password, int  homePhone,
+								 int mobilePhone, String address, String address2, String city, String statezip) {
+		// Create account
+		Account account = createAccount(accountId);
+
+		// populate fields
+		account.setAccountId(accountId);
+		account.setFirst_name(firstname);
+		account.setLast_name(lastname);
+		account.setEmail_address(emailAddress);
+		account.setUserName(username);
+		account.setGender(gender);
+		account.setBirthday(birthday);
+		account.setPassword(password);
+		account.setHome_phone(homePhone);
+		account.setMobile_phone(mobilePhone);
+		account.setAddress(address);
+		account.setAddress2(address2);
+		account.setCity(city);
+		account.setState(statezip);
+
+		return accountPersistence.create(accountId);
+	}
+
+	public Account deleteAccount(long accountId) throws PortalException {
+
+		return accountPersistence.remove(accountId);
+	}
+
+
+	public Account updateAccount(long accountId, String firstname, String lastname, String emailAddress,
+								 String username, String gender, Date birthday, String  password, int  homePhone,
+								 int mobilePhone, String address, String address2, String city, String statezip) 	throws PortalException {
+
+		// Get the Account by Id
+
+		Account account = getAccount(accountId);
+
+		// Set updated fields and modification date
+
+		account.setFirst_name(firstname);
+		account.setLast_name(lastname);
+		account.setUserName(username);
+		account.setEmail_address(emailAddress);
+		account.setGender(gender);
+		account.setBirthday(birthday);
+		account.setPassword(password);
+		account.setHome_phone(homePhone);
+		account.setMobile_phone(mobilePhone);
+		account.setAddress(address);
+		account.setAddress2(address2);
+		account.setCity(city);
+		account.setState(statezip);
+
+		account = super.updateAccount(account);
+
+		return accountPersistence.update(account);
+	}
+
 }
