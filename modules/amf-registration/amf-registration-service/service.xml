@@ -38,6 +38,9 @@
 		<column name="city" type="String" />
 		<column name="state" type="String" />
 		<column name="zip" type="int" />
+		<column name="security_question" type="String" />
+		<column name="security_answer" type="String" />
+		<column name="accepted_tou" type="String" />
 
 		<!-- Order -->
 
