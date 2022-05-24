@@ -60,7 +60,7 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(45);
+		StringBundler sb = new StringBundler(51);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -106,6 +106,12 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		sb.append(state);
 		sb.append(", zip=");
 		sb.append(zip);
+		sb.append(", security_question=");
+		sb.append(security_question);
+		sb.append(", security_answer=");
+		sb.append(security_answer);
+		sb.append(", accepted_tou=");
+		sb.append(accepted_tou);
 		sb.append("}");
 
 		return sb.toString();
@@ -230,6 +236,27 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 
 		accountImpl.setZip(zip);
 
+		if (security_question == null) {
+			accountImpl.setSecurity_question("");
+		}
+		else {
+			accountImpl.setSecurity_question(security_question);
+		}
+
+		if (security_answer == null) {
+			accountImpl.setSecurity_answer("");
+		}
+		else {
+			accountImpl.setSecurity_answer(security_answer);
+		}
+
+		if (accepted_tou == null) {
+			accountImpl.setAccepted_tou("");
+		}
+		else {
+			accountImpl.setAccepted_tou(accepted_tou);
+		}
+
 		accountImpl.resetOriginalValues();
 
 		return accountImpl;
@@ -266,6 +293,9 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		state = objectInput.readUTF();
 
 		zip = objectInput.readInt();
+		security_question = objectInput.readUTF();
+		security_answer = objectInput.readUTF();
+		accepted_tou = objectInput.readUTF();
 	}
 
 	@Override
@@ -372,6 +402,27 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		}
 
 		objectOutput.writeInt(zip);
+
+		if (security_question == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(security_question);
+		}
+
+		if (security_answer == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(security_answer);
+		}
+
+		if (accepted_tou == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(accepted_tou);
+		}
 	}
 
 	public String uuid;
@@ -396,5 +447,8 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 	public String city;
 	public String state;
 	public int zip;
+	public String security_question;
+	public String security_answer;
+	public String accepted_tou;
 
 }

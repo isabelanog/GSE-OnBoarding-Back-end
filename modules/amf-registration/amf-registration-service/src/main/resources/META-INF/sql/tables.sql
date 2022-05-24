@@ -20,5 +20,8 @@ create table AMF_Account (
 	address2 VARCHAR(75) null,
 	city VARCHAR(75) null,
 	state_ VARCHAR(75) null,
-	zip INTEGER
+	zip INTEGER,
+	security_question VARCHAR(75) null,
+	security_answer VARCHAR(75) null,
+	accepted_tou VARCHAR(75) null
 );

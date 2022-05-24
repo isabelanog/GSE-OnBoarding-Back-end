@@ -24,5 +24,8 @@
 		<field name="city" type="String" />
 		<field name="state" type="String" />
 		<field name="zip" type="int" />
+		<field name="security_question" type="String" />
+		<field name="security_answer" type="String" />
+		<field name="accepted_tou" type="String" />
 	</model>
 </model-hints>
