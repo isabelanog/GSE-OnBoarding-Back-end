@@ -26,8 +26,8 @@
 
 		<column name="first_name" type="String" />
 		<column name="last_name" type="String" />
+		<column name="user_name" type="String" />
 		<column name="email_address" type="String" />
-		<column name="username" type="String" />
 		<column name="gender" type="String" />
 		<column name="birthday" type="Date" />
 		<column name="password" type="String" />
