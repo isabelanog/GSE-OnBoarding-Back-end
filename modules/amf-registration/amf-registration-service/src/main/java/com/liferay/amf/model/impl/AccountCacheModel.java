@@ -82,10 +82,10 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		sb.append(first_name);
 		sb.append(", last_name=");
 		sb.append(last_name);
+		sb.append(", user_name=");
+		sb.append(user_name);
 		sb.append(", email_address=");
 		sb.append(email_address);
-		sb.append(", username=");
-		sb.append(username);
 		sb.append(", gender=");
 		sb.append(gender);
 		sb.append(", birthday=");
@@ -168,18 +168,18 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			accountImpl.setLast_name(last_name);
 		}
 
+		if (user_name == null) {
+			accountImpl.setUser_name("");
+		}
+		else {
+			accountImpl.setUser_name(user_name);
+		}
+
 		if (email_address == null) {
 			accountImpl.setEmail_address("");
 		}
 		else {
 			accountImpl.setEmail_address(email_address);
-		}
-
-		if (username == null) {
-			accountImpl.setUsername("");
-		}
-		else {
-			accountImpl.setUsername(username);
 		}
 
 		if (gender == null) {
@@ -278,8 +278,8 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		modifiedDate = objectInput.readLong();
 		first_name = objectInput.readUTF();
 		last_name = objectInput.readUTF();
+		user_name = objectInput.readUTF();
 		email_address = objectInput.readUTF();
-		username = objectInput.readUTF();
 		gender = objectInput.readUTF();
 		birthday = objectInput.readLong();
 		password = objectInput.readUTF();
@@ -339,18 +339,18 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			objectOutput.writeUTF(last_name);
 		}
 
+		if (user_name == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(user_name);
+		}
+
 		if (email_address == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(email_address);
-		}
-
-		if (username == null) {
-			objectOutput.writeUTF("");
-		}
-		else {
-			objectOutput.writeUTF(username);
 		}
 
 		if (gender == null) {
@@ -435,8 +435,8 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 	public long modifiedDate;
 	public String first_name;
 	public String last_name;
+	public String user_name;
 	public String email_address;
-	public String username;
 	public String gender;
 	public long birthday;
 	public String password;

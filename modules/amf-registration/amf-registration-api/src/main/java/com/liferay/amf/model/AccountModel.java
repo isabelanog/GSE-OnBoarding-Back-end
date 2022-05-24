@@ -234,6 +234,21 @@ public interface AccountModel
 	public void setLast_name(String last_name);
 
 	/**
+	 * Returns the user_name of this account.
+	 *
+	 * @return the user_name of this account
+	 */
+	@AutoEscape
+	public String getUser_name();
+
+	/**
+	 * Sets the user_name of this account.
+	 *
+	 * @param user_name the user_name of this account
+	 */
+	public void setUser_name(String user_name);
+
+	/**
 	 * Returns the email_address of this account.
 	 *
 	 * @return the email_address of this account
@@ -247,21 +262,6 @@ public interface AccountModel
 	 * @param email_address the email_address of this account
 	 */
 	public void setEmail_address(String email_address);
-
-	/**
-	 * Returns the username of this account.
-	 *
-	 * @return the username of this account
-	 */
-	@AutoEscape
-	public String getUsername();
-
-	/**
-	 * Sets the username of this account.
-	 *
-	 * @param username the username of this account
-	 */
-	public void setUsername(String username);
 
 	/**
 	 * Returns the gender of this account.
@@ -408,6 +408,51 @@ public interface AccountModel
 	 * @param zip the zip of this account
 	 */
 	public void setZip(int zip);
+
+	/**
+	 * Returns the security_question of this account.
+	 *
+	 * @return the security_question of this account
+	 */
+	@AutoEscape
+	public String getSecurity_question();
+
+	/**
+	 * Sets the security_question of this account.
+	 *
+	 * @param security_question the security_question of this account
+	 */
+	public void setSecurity_question(String security_question);
+
+	/**
+	 * Returns the security_answer of this account.
+	 *
+	 * @return the security_answer of this account
+	 */
+	@AutoEscape
+	public String getSecurity_answer();
+
+	/**
+	 * Sets the security_answer of this account.
+	 *
+	 * @param security_answer the security_answer of this account
+	 */
+	public void setSecurity_answer(String security_answer);
+
+	/**
+	 * Returns the accepted_tou of this account.
+	 *
+	 * @return the accepted_tou of this account
+	 */
+	@AutoEscape
+	public String getAccepted_tou();
+
+	/**
+	 * Sets the accepted_tou of this account.
+	 *
+	 * @param accepted_tou the accepted_tou of this account
+	 */
+	public void setAccepted_tou(String accepted_tou);
 
 	@Override
 	public Account cloneWithOriginalValues();

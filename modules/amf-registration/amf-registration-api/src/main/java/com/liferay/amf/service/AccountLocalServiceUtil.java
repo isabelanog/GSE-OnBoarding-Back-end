@@ -69,6 +69,19 @@ public class AccountLocalServiceUtil {
 		return getService().createAccount(accountId);
 	}
 
+	public static Account createAccount(
+		long accountId, String firstname, String lastname, String emailAddress,
+		String username, String gender, java.util.Date birthday,
+		String password, int homePhone, int mobilePhone, String address,
+		String address2, String city, String statezip, String securityQuestion,
+		String securityAnswer, String acceptedTou) {
+
+		return getService().createAccount(
+			accountId, firstname, lastname, emailAddress, username, gender,
+			birthday, password, homePhone, mobilePhone, address, address2, city,
+			statezip, securityQuestion, securityAnswer, acceptedTou);
+	}
+
 	/**
 	 * @throws PortalException
 	 */
@@ -351,6 +364,21 @@ public class AccountLocalServiceUtil {
 	 */
 	public static Account updateAccount(Account account) {
 		return getService().updateAccount(account);
+	}
+
+	public static Account updateAccount(
+			long accountId, String firstname, String lastname,
+			String emailAddress, String username, String gender,
+			java.util.Date birthday, String password, int homePhone,
+			int mobilePhone, String address, String address2, String city,
+			String statezip, String securityQuestion, String securityAnswer,
+			String acceptedTou)
+		throws PortalException {
+
+		return getService().updateAccount(
+			accountId, firstname, lastname, emailAddress, username, gender,
+			birthday, password, homePhone, mobilePhone, address, address2, city,
+			statezip, securityQuestion, securityAnswer, acceptedTou);
 	}
 
 	public static AccountLocalService getService() {

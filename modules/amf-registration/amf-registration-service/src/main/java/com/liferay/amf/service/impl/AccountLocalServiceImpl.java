@@ -46,7 +46,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		account.setFirst_name(firstname);
 		account.setLast_name(lastname);
 		account.setEmail_address(emailAddress);
-		account.setUserName(username);
+		account.setUser_name(username);
 		account.setGender(gender);
 		account.setBirthday(birthday);
 		account.setPassword(password);
@@ -67,7 +67,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 		Account account = deleteAccount(accountId);
 
-		return accountPersistence.remove(accountId);
+		return accountPersistence.remove(account);
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 		account.setFirst_name(firstname);
 		account.setLast_name(lastname);
-		account.setUserName(username);
+		account.setUser_name(username);
 		account.setEmail_address(emailAddress);
 		account.setGender(gender);
 		account.setBirthday(birthday);

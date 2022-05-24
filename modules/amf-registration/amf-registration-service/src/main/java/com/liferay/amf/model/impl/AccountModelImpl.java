@@ -79,7 +79,7 @@ public class AccountModelImpl
 		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
 		{"first_name", Types.VARCHAR}, {"last_name", Types.VARCHAR},
-		{"email_address", Types.VARCHAR}, {"username", Types.VARCHAR},
+		{"user_name", Types.VARCHAR}, {"email_address", Types.VARCHAR},
 		{"gender", Types.VARCHAR}, {"birthday", Types.TIMESTAMP},
 		{"password_", Types.VARCHAR}, {"home_phone", Types.INTEGER},
 		{"mobile_phone", Types.INTEGER}, {"address", Types.VARCHAR},
@@ -103,8 +103,8 @@ public class AccountModelImpl
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("first_name", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("last_name", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("user_name", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("email_address", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("username", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("gender", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("birthday", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("password_", Types.VARCHAR);
@@ -121,7 +121,7 @@ public class AccountModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table AMF_Account (uuid_ VARCHAR(75) null,accountId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,first_name VARCHAR(75) null,last_name VARCHAR(75) null,email_address VARCHAR(75) null,username VARCHAR(75) null,gender VARCHAR(75) null,birthday DATE null,password_ VARCHAR(75) null,home_phone INTEGER,mobile_phone INTEGER,address VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,state_ VARCHAR(75) null,zip INTEGER,security_question VARCHAR(75) null,security_answer VARCHAR(75) null,accepted_tou VARCHAR(75) null)";
+		"create table AMF_Account (uuid_ VARCHAR(75) null,accountId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,first_name VARCHAR(75) null,last_name VARCHAR(75) null,user_name VARCHAR(75) null,email_address VARCHAR(75) null,gender VARCHAR(75) null,birthday DATE null,password_ VARCHAR(75) null,home_phone INTEGER,mobile_phone INTEGER,address VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,state_ VARCHAR(75) null,zip INTEGER,security_question VARCHAR(75) null,security_answer VARCHAR(75) null,accepted_tou VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP = "drop table AMF_Account";
 
@@ -329,14 +329,14 @@ public class AccountModelImpl
 		attributeGetterFunctions.put("last_name", Account::getLast_name);
 		attributeSetterBiConsumers.put(
 			"last_name", (BiConsumer<Account, String>)Account::setLast_name);
+		attributeGetterFunctions.put("user_name", Account::getUser_name);
+		attributeSetterBiConsumers.put(
+			"user_name", (BiConsumer<Account, String>)Account::setUser_name);
 		attributeGetterFunctions.put(
 			"email_address", Account::getEmail_address);
 		attributeSetterBiConsumers.put(
 			"email_address",
 			(BiConsumer<Account, String>)Account::setEmail_address);
-		attributeGetterFunctions.put("username", Account::getUsername);
-		attributeSetterBiConsumers.put(
-			"username", (BiConsumer<Account, String>)Account::setUsername);
 		attributeGetterFunctions.put("gender", Account::getGender);
 		attributeSetterBiConsumers.put(
 			"gender", (BiConsumer<Account, String>)Account::setGender);
@@ -611,6 +611,26 @@ public class AccountModelImpl
 
 	@JSON
 	@Override
+	public String getUser_name() {
+		if (_user_name == null) {
+			return "";
+		}
+		else {
+			return _user_name;
+		}
+	}
+
+	@Override
+	public void setUser_name(String user_name) {
+		if (_columnOriginalValues == Collections.EMPTY_MAP) {
+			_setColumnOriginalValues();
+		}
+
+		_user_name = user_name;
+	}
+
+	@JSON
+	@Override
 	public String getEmail_address() {
 		if (_email_address == null) {
 			return "";
@@ -627,26 +647,6 @@ public class AccountModelImpl
 		}
 
 		_email_address = email_address;
-	}
-
-	@JSON
-	@Override
-	public String getUsername() {
-		if (_username == null) {
-			return "";
-		}
-		else {
-			return _username;
-		}
-	}
-
-	@Override
-	public void setUsername(String username) {
-		if (_columnOriginalValues == Collections.EMPTY_MAP) {
-			_setColumnOriginalValues();
-		}
-
-		_username = username;
 	}
 
 	@JSON
@@ -961,8 +961,8 @@ public class AccountModelImpl
 		accountImpl.setModifiedDate(getModifiedDate());
 		accountImpl.setFirst_name(getFirst_name());
 		accountImpl.setLast_name(getLast_name());
+		accountImpl.setUser_name(getUser_name());
 		accountImpl.setEmail_address(getEmail_address());
-		accountImpl.setUsername(getUsername());
 		accountImpl.setGender(getGender());
 		accountImpl.setBirthday(getBirthday());
 		accountImpl.setPassword(getPassword());
@@ -1003,10 +1003,10 @@ public class AccountModelImpl
 			this.<String>getColumnOriginalValue("first_name"));
 		accountImpl.setLast_name(
 			this.<String>getColumnOriginalValue("last_name"));
+		accountImpl.setUser_name(
+			this.<String>getColumnOriginalValue("user_name"));
 		accountImpl.setEmail_address(
 			this.<String>getColumnOriginalValue("email_address"));
-		accountImpl.setUsername(
-			this.<String>getColumnOriginalValue("username"));
 		accountImpl.setGender(this.<String>getColumnOriginalValue("gender"));
 		accountImpl.setBirthday(this.<Date>getColumnOriginalValue("birthday"));
 		accountImpl.setPassword(
@@ -1160,20 +1160,20 @@ public class AccountModelImpl
 			accountCacheModel.last_name = null;
 		}
 
+		accountCacheModel.user_name = getUser_name();
+
+		String user_name = accountCacheModel.user_name;
+
+		if ((user_name != null) && (user_name.length() == 0)) {
+			accountCacheModel.user_name = null;
+		}
+
 		accountCacheModel.email_address = getEmail_address();
 
 		String email_address = accountCacheModel.email_address;
 
 		if ((email_address != null) && (email_address.length() == 0)) {
 			accountCacheModel.email_address = null;
-		}
-
-		accountCacheModel.username = getUsername();
-
-		String username = accountCacheModel.username;
-
-		if ((username != null) && (username.length() == 0)) {
-			accountCacheModel.username = null;
 		}
 
 		accountCacheModel.gender = getGender();
@@ -1364,8 +1364,8 @@ public class AccountModelImpl
 	private boolean _setModifiedDate;
 	private String _first_name;
 	private String _last_name;
+	private String _user_name;
 	private String _email_address;
-	private String _username;
 	private String _gender;
 	private Date _birthday;
 	private String _password;
@@ -1419,8 +1419,8 @@ public class AccountModelImpl
 		_columnOriginalValues.put("modifiedDate", _modifiedDate);
 		_columnOriginalValues.put("first_name", _first_name);
 		_columnOriginalValues.put("last_name", _last_name);
+		_columnOriginalValues.put("user_name", _user_name);
 		_columnOriginalValues.put("email_address", _email_address);
-		_columnOriginalValues.put("username", _username);
 		_columnOriginalValues.put("gender", _gender);
 		_columnOriginalValues.put("birthday", _birthday);
 		_columnOriginalValues.put("password_", _password);
@@ -1479,9 +1479,9 @@ public class AccountModelImpl
 
 		columnBitmasks.put("last_name", 512L);
 
-		columnBitmasks.put("email_address", 1024L);
+		columnBitmasks.put("user_name", 1024L);
 
-		columnBitmasks.put("username", 2048L);
+		columnBitmasks.put("email_address", 2048L);
 
 		columnBitmasks.put("gender", 4096L);
 

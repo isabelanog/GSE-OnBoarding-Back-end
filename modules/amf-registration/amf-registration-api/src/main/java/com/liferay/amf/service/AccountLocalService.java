@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
@@ -85,6 +86,13 @@ public interface AccountLocalService
 	 */
 	@Transactional(enabled = false)
 	public Account createAccount(long accountId);
+
+	public Account createAccount(
+		long accountId, String firstname, String lastname, String emailAddress,
+		String username, String gender, Date birthday, String password,
+		int homePhone, int mobilePhone, String address, String address2,
+		String city, String statezip, String securityQuestion,
+		String securityAnswer, String acceptedTou);
 
 	/**
 	 * @throws PortalException
@@ -318,5 +326,13 @@ public interface AccountLocalService
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public Account updateAccount(Account account);
+
+	public Account updateAccount(
+			long accountId, String firstname, String lastname,
+			String emailAddress, String username, String gender, Date birthday,
+			String password, int homePhone, int mobilePhone, String address,
+			String address2, String city, String statezip,
+			String securityQuestion, String securityAnswer, String acceptedTou)
+		throws PortalException;
 
 }

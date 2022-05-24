@@ -53,8 +53,8 @@ public class AccountWrapper
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("first_name", getFirst_name());
 		attributes.put("last_name", getLast_name());
+		attributes.put("user_name", getUser_name());
 		attributes.put("email_address", getEmail_address());
-		attributes.put("username", getUsername());
 		attributes.put("gender", getGender());
 		attributes.put("birthday", getBirthday());
 		attributes.put("password", getPassword());
@@ -65,6 +65,9 @@ public class AccountWrapper
 		attributes.put("city", getCity());
 		attributes.put("state", getState());
 		attributes.put("zip", getZip());
+		attributes.put("security_question", getSecurity_question());
+		attributes.put("security_answer", getSecurity_answer());
+		attributes.put("accepted_tou", getAccepted_tou());
 
 		return attributes;
 	}
@@ -131,16 +134,16 @@ public class AccountWrapper
 			setLast_name(last_name);
 		}
 
+		String user_name = (String)attributes.get("user_name");
+
+		if (user_name != null) {
+			setUser_name(user_name);
+		}
+
 		String email_address = (String)attributes.get("email_address");
 
 		if (email_address != null) {
 			setEmail_address(email_address);
-		}
-
-		String username = (String)attributes.get("username");
-
-		if (username != null) {
-			setUsername(username);
 		}
 
 		String gender = (String)attributes.get("gender");
@@ -202,11 +205,39 @@ public class AccountWrapper
 		if (zip != null) {
 			setZip(zip);
 		}
+
+		String security_question = (String)attributes.get("security_question");
+
+		if (security_question != null) {
+			setSecurity_question(security_question);
+		}
+
+		String security_answer = (String)attributes.get("security_answer");
+
+		if (security_answer != null) {
+			setSecurity_answer(security_answer);
+		}
+
+		String accepted_tou = (String)attributes.get("accepted_tou");
+
+		if (accepted_tou != null) {
+			setAccepted_tou(accepted_tou);
+		}
 	}
 
 	@Override
 	public Account cloneWithOriginalValues() {
 		return wrap(model.cloneWithOriginalValues());
+	}
+
+	/**
+	 * Returns the accepted_tou of this account.
+	 *
+	 * @return the accepted_tou of this account
+	 */
+	@Override
+	public String getAccepted_tou() {
+		return model.getAccepted_tou();
 	}
 
 	/**
@@ -380,6 +411,26 @@ public class AccountWrapper
 	}
 
 	/**
+	 * Returns the security_answer of this account.
+	 *
+	 * @return the security_answer of this account
+	 */
+	@Override
+	public String getSecurity_answer() {
+		return model.getSecurity_answer();
+	}
+
+	/**
+	 * Returns the security_question of this account.
+	 *
+	 * @return the security_question of this account
+	 */
+	@Override
+	public String getSecurity_question() {
+		return model.getSecurity_question();
+	}
+
+	/**
 	 * Returns the state of this account.
 	 *
 	 * @return the state of this account
@@ -390,6 +441,16 @@ public class AccountWrapper
 	}
 
 	/**
+	 * Returns the user_name of this account.
+	 *
+	 * @return the user_name of this account
+	 */
+	@Override
+	public String getUser_name() {
+		return model.getUser_name();
+	}
+
+	/**
 	 * Returns the user ID of this account.
 	 *
 	 * @return the user ID of this account
@@ -397,16 +458,6 @@ public class AccountWrapper
 	@Override
 	public long getUserId() {
 		return model.getUserId();
-	}
-
-	/**
-	 * Returns the username of this account.
-	 *
-	 * @return the username of this account
-	 */
-	@Override
-	public String getUsername() {
-		return model.getUsername();
 	}
 
 	/**
@@ -452,6 +503,16 @@ public class AccountWrapper
 	@Override
 	public void persist() {
 		model.persist();
+	}
+
+	/**
+	 * Sets the accepted_tou of this account.
+	 *
+	 * @param accepted_tou the accepted_tou of this account
+	 */
+	@Override
+	public void setAccepted_tou(String accepted_tou) {
+		model.setAccepted_tou(accepted_tou);
 	}
 
 	/**
@@ -625,6 +686,26 @@ public class AccountWrapper
 	}
 
 	/**
+	 * Sets the security_answer of this account.
+	 *
+	 * @param security_answer the security_answer of this account
+	 */
+	@Override
+	public void setSecurity_answer(String security_answer) {
+		model.setSecurity_answer(security_answer);
+	}
+
+	/**
+	 * Sets the security_question of this account.
+	 *
+	 * @param security_question the security_question of this account
+	 */
+	@Override
+	public void setSecurity_question(String security_question) {
+		model.setSecurity_question(security_question);
+	}
+
+	/**
 	 * Sets the state of this account.
 	 *
 	 * @param state the state of this account
@@ -632,6 +713,16 @@ public class AccountWrapper
 	@Override
 	public void setState(String state) {
 		model.setState(state);
+	}
+
+	/**
+	 * Sets the user_name of this account.
+	 *
+	 * @param user_name the user_name of this account
+	 */
+	@Override
+	public void setUser_name(String user_name) {
+		model.setUser_name(user_name);
 	}
 
 	/**
@@ -652,16 +743,6 @@ public class AccountWrapper
 	@Override
 	public void setUserName(String userName) {
 		model.setUserName(userName);
-	}
-
-	/**
-	 * Sets the username of this account.
-	 *
-	 * @param username the username of this account
-	 */
-	@Override
-	public void setUsername(String username) {
-		model.setUsername(username);
 	}
 
 	/**
