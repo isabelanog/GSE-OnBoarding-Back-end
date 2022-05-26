@@ -24,28 +24,28 @@
 
 		<!-- Other fields -->
 
-		<column name="first_name" type="String" />
-		<column name="last_name" type="String" />
-		<column name="user_name" type="String" />
-		<column name="email_address" type="String" />
+		<column name="firstName" type="String" />
+		<column name="lastName" type="String" />
+		<column name="accountName" type="String" />
+		<column name="emailAddress" type="String" />
 		<column name="gender" type="String" />
 		<column name="birthday" type="Date" />
 		<column name="password" type="String" />
-		<column name="home_phone" type="int" />
-		<column name="mobile_phone" type="int" />
+		<column name="homePhone" type="int" />
+		<column name="mobilePhone" type="int" />
 		<column name="address" type="String" />
 		<column name="address2" type="String" />
 		<column name="city" type="String" />
 		<column name="state" type="String" />
 		<column name="zip" type="int" />
-		<column name="security_question" type="String" />
-		<column name="security_answer" type="String" />
-		<column name="accepted_tou" type="String" />
+		<column name="securityQuestion" type="String" />
+		<column name="securityAnswer" type="String" />
+		<column name="acceptedTou" type="String" />
 
 		<!-- Order -->
 
 		<order by="asc">
-			<order-column name="first_name" />
+			<order-column name="firstName" />
 		</order>
 
 		<!-- References -->
