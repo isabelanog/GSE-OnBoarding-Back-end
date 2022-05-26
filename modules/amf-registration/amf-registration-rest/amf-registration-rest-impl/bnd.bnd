@@ -1,0 +1,3 @@
+Bundle-Name: amf-registration-rest-impl
+Bundle-SymbolicName: com.liferay.amf.impl
+Bundle-Version: 1.0.0

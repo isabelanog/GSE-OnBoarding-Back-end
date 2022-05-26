@@ -1,0 +1,3 @@
+Bundle-Name: amf-registration-rest-client
+Bundle-SymbolicName: com.liferay.amf.client
+Bundle-Version: 1.0.0

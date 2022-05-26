@@ -1,0 +1,4 @@
+Bundle-Name: amf-registration-rest-test
+Bundle-SymbolicName: com.liferay.amf.test
+Bundle-Version: 1.0.0
+-includeresource: com.liferay.amf.client.jar=../amf-registration-rest-client/build/libs/com.liferay.amf.client-1.0.0.jar;lib:=true
