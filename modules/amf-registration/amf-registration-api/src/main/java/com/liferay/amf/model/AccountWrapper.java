@@ -51,23 +51,23 @@ public class AccountWrapper
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("first_name", getFirst_name());
-		attributes.put("last_name", getLast_name());
-		attributes.put("user_name", getUser_name());
-		attributes.put("email_address", getEmail_address());
+		attributes.put("firstName", getFirstName());
+		attributes.put("lastName", getLastName());
+		attributes.put("accountName", getAccountName());
+		attributes.put("emailAddress", getEmailAddress());
 		attributes.put("gender", getGender());
 		attributes.put("birthday", getBirthday());
 		attributes.put("password", getPassword());
-		attributes.put("home_phone", getHome_phone());
-		attributes.put("mobile_phone", getMobile_phone());
+		attributes.put("homePhone", getHomePhone());
+		attributes.put("mobilePhone", getMobilePhone());
 		attributes.put("address", getAddress());
 		attributes.put("address2", getAddress2());
 		attributes.put("city", getCity());
 		attributes.put("state", getState());
 		attributes.put("zip", getZip());
-		attributes.put("security_question", getSecurity_question());
-		attributes.put("security_answer", getSecurity_answer());
-		attributes.put("accepted_tou", getAccepted_tou());
+		attributes.put("securityQuestion", getSecurityQuestion());
+		attributes.put("securityAnswer", getSecurityAnswer());
+		attributes.put("acceptedTou", getAcceptedTou());
 
 		return attributes;
 	}
@@ -122,28 +122,28 @@ public class AccountWrapper
 			setModifiedDate(modifiedDate);
 		}
 
-		String first_name = (String)attributes.get("first_name");
+		String firstName = (String)attributes.get("firstName");
 
-		if (first_name != null) {
-			setFirst_name(first_name);
+		if (firstName != null) {
+			setFirstName(firstName);
 		}
 
-		String last_name = (String)attributes.get("last_name");
+		String lastName = (String)attributes.get("lastName");
 
-		if (last_name != null) {
-			setLast_name(last_name);
+		if (lastName != null) {
+			setLastName(lastName);
 		}
 
-		String user_name = (String)attributes.get("user_name");
+		String accountName = (String)attributes.get("accountName");
 
-		if (user_name != null) {
-			setUser_name(user_name);
+		if (accountName != null) {
+			setAccountName(accountName);
 		}
 
-		String email_address = (String)attributes.get("email_address");
+		String emailAddress = (String)attributes.get("emailAddress");
 
-		if (email_address != null) {
-			setEmail_address(email_address);
+		if (emailAddress != null) {
+			setEmailAddress(emailAddress);
 		}
 
 		String gender = (String)attributes.get("gender");
@@ -164,16 +164,16 @@ public class AccountWrapper
 			setPassword(password);
 		}
 
-		Integer home_phone = (Integer)attributes.get("home_phone");
+		Integer homePhone = (Integer)attributes.get("homePhone");
 
-		if (home_phone != null) {
-			setHome_phone(home_phone);
+		if (homePhone != null) {
+			setHomePhone(homePhone);
 		}
 
-		Integer mobile_phone = (Integer)attributes.get("mobile_phone");
+		Integer mobilePhone = (Integer)attributes.get("mobilePhone");
 
-		if (mobile_phone != null) {
-			setMobile_phone(mobile_phone);
+		if (mobilePhone != null) {
+			setMobilePhone(mobilePhone);
 		}
 
 		String address = (String)attributes.get("address");
@@ -206,22 +206,22 @@ public class AccountWrapper
 			setZip(zip);
 		}
 
-		String security_question = (String)attributes.get("security_question");
+		String securityQuestion = (String)attributes.get("securityQuestion");
 
-		if (security_question != null) {
-			setSecurity_question(security_question);
+		if (securityQuestion != null) {
+			setSecurityQuestion(securityQuestion);
 		}
 
-		String security_answer = (String)attributes.get("security_answer");
+		String securityAnswer = (String)attributes.get("securityAnswer");
 
-		if (security_answer != null) {
-			setSecurity_answer(security_answer);
+		if (securityAnswer != null) {
+			setSecurityAnswer(securityAnswer);
 		}
 
-		String accepted_tou = (String)attributes.get("accepted_tou");
+		String acceptedTou = (String)attributes.get("acceptedTou");
 
-		if (accepted_tou != null) {
-			setAccepted_tou(accepted_tou);
+		if (acceptedTou != null) {
+			setAcceptedTou(acceptedTou);
 		}
 	}
 
@@ -231,13 +231,13 @@ public class AccountWrapper
 	}
 
 	/**
-	 * Returns the accepted_tou of this account.
+	 * Returns the accepted tou of this account.
 	 *
-	 * @return the accepted_tou of this account
+	 * @return the accepted tou of this account
 	 */
 	@Override
-	public String getAccepted_tou() {
-		return model.getAccepted_tou();
+	public String getAcceptedTou() {
+		return model.getAcceptedTou();
 	}
 
 	/**
@@ -248,6 +248,16 @@ public class AccountWrapper
 	@Override
 	public long getAccountId() {
 		return model.getAccountId();
+	}
+
+	/**
+	 * Returns the account name of this account.
+	 *
+	 * @return the account name of this account
+	 */
+	@Override
+	public String getAccountName() {
+		return model.getAccountName();
 	}
 
 	/**
@@ -311,23 +321,23 @@ public class AccountWrapper
 	}
 
 	/**
-	 * Returns the email_address of this account.
+	 * Returns the email address of this account.
 	 *
-	 * @return the email_address of this account
+	 * @return the email address of this account
 	 */
 	@Override
-	public String getEmail_address() {
-		return model.getEmail_address();
+	public String getEmailAddress() {
+		return model.getEmailAddress();
 	}
 
 	/**
-	 * Returns the first_name of this account.
+	 * Returns the first name of this account.
 	 *
-	 * @return the first_name of this account
+	 * @return the first name of this account
 	 */
 	@Override
-	public String getFirst_name() {
-		return model.getFirst_name();
+	public String getFirstName() {
+		return model.getFirstName();
 	}
 
 	/**
@@ -351,33 +361,33 @@ public class AccountWrapper
 	}
 
 	/**
-	 * Returns the home_phone of this account.
+	 * Returns the home phone of this account.
 	 *
-	 * @return the home_phone of this account
+	 * @return the home phone of this account
 	 */
 	@Override
-	public int getHome_phone() {
-		return model.getHome_phone();
+	public int getHomePhone() {
+		return model.getHomePhone();
 	}
 
 	/**
-	 * Returns the last_name of this account.
+	 * Returns the last name of this account.
 	 *
-	 * @return the last_name of this account
+	 * @return the last name of this account
 	 */
 	@Override
-	public String getLast_name() {
-		return model.getLast_name();
+	public String getLastName() {
+		return model.getLastName();
 	}
 
 	/**
-	 * Returns the mobile_phone of this account.
+	 * Returns the mobile phone of this account.
 	 *
-	 * @return the mobile_phone of this account
+	 * @return the mobile phone of this account
 	 */
 	@Override
-	public int getMobile_phone() {
-		return model.getMobile_phone();
+	public int getMobilePhone() {
+		return model.getMobilePhone();
 	}
 
 	/**
@@ -411,23 +421,23 @@ public class AccountWrapper
 	}
 
 	/**
-	 * Returns the security_answer of this account.
+	 * Returns the security answer of this account.
 	 *
-	 * @return the security_answer of this account
+	 * @return the security answer of this account
 	 */
 	@Override
-	public String getSecurity_answer() {
-		return model.getSecurity_answer();
+	public String getSecurityAnswer() {
+		return model.getSecurityAnswer();
 	}
 
 	/**
-	 * Returns the security_question of this account.
+	 * Returns the security question of this account.
 	 *
-	 * @return the security_question of this account
+	 * @return the security question of this account
 	 */
 	@Override
-	public String getSecurity_question() {
-		return model.getSecurity_question();
+	public String getSecurityQuestion() {
+		return model.getSecurityQuestion();
 	}
 
 	/**
@@ -438,16 +448,6 @@ public class AccountWrapper
 	@Override
 	public String getState() {
 		return model.getState();
-	}
-
-	/**
-	 * Returns the user_name of this account.
-	 *
-	 * @return the user_name of this account
-	 */
-	@Override
-	public String getUser_name() {
-		return model.getUser_name();
 	}
 
 	/**
@@ -506,13 +506,13 @@ public class AccountWrapper
 	}
 
 	/**
-	 * Sets the accepted_tou of this account.
+	 * Sets the accepted tou of this account.
 	 *
-	 * @param accepted_tou the accepted_tou of this account
+	 * @param acceptedTou the accepted tou of this account
 	 */
 	@Override
-	public void setAccepted_tou(String accepted_tou) {
-		model.setAccepted_tou(accepted_tou);
+	public void setAcceptedTou(String acceptedTou) {
+		model.setAcceptedTou(acceptedTou);
 	}
 
 	/**
@@ -523,6 +523,16 @@ public class AccountWrapper
 	@Override
 	public void setAccountId(long accountId) {
 		model.setAccountId(accountId);
+	}
+
+	/**
+	 * Sets the account name of this account.
+	 *
+	 * @param accountName the account name of this account
+	 */
+	@Override
+	public void setAccountName(String accountName) {
+		model.setAccountName(accountName);
 	}
 
 	/**
@@ -586,23 +596,23 @@ public class AccountWrapper
 	}
 
 	/**
-	 * Sets the email_address of this account.
+	 * Sets the email address of this account.
 	 *
-	 * @param email_address the email_address of this account
+	 * @param emailAddress the email address of this account
 	 */
 	@Override
-	public void setEmail_address(String email_address) {
-		model.setEmail_address(email_address);
+	public void setEmailAddress(String emailAddress) {
+		model.setEmailAddress(emailAddress);
 	}
 
 	/**
-	 * Sets the first_name of this account.
+	 * Sets the first name of this account.
 	 *
-	 * @param first_name the first_name of this account
+	 * @param firstName the first name of this account
 	 */
 	@Override
-	public void setFirst_name(String first_name) {
-		model.setFirst_name(first_name);
+	public void setFirstName(String firstName) {
+		model.setFirstName(firstName);
 	}
 
 	/**
@@ -626,33 +636,33 @@ public class AccountWrapper
 	}
 
 	/**
-	 * Sets the home_phone of this account.
+	 * Sets the home phone of this account.
 	 *
-	 * @param home_phone the home_phone of this account
+	 * @param homePhone the home phone of this account
 	 */
 	@Override
-	public void setHome_phone(int home_phone) {
-		model.setHome_phone(home_phone);
+	public void setHomePhone(int homePhone) {
+		model.setHomePhone(homePhone);
 	}
 
 	/**
-	 * Sets the last_name of this account.
+	 * Sets the last name of this account.
 	 *
-	 * @param last_name the last_name of this account
+	 * @param lastName the last name of this account
 	 */
 	@Override
-	public void setLast_name(String last_name) {
-		model.setLast_name(last_name);
+	public void setLastName(String lastName) {
+		model.setLastName(lastName);
 	}
 
 	/**
-	 * Sets the mobile_phone of this account.
+	 * Sets the mobile phone of this account.
 	 *
-	 * @param mobile_phone the mobile_phone of this account
+	 * @param mobilePhone the mobile phone of this account
 	 */
 	@Override
-	public void setMobile_phone(int mobile_phone) {
-		model.setMobile_phone(mobile_phone);
+	public void setMobilePhone(int mobilePhone) {
+		model.setMobilePhone(mobilePhone);
 	}
 
 	/**
@@ -686,23 +696,23 @@ public class AccountWrapper
 	}
 
 	/**
-	 * Sets the security_answer of this account.
+	 * Sets the security answer of this account.
 	 *
-	 * @param security_answer the security_answer of this account
+	 * @param securityAnswer the security answer of this account
 	 */
 	@Override
-	public void setSecurity_answer(String security_answer) {
-		model.setSecurity_answer(security_answer);
+	public void setSecurityAnswer(String securityAnswer) {
+		model.setSecurityAnswer(securityAnswer);
 	}
 
 	/**
-	 * Sets the security_question of this account.
+	 * Sets the security question of this account.
 	 *
-	 * @param security_question the security_question of this account
+	 * @param securityQuestion the security question of this account
 	 */
 	@Override
-	public void setSecurity_question(String security_question) {
-		model.setSecurity_question(security_question);
+	public void setSecurityQuestion(String securityQuestion) {
+		model.setSecurityQuestion(securityQuestion);
 	}
 
 	/**
@@ -713,16 +723,6 @@ public class AccountWrapper
 	@Override
 	public void setState(String state) {
 		model.setState(state);
-	}
-
-	/**
-	 * Sets the user_name of this account.
-	 *
-	 * @param user_name the user_name of this account
-	 */
-	@Override
-	public void setUser_name(String user_name) {
-		model.setUser_name(user_name);
 	}
 
 	/**

@@ -48,24 +48,24 @@ public class AccountTable extends BaseTable<AccountTable> {
 		"createDate", Date.class, Types.TIMESTAMP, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, Date> modifiedDate = createColumn(
 		"modifiedDate", Date.class, Types.TIMESTAMP, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, String> first_name = createColumn(
-		"first_name", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, String> last_name = createColumn(
-		"last_name", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, String> user_name = createColumn(
-		"user_name", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, String> email_address = createColumn(
-		"email_address", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
+	public final Column<AccountTable, String> firstName = createColumn(
+		"firstName", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
+	public final Column<AccountTable, String> lastName = createColumn(
+		"lastName", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
+	public final Column<AccountTable, String> accountName = createColumn(
+		"accountName", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
+	public final Column<AccountTable, String> emailAddress = createColumn(
+		"emailAddress", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, String> gender = createColumn(
 		"gender", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, Date> birthday = createColumn(
 		"birthday", Date.class, Types.TIMESTAMP, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, String> password = createColumn(
 		"password_", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, Integer> home_phone = createColumn(
-		"home_phone", Integer.class, Types.INTEGER, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, Integer> mobile_phone = createColumn(
-		"mobile_phone", Integer.class, Types.INTEGER, Column.FLAG_DEFAULT);
+	public final Column<AccountTable, Integer> homePhone = createColumn(
+		"homePhone", Integer.class, Types.INTEGER, Column.FLAG_DEFAULT);
+	public final Column<AccountTable, Integer> mobilePhone = createColumn(
+		"mobilePhone", Integer.class, Types.INTEGER, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, String> address = createColumn(
 		"address", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, String> address2 = createColumn(
@@ -76,12 +76,12 @@ public class AccountTable extends BaseTable<AccountTable> {
 		"state_", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, Integer> zip = createColumn(
 		"zip", Integer.class, Types.INTEGER, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, String> security_question = createColumn(
-		"security_question", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, String> security_answer = createColumn(
-		"security_answer", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, String> accepted_tou = createColumn(
-		"accepted_tou", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
+	public final Column<AccountTable, String> securityQuestion = createColumn(
+		"securityQuestion", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
+	public final Column<AccountTable, String> securityAnswer = createColumn(
+		"securityAnswer", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
+	public final Column<AccountTable, String> acceptedTou = createColumn(
+		"acceptedTou", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 
 	private AccountTable() {
 		super("AMF_Account", AccountTable::new);

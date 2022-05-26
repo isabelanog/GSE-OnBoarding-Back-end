@@ -204,64 +204,64 @@ public interface AccountModel
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Returns the first_name of this account.
+	 * Returns the first name of this account.
 	 *
-	 * @return the first_name of this account
+	 * @return the first name of this account
 	 */
 	@AutoEscape
-	public String getFirst_name();
+	public String getFirstName();
 
 	/**
-	 * Sets the first_name of this account.
+	 * Sets the first name of this account.
 	 *
-	 * @param first_name the first_name of this account
+	 * @param firstName the first name of this account
 	 */
-	public void setFirst_name(String first_name);
+	public void setFirstName(String firstName);
 
 	/**
-	 * Returns the last_name of this account.
+	 * Returns the last name of this account.
 	 *
-	 * @return the last_name of this account
-	 */
-	@AutoEscape
-	public String getLast_name();
-
-	/**
-	 * Sets the last_name of this account.
-	 *
-	 * @param last_name the last_name of this account
-	 */
-	public void setLast_name(String last_name);
-
-	/**
-	 * Returns the user_name of this account.
-	 *
-	 * @return the user_name of this account
+	 * @return the last name of this account
 	 */
 	@AutoEscape
-	public String getUser_name();
+	public String getLastName();
 
 	/**
-	 * Sets the user_name of this account.
+	 * Sets the last name of this account.
 	 *
-	 * @param user_name the user_name of this account
+	 * @param lastName the last name of this account
 	 */
-	public void setUser_name(String user_name);
+	public void setLastName(String lastName);
 
 	/**
-	 * Returns the email_address of this account.
+	 * Returns the account name of this account.
 	 *
-	 * @return the email_address of this account
+	 * @return the account name of this account
 	 */
 	@AutoEscape
-	public String getEmail_address();
+	public String getAccountName();
 
 	/**
-	 * Sets the email_address of this account.
+	 * Sets the account name of this account.
 	 *
-	 * @param email_address the email_address of this account
+	 * @param accountName the account name of this account
 	 */
-	public void setEmail_address(String email_address);
+	public void setAccountName(String accountName);
+
+	/**
+	 * Returns the email address of this account.
+	 *
+	 * @return the email address of this account
+	 */
+	@AutoEscape
+	public String getEmailAddress();
+
+	/**
+	 * Sets the email address of this account.
+	 *
+	 * @param emailAddress the email address of this account
+	 */
+	public void setEmailAddress(String emailAddress);
 
 	/**
 	 * Returns the gender of this account.
@@ -308,32 +308,32 @@ public interface AccountModel
 	public void setPassword(String password);
 
 	/**
-	 * Returns the home_phone of this account.
+	 * Returns the home phone of this account.
 	 *
-	 * @return the home_phone of this account
+	 * @return the home phone of this account
 	 */
-	public int getHome_phone();
+	public int getHomePhone();
 
 	/**
-	 * Sets the home_phone of this account.
+	 * Sets the home phone of this account.
 	 *
-	 * @param home_phone the home_phone of this account
+	 * @param homePhone the home phone of this account
 	 */
-	public void setHome_phone(int home_phone);
+	public void setHomePhone(int homePhone);
 
 	/**
-	 * Returns the mobile_phone of this account.
+	 * Returns the mobile phone of this account.
 	 *
-	 * @return the mobile_phone of this account
+	 * @return the mobile phone of this account
 	 */
-	public int getMobile_phone();
+	public int getMobilePhone();
 
 	/**
-	 * Sets the mobile_phone of this account.
+	 * Sets the mobile phone of this account.
 	 *
-	 * @param mobile_phone the mobile_phone of this account
+	 * @param mobilePhone the mobile phone of this account
 	 */
-	public void setMobile_phone(int mobile_phone);
+	public void setMobilePhone(int mobilePhone);
 
 	/**
 	 * Returns the address of this account.
@@ -410,49 +410,49 @@ public interface AccountModel
 	public void setZip(int zip);
 
 	/**
-	 * Returns the security_question of this account.
+	 * Returns the security question of this account.
 	 *
-	 * @return the security_question of this account
+	 * @return the security question of this account
 	 */
 	@AutoEscape
-	public String getSecurity_question();
+	public String getSecurityQuestion();
 
 	/**
-	 * Sets the security_question of this account.
+	 * Sets the security question of this account.
 	 *
-	 * @param security_question the security_question of this account
+	 * @param securityQuestion the security question of this account
 	 */
-	public void setSecurity_question(String security_question);
+	public void setSecurityQuestion(String securityQuestion);
 
 	/**
-	 * Returns the security_answer of this account.
+	 * Returns the security answer of this account.
 	 *
-	 * @return the security_answer of this account
-	 */
-	@AutoEscape
-	public String getSecurity_answer();
-
-	/**
-	 * Sets the security_answer of this account.
-	 *
-	 * @param security_answer the security_answer of this account
-	 */
-	public void setSecurity_answer(String security_answer);
-
-	/**
-	 * Returns the accepted_tou of this account.
-	 *
-	 * @return the accepted_tou of this account
+	 * @return the security answer of this account
 	 */
 	@AutoEscape
-	public String getAccepted_tou();
+	public String getSecurityAnswer();
 
 	/**
-	 * Sets the accepted_tou of this account.
+	 * Sets the security answer of this account.
 	 *
-	 * @param accepted_tou the accepted_tou of this account
+	 * @param securityAnswer the security answer of this account
 	 */
-	public void setAccepted_tou(String accepted_tou);
+	public void setSecurityAnswer(String securityAnswer);
+
+	/**
+	 * Returns the accepted tou of this account.
+	 *
+	 * @return the accepted tou of this account
+	 */
+	@AutoEscape
+	public String getAcceptedTou();
+
+	/**
+	 * Sets the accepted tou of this account.
+	 *
+	 * @param acceptedTou the accepted tou of this account
+	 */
+	public void setAcceptedTou(String acceptedTou);
 
 	@Override
 	public Account cloneWithOriginalValues();
