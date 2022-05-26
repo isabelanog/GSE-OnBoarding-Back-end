@@ -130,8 +130,7 @@ public class AccountModelArgumentsResolver implements ArgumentsResolver {
 	static {
 		long orderByColumnsBitmask = 0;
 
-		orderByColumnsBitmask |= AccountModelImpl.getColumnBitmask(
-			"first_name");
+		orderByColumnsBitmask |= AccountModelImpl.getColumnBitmask("firstName");
 
 		_ORDER_BY_COLUMNS_BITMASK = orderByColumnsBitmask;
 	}

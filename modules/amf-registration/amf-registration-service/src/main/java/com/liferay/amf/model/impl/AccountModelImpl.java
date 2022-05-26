@@ -78,15 +78,15 @@ public class AccountModelImpl
 		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
 		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
-		{"first_name", Types.VARCHAR}, {"last_name", Types.VARCHAR},
-		{"user_name", Types.VARCHAR}, {"email_address", Types.VARCHAR},
+		{"firstName", Types.VARCHAR}, {"lastName", Types.VARCHAR},
+		{"accountName", Types.VARCHAR}, {"emailAddress", Types.VARCHAR},
 		{"gender", Types.VARCHAR}, {"birthday", Types.TIMESTAMP},
-		{"password_", Types.VARCHAR}, {"home_phone", Types.INTEGER},
-		{"mobile_phone", Types.INTEGER}, {"address", Types.VARCHAR},
+		{"password_", Types.VARCHAR}, {"homePhone", Types.INTEGER},
+		{"mobilePhone", Types.INTEGER}, {"address", Types.VARCHAR},
 		{"address2", Types.VARCHAR}, {"city", Types.VARCHAR},
 		{"state_", Types.VARCHAR}, {"zip", Types.INTEGER},
-		{"security_question", Types.VARCHAR},
-		{"security_answer", Types.VARCHAR}, {"accepted_tou", Types.VARCHAR}
+		{"securityQuestion", Types.VARCHAR}, {"securityAnswer", Types.VARCHAR},
+		{"acceptedTou", Types.VARCHAR}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -101,35 +101,35 @@ public class AccountModelImpl
 		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("first_name", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("last_name", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("user_name", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("email_address", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("firstName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("lastName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("accountName", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("emailAddress", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("gender", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("birthday", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("password_", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("home_phone", Types.INTEGER);
-		TABLE_COLUMNS_MAP.put("mobile_phone", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("homePhone", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("mobilePhone", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("address", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("address2", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("city", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("state_", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("zip", Types.INTEGER);
-		TABLE_COLUMNS_MAP.put("security_question", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("security_answer", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("accepted_tou", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("securityQuestion", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("securityAnswer", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("acceptedTou", Types.VARCHAR);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table AMF_Account (uuid_ VARCHAR(75) null,accountId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,first_name VARCHAR(75) null,last_name VARCHAR(75) null,user_name VARCHAR(75) null,email_address VARCHAR(75) null,gender VARCHAR(75) null,birthday DATE null,password_ VARCHAR(75) null,home_phone INTEGER,mobile_phone INTEGER,address VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,state_ VARCHAR(75) null,zip INTEGER,security_question VARCHAR(75) null,security_answer VARCHAR(75) null,accepted_tou VARCHAR(75) null)";
+		"create table AMF_Account (uuid_ VARCHAR(75) null,accountId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,firstName VARCHAR(75) null,lastName VARCHAR(75) null,accountName VARCHAR(75) null,emailAddress VARCHAR(75) null,gender VARCHAR(75) null,birthday DATE null,password_ VARCHAR(75) null,homePhone INTEGER,mobilePhone INTEGER,address VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,state_ VARCHAR(75) null,zip INTEGER,securityQuestion VARCHAR(75) null,securityAnswer VARCHAR(75) null,acceptedTou VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP = "drop table AMF_Account";
 
 	public static final String ORDER_BY_JPQL =
-		" ORDER BY account.first_name ASC";
+		" ORDER BY account.firstName ASC";
 
 	public static final String ORDER_BY_SQL =
-		" ORDER BY AMF_Account.first_name ASC";
+		" ORDER BY AMF_Account.firstName ASC";
 
 	public static final String DATA_SOURCE = "liferayDataSource";
 
@@ -160,7 +160,7 @@ public class AccountModelImpl
 	 *		#getColumnBitmask(String)}
 	 */
 	@Deprecated
-	public static final long FIRST_NAME_COLUMN_BITMASK = 8L;
+	public static final long FIRSTNAME_COLUMN_BITMASK = 8L;
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), with no direct replacement
@@ -323,20 +323,20 @@ public class AccountModelImpl
 		attributeSetterBiConsumers.put(
 			"modifiedDate",
 			(BiConsumer<Account, Date>)Account::setModifiedDate);
-		attributeGetterFunctions.put("first_name", Account::getFirst_name);
+		attributeGetterFunctions.put("firstName", Account::getFirstName);
 		attributeSetterBiConsumers.put(
-			"first_name", (BiConsumer<Account, String>)Account::setFirst_name);
-		attributeGetterFunctions.put("last_name", Account::getLast_name);
+			"firstName", (BiConsumer<Account, String>)Account::setFirstName);
+		attributeGetterFunctions.put("lastName", Account::getLastName);
 		attributeSetterBiConsumers.put(
-			"last_name", (BiConsumer<Account, String>)Account::setLast_name);
-		attributeGetterFunctions.put("user_name", Account::getUser_name);
+			"lastName", (BiConsumer<Account, String>)Account::setLastName);
+		attributeGetterFunctions.put("accountName", Account::getAccountName);
 		attributeSetterBiConsumers.put(
-			"user_name", (BiConsumer<Account, String>)Account::setUser_name);
-		attributeGetterFunctions.put(
-			"email_address", Account::getEmail_address);
+			"accountName",
+			(BiConsumer<Account, String>)Account::setAccountName);
+		attributeGetterFunctions.put("emailAddress", Account::getEmailAddress);
 		attributeSetterBiConsumers.put(
-			"email_address",
-			(BiConsumer<Account, String>)Account::setEmail_address);
+			"emailAddress",
+			(BiConsumer<Account, String>)Account::setEmailAddress);
 		attributeGetterFunctions.put("gender", Account::getGender);
 		attributeSetterBiConsumers.put(
 			"gender", (BiConsumer<Account, String>)Account::setGender);
@@ -346,13 +346,13 @@ public class AccountModelImpl
 		attributeGetterFunctions.put("password", Account::getPassword);
 		attributeSetterBiConsumers.put(
 			"password", (BiConsumer<Account, String>)Account::setPassword);
-		attributeGetterFunctions.put("home_phone", Account::getHome_phone);
+		attributeGetterFunctions.put("homePhone", Account::getHomePhone);
 		attributeSetterBiConsumers.put(
-			"home_phone", (BiConsumer<Account, Integer>)Account::setHome_phone);
-		attributeGetterFunctions.put("mobile_phone", Account::getMobile_phone);
+			"homePhone", (BiConsumer<Account, Integer>)Account::setHomePhone);
+		attributeGetterFunctions.put("mobilePhone", Account::getMobilePhone);
 		attributeSetterBiConsumers.put(
-			"mobile_phone",
-			(BiConsumer<Account, Integer>)Account::setMobile_phone);
+			"mobilePhone",
+			(BiConsumer<Account, Integer>)Account::setMobilePhone);
 		attributeGetterFunctions.put("address", Account::getAddress);
 		attributeSetterBiConsumers.put(
 			"address", (BiConsumer<Account, String>)Account::setAddress);
@@ -369,19 +369,19 @@ public class AccountModelImpl
 		attributeSetterBiConsumers.put(
 			"zip", (BiConsumer<Account, Integer>)Account::setZip);
 		attributeGetterFunctions.put(
-			"security_question", Account::getSecurity_question);
+			"securityQuestion", Account::getSecurityQuestion);
 		attributeSetterBiConsumers.put(
-			"security_question",
-			(BiConsumer<Account, String>)Account::setSecurity_question);
+			"securityQuestion",
+			(BiConsumer<Account, String>)Account::setSecurityQuestion);
 		attributeGetterFunctions.put(
-			"security_answer", Account::getSecurity_answer);
+			"securityAnswer", Account::getSecurityAnswer);
 		attributeSetterBiConsumers.put(
-			"security_answer",
-			(BiConsumer<Account, String>)Account::setSecurity_answer);
-		attributeGetterFunctions.put("accepted_tou", Account::getAccepted_tou);
+			"securityAnswer",
+			(BiConsumer<Account, String>)Account::setSecurityAnswer);
+		attributeGetterFunctions.put("acceptedTou", Account::getAcceptedTou);
 		attributeSetterBiConsumers.put(
-			"accepted_tou",
-			(BiConsumer<Account, String>)Account::setAccepted_tou);
+			"acceptedTou",
+			(BiConsumer<Account, String>)Account::setAcceptedTou);
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -571,82 +571,82 @@ public class AccountModelImpl
 
 	@JSON
 	@Override
-	public String getFirst_name() {
-		if (_first_name == null) {
+	public String getFirstName() {
+		if (_firstName == null) {
 			return "";
 		}
 		else {
-			return _first_name;
+			return _firstName;
 		}
 	}
 
 	@Override
-	public void setFirst_name(String first_name) {
+	public void setFirstName(String firstName) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_first_name = first_name;
+		_firstName = firstName;
 	}
 
 	@JSON
 	@Override
-	public String getLast_name() {
-		if (_last_name == null) {
+	public String getLastName() {
+		if (_lastName == null) {
 			return "";
 		}
 		else {
-			return _last_name;
+			return _lastName;
 		}
 	}
 
 	@Override
-	public void setLast_name(String last_name) {
+	public void setLastName(String lastName) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_last_name = last_name;
+		_lastName = lastName;
 	}
 
 	@JSON
 	@Override
-	public String getUser_name() {
-		if (_user_name == null) {
+	public String getAccountName() {
+		if (_accountName == null) {
 			return "";
 		}
 		else {
-			return _user_name;
+			return _accountName;
 		}
 	}
 
 	@Override
-	public void setUser_name(String user_name) {
+	public void setAccountName(String accountName) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_user_name = user_name;
+		_accountName = accountName;
 	}
 
 	@JSON
 	@Override
-	public String getEmail_address() {
-		if (_email_address == null) {
+	public String getEmailAddress() {
+		if (_emailAddress == null) {
 			return "";
 		}
 		else {
-			return _email_address;
+			return _emailAddress;
 		}
 	}
 
 	@Override
-	public void setEmail_address(String email_address) {
+	public void setEmailAddress(String emailAddress) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_email_address = email_address;
+		_emailAddress = emailAddress;
 	}
 
 	@JSON
@@ -706,32 +706,32 @@ public class AccountModelImpl
 
 	@JSON
 	@Override
-	public int getHome_phone() {
-		return _home_phone;
+	public int getHomePhone() {
+		return _homePhone;
 	}
 
 	@Override
-	public void setHome_phone(int home_phone) {
+	public void setHomePhone(int homePhone) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_home_phone = home_phone;
+		_homePhone = homePhone;
 	}
 
 	@JSON
 	@Override
-	public int getMobile_phone() {
-		return _mobile_phone;
+	public int getMobilePhone() {
+		return _mobilePhone;
 	}
 
 	@Override
-	public void setMobile_phone(int mobile_phone) {
+	public void setMobilePhone(int mobilePhone) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_mobile_phone = mobile_phone;
+		_mobilePhone = mobilePhone;
 	}
 
 	@JSON
@@ -831,62 +831,62 @@ public class AccountModelImpl
 
 	@JSON
 	@Override
-	public String getSecurity_question() {
-		if (_security_question == null) {
+	public String getSecurityQuestion() {
+		if (_securityQuestion == null) {
 			return "";
 		}
 		else {
-			return _security_question;
+			return _securityQuestion;
 		}
 	}
 
 	@Override
-	public void setSecurity_question(String security_question) {
+	public void setSecurityQuestion(String securityQuestion) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_security_question = security_question;
+		_securityQuestion = securityQuestion;
 	}
 
 	@JSON
 	@Override
-	public String getSecurity_answer() {
-		if (_security_answer == null) {
+	public String getSecurityAnswer() {
+		if (_securityAnswer == null) {
 			return "";
 		}
 		else {
-			return _security_answer;
+			return _securityAnswer;
 		}
 	}
 
 	@Override
-	public void setSecurity_answer(String security_answer) {
+	public void setSecurityAnswer(String securityAnswer) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_security_answer = security_answer;
+		_securityAnswer = securityAnswer;
 	}
 
 	@JSON
 	@Override
-	public String getAccepted_tou() {
-		if (_accepted_tou == null) {
+	public String getAcceptedTou() {
+		if (_acceptedTou == null) {
 			return "";
 		}
 		else {
-			return _accepted_tou;
+			return _acceptedTou;
 		}
 	}
 
 	@Override
-	public void setAccepted_tou(String accepted_tou) {
+	public void setAcceptedTou(String acceptedTou) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
 
-		_accepted_tou = accepted_tou;
+		_acceptedTou = acceptedTou;
 	}
 
 	@Override
@@ -959,23 +959,23 @@ public class AccountModelImpl
 		accountImpl.setUserName(getUserName());
 		accountImpl.setCreateDate(getCreateDate());
 		accountImpl.setModifiedDate(getModifiedDate());
-		accountImpl.setFirst_name(getFirst_name());
-		accountImpl.setLast_name(getLast_name());
-		accountImpl.setUser_name(getUser_name());
-		accountImpl.setEmail_address(getEmail_address());
+		accountImpl.setFirstName(getFirstName());
+		accountImpl.setLastName(getLastName());
+		accountImpl.setAccountName(getAccountName());
+		accountImpl.setEmailAddress(getEmailAddress());
 		accountImpl.setGender(getGender());
 		accountImpl.setBirthday(getBirthday());
 		accountImpl.setPassword(getPassword());
-		accountImpl.setHome_phone(getHome_phone());
-		accountImpl.setMobile_phone(getMobile_phone());
+		accountImpl.setHomePhone(getHomePhone());
+		accountImpl.setMobilePhone(getMobilePhone());
 		accountImpl.setAddress(getAddress());
 		accountImpl.setAddress2(getAddress2());
 		accountImpl.setCity(getCity());
 		accountImpl.setState(getState());
 		accountImpl.setZip(getZip());
-		accountImpl.setSecurity_question(getSecurity_question());
-		accountImpl.setSecurity_answer(getSecurity_answer());
-		accountImpl.setAccepted_tou(getAccepted_tou());
+		accountImpl.setSecurityQuestion(getSecurityQuestion());
+		accountImpl.setSecurityAnswer(getSecurityAnswer());
+		accountImpl.setAcceptedTou(getAcceptedTou());
 
 		accountImpl.resetOriginalValues();
 
@@ -999,34 +999,34 @@ public class AccountModelImpl
 			this.<Date>getColumnOriginalValue("createDate"));
 		accountImpl.setModifiedDate(
 			this.<Date>getColumnOriginalValue("modifiedDate"));
-		accountImpl.setFirst_name(
-			this.<String>getColumnOriginalValue("first_name"));
-		accountImpl.setLast_name(
-			this.<String>getColumnOriginalValue("last_name"));
-		accountImpl.setUser_name(
-			this.<String>getColumnOriginalValue("user_name"));
-		accountImpl.setEmail_address(
-			this.<String>getColumnOriginalValue("email_address"));
+		accountImpl.setFirstName(
+			this.<String>getColumnOriginalValue("firstName"));
+		accountImpl.setLastName(
+			this.<String>getColumnOriginalValue("lastName"));
+		accountImpl.setAccountName(
+			this.<String>getColumnOriginalValue("accountName"));
+		accountImpl.setEmailAddress(
+			this.<String>getColumnOriginalValue("emailAddress"));
 		accountImpl.setGender(this.<String>getColumnOriginalValue("gender"));
 		accountImpl.setBirthday(this.<Date>getColumnOriginalValue("birthday"));
 		accountImpl.setPassword(
 			this.<String>getColumnOriginalValue("password_"));
-		accountImpl.setHome_phone(
-			this.<Integer>getColumnOriginalValue("home_phone"));
-		accountImpl.setMobile_phone(
-			this.<Integer>getColumnOriginalValue("mobile_phone"));
+		accountImpl.setHomePhone(
+			this.<Integer>getColumnOriginalValue("homePhone"));
+		accountImpl.setMobilePhone(
+			this.<Integer>getColumnOriginalValue("mobilePhone"));
 		accountImpl.setAddress(this.<String>getColumnOriginalValue("address"));
 		accountImpl.setAddress2(
 			this.<String>getColumnOriginalValue("address2"));
 		accountImpl.setCity(this.<String>getColumnOriginalValue("city"));
 		accountImpl.setState(this.<String>getColumnOriginalValue("state_"));
 		accountImpl.setZip(this.<Integer>getColumnOriginalValue("zip"));
-		accountImpl.setSecurity_question(
-			this.<String>getColumnOriginalValue("security_question"));
-		accountImpl.setSecurity_answer(
-			this.<String>getColumnOriginalValue("security_answer"));
-		accountImpl.setAccepted_tou(
-			this.<String>getColumnOriginalValue("accepted_tou"));
+		accountImpl.setSecurityQuestion(
+			this.<String>getColumnOriginalValue("securityQuestion"));
+		accountImpl.setSecurityAnswer(
+			this.<String>getColumnOriginalValue("securityAnswer"));
+		accountImpl.setAcceptedTou(
+			this.<String>getColumnOriginalValue("acceptedTou"));
 
 		return accountImpl;
 	}
@@ -1035,7 +1035,7 @@ public class AccountModelImpl
 	public int compareTo(Account account) {
 		int value = 0;
 
-		value = getFirst_name().compareTo(account.getFirst_name());
+		value = getFirstName().compareTo(account.getFirstName());
 
 		if (value != 0) {
 			return value;
@@ -1144,36 +1144,36 @@ public class AccountModelImpl
 			accountCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
-		accountCacheModel.first_name = getFirst_name();
+		accountCacheModel.firstName = getFirstName();
 
-		String first_name = accountCacheModel.first_name;
+		String firstName = accountCacheModel.firstName;
 
-		if ((first_name != null) && (first_name.length() == 0)) {
-			accountCacheModel.first_name = null;
+		if ((firstName != null) && (firstName.length() == 0)) {
+			accountCacheModel.firstName = null;
 		}
 
-		accountCacheModel.last_name = getLast_name();
+		accountCacheModel.lastName = getLastName();
 
-		String last_name = accountCacheModel.last_name;
+		String lastName = accountCacheModel.lastName;
 
-		if ((last_name != null) && (last_name.length() == 0)) {
-			accountCacheModel.last_name = null;
+		if ((lastName != null) && (lastName.length() == 0)) {
+			accountCacheModel.lastName = null;
 		}
 
-		accountCacheModel.user_name = getUser_name();
+		accountCacheModel.accountName = getAccountName();
 
-		String user_name = accountCacheModel.user_name;
+		String accountName = accountCacheModel.accountName;
 
-		if ((user_name != null) && (user_name.length() == 0)) {
-			accountCacheModel.user_name = null;
+		if ((accountName != null) && (accountName.length() == 0)) {
+			accountCacheModel.accountName = null;
 		}
 
-		accountCacheModel.email_address = getEmail_address();
+		accountCacheModel.emailAddress = getEmailAddress();
 
-		String email_address = accountCacheModel.email_address;
+		String emailAddress = accountCacheModel.emailAddress;
 
-		if ((email_address != null) && (email_address.length() == 0)) {
-			accountCacheModel.email_address = null;
+		if ((emailAddress != null) && (emailAddress.length() == 0)) {
+			accountCacheModel.emailAddress = null;
 		}
 
 		accountCacheModel.gender = getGender();
@@ -1201,9 +1201,9 @@ public class AccountModelImpl
 			accountCacheModel.password = null;
 		}
 
-		accountCacheModel.home_phone = getHome_phone();
+		accountCacheModel.homePhone = getHomePhone();
 
-		accountCacheModel.mobile_phone = getMobile_phone();
+		accountCacheModel.mobilePhone = getMobilePhone();
 
 		accountCacheModel.address = getAddress();
 
@@ -1239,28 +1239,28 @@ public class AccountModelImpl
 
 		accountCacheModel.zip = getZip();
 
-		accountCacheModel.security_question = getSecurity_question();
+		accountCacheModel.securityQuestion = getSecurityQuestion();
 
-		String security_question = accountCacheModel.security_question;
+		String securityQuestion = accountCacheModel.securityQuestion;
 
-		if ((security_question != null) && (security_question.length() == 0)) {
-			accountCacheModel.security_question = null;
+		if ((securityQuestion != null) && (securityQuestion.length() == 0)) {
+			accountCacheModel.securityQuestion = null;
 		}
 
-		accountCacheModel.security_answer = getSecurity_answer();
+		accountCacheModel.securityAnswer = getSecurityAnswer();
 
-		String security_answer = accountCacheModel.security_answer;
+		String securityAnswer = accountCacheModel.securityAnswer;
 
-		if ((security_answer != null) && (security_answer.length() == 0)) {
-			accountCacheModel.security_answer = null;
+		if ((securityAnswer != null) && (securityAnswer.length() == 0)) {
+			accountCacheModel.securityAnswer = null;
 		}
 
-		accountCacheModel.accepted_tou = getAccepted_tou();
+		accountCacheModel.acceptedTou = getAcceptedTou();
 
-		String accepted_tou = accountCacheModel.accepted_tou;
+		String acceptedTou = accountCacheModel.acceptedTou;
 
-		if ((accepted_tou != null) && (accepted_tou.length() == 0)) {
-			accountCacheModel.accepted_tou = null;
+		if ((acceptedTou != null) && (acceptedTou.length() == 0)) {
+			accountCacheModel.acceptedTou = null;
 		}
 
 		return accountCacheModel;
@@ -1362,23 +1362,23 @@ public class AccountModelImpl
 	private Date _createDate;
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
-	private String _first_name;
-	private String _last_name;
-	private String _user_name;
-	private String _email_address;
+	private String _firstName;
+	private String _lastName;
+	private String _accountName;
+	private String _emailAddress;
 	private String _gender;
 	private Date _birthday;
 	private String _password;
-	private int _home_phone;
-	private int _mobile_phone;
+	private int _homePhone;
+	private int _mobilePhone;
 	private String _address;
 	private String _address2;
 	private String _city;
 	private String _state;
 	private int _zip;
-	private String _security_question;
-	private String _security_answer;
-	private String _accepted_tou;
+	private String _securityQuestion;
+	private String _securityAnswer;
+	private String _acceptedTou;
 
 	public <T> T getColumnValue(String columnName) {
 		columnName = _attributeNames.getOrDefault(columnName, columnName);
@@ -1417,23 +1417,23 @@ public class AccountModelImpl
 		_columnOriginalValues.put("userName", _userName);
 		_columnOriginalValues.put("createDate", _createDate);
 		_columnOriginalValues.put("modifiedDate", _modifiedDate);
-		_columnOriginalValues.put("first_name", _first_name);
-		_columnOriginalValues.put("last_name", _last_name);
-		_columnOriginalValues.put("user_name", _user_name);
-		_columnOriginalValues.put("email_address", _email_address);
+		_columnOriginalValues.put("firstName", _firstName);
+		_columnOriginalValues.put("lastName", _lastName);
+		_columnOriginalValues.put("accountName", _accountName);
+		_columnOriginalValues.put("emailAddress", _emailAddress);
 		_columnOriginalValues.put("gender", _gender);
 		_columnOriginalValues.put("birthday", _birthday);
 		_columnOriginalValues.put("password_", _password);
-		_columnOriginalValues.put("home_phone", _home_phone);
-		_columnOriginalValues.put("mobile_phone", _mobile_phone);
+		_columnOriginalValues.put("homePhone", _homePhone);
+		_columnOriginalValues.put("mobilePhone", _mobilePhone);
 		_columnOriginalValues.put("address", _address);
 		_columnOriginalValues.put("address2", _address2);
 		_columnOriginalValues.put("city", _city);
 		_columnOriginalValues.put("state_", _state);
 		_columnOriginalValues.put("zip", _zip);
-		_columnOriginalValues.put("security_question", _security_question);
-		_columnOriginalValues.put("security_answer", _security_answer);
-		_columnOriginalValues.put("accepted_tou", _accepted_tou);
+		_columnOriginalValues.put("securityQuestion", _securityQuestion);
+		_columnOriginalValues.put("securityAnswer", _securityAnswer);
+		_columnOriginalValues.put("acceptedTou", _acceptedTou);
 	}
 
 	private static final Map<String, String> _attributeNames;
@@ -1475,13 +1475,13 @@ public class AccountModelImpl
 
 		columnBitmasks.put("modifiedDate", 128L);
 
-		columnBitmasks.put("first_name", 256L);
+		columnBitmasks.put("firstName", 256L);
 
-		columnBitmasks.put("last_name", 512L);
+		columnBitmasks.put("lastName", 512L);
 
-		columnBitmasks.put("user_name", 1024L);
+		columnBitmasks.put("accountName", 1024L);
 
-		columnBitmasks.put("email_address", 2048L);
+		columnBitmasks.put("emailAddress", 2048L);
 
 		columnBitmasks.put("gender", 4096L);
 
@@ -1489,9 +1489,9 @@ public class AccountModelImpl
 
 		columnBitmasks.put("password_", 16384L);
 
-		columnBitmasks.put("home_phone", 32768L);
+		columnBitmasks.put("homePhone", 32768L);
 
-		columnBitmasks.put("mobile_phone", 65536L);
+		columnBitmasks.put("mobilePhone", 65536L);
 
 		columnBitmasks.put("address", 131072L);
 
@@ -1503,11 +1503,11 @@ public class AccountModelImpl
 
 		columnBitmasks.put("zip", 2097152L);
 
-		columnBitmasks.put("security_question", 4194304L);
+		columnBitmasks.put("securityQuestion", 4194304L);
 
-		columnBitmasks.put("security_answer", 8388608L);
+		columnBitmasks.put("securityAnswer", 8388608L);
 
-		columnBitmasks.put("accepted_tou", 16777216L);
+		columnBitmasks.put("acceptedTou", 16777216L);
 
 		_columnBitmasks = Collections.unmodifiableMap(columnBitmasks);
 	}

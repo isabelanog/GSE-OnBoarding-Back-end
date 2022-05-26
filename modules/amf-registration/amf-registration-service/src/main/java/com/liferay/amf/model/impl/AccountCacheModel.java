@@ -78,24 +78,24 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", first_name=");
-		sb.append(first_name);
-		sb.append(", last_name=");
-		sb.append(last_name);
-		sb.append(", user_name=");
-		sb.append(user_name);
-		sb.append(", email_address=");
-		sb.append(email_address);
+		sb.append(", firstName=");
+		sb.append(firstName);
+		sb.append(", lastName=");
+		sb.append(lastName);
+		sb.append(", accountName=");
+		sb.append(accountName);
+		sb.append(", emailAddress=");
+		sb.append(emailAddress);
 		sb.append(", gender=");
 		sb.append(gender);
 		sb.append(", birthday=");
 		sb.append(birthday);
 		sb.append(", password=");
 		sb.append(password);
-		sb.append(", home_phone=");
-		sb.append(home_phone);
-		sb.append(", mobile_phone=");
-		sb.append(mobile_phone);
+		sb.append(", homePhone=");
+		sb.append(homePhone);
+		sb.append(", mobilePhone=");
+		sb.append(mobilePhone);
 		sb.append(", address=");
 		sb.append(address);
 		sb.append(", address2=");
@@ -106,12 +106,12 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		sb.append(state);
 		sb.append(", zip=");
 		sb.append(zip);
-		sb.append(", security_question=");
-		sb.append(security_question);
-		sb.append(", security_answer=");
-		sb.append(security_answer);
-		sb.append(", accepted_tou=");
-		sb.append(accepted_tou);
+		sb.append(", securityQuestion=");
+		sb.append(securityQuestion);
+		sb.append(", securityAnswer=");
+		sb.append(securityAnswer);
+		sb.append(", acceptedTou=");
+		sb.append(acceptedTou);
 		sb.append("}");
 
 		return sb.toString();
@@ -154,32 +154,32 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			accountImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
-		if (first_name == null) {
-			accountImpl.setFirst_name("");
+		if (firstName == null) {
+			accountImpl.setFirstName("");
 		}
 		else {
-			accountImpl.setFirst_name(first_name);
+			accountImpl.setFirstName(firstName);
 		}
 
-		if (last_name == null) {
-			accountImpl.setLast_name("");
+		if (lastName == null) {
+			accountImpl.setLastName("");
 		}
 		else {
-			accountImpl.setLast_name(last_name);
+			accountImpl.setLastName(lastName);
 		}
 
-		if (user_name == null) {
-			accountImpl.setUser_name("");
+		if (accountName == null) {
+			accountImpl.setAccountName("");
 		}
 		else {
-			accountImpl.setUser_name(user_name);
+			accountImpl.setAccountName(accountName);
 		}
 
-		if (email_address == null) {
-			accountImpl.setEmail_address("");
+		if (emailAddress == null) {
+			accountImpl.setEmailAddress("");
 		}
 		else {
-			accountImpl.setEmail_address(email_address);
+			accountImpl.setEmailAddress(emailAddress);
 		}
 
 		if (gender == null) {
@@ -203,8 +203,8 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			accountImpl.setPassword(password);
 		}
 
-		accountImpl.setHome_phone(home_phone);
-		accountImpl.setMobile_phone(mobile_phone);
+		accountImpl.setHomePhone(homePhone);
+		accountImpl.setMobilePhone(mobilePhone);
 
 		if (address == null) {
 			accountImpl.setAddress("");
@@ -236,25 +236,25 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 
 		accountImpl.setZip(zip);
 
-		if (security_question == null) {
-			accountImpl.setSecurity_question("");
+		if (securityQuestion == null) {
+			accountImpl.setSecurityQuestion("");
 		}
 		else {
-			accountImpl.setSecurity_question(security_question);
+			accountImpl.setSecurityQuestion(securityQuestion);
 		}
 
-		if (security_answer == null) {
-			accountImpl.setSecurity_answer("");
+		if (securityAnswer == null) {
+			accountImpl.setSecurityAnswer("");
 		}
 		else {
-			accountImpl.setSecurity_answer(security_answer);
+			accountImpl.setSecurityAnswer(securityAnswer);
 		}
 
-		if (accepted_tou == null) {
-			accountImpl.setAccepted_tou("");
+		if (acceptedTou == null) {
+			accountImpl.setAcceptedTou("");
 		}
 		else {
-			accountImpl.setAccepted_tou(accepted_tou);
+			accountImpl.setAcceptedTou(acceptedTou);
 		}
 
 		accountImpl.resetOriginalValues();
@@ -276,26 +276,26 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
-		first_name = objectInput.readUTF();
-		last_name = objectInput.readUTF();
-		user_name = objectInput.readUTF();
-		email_address = objectInput.readUTF();
+		firstName = objectInput.readUTF();
+		lastName = objectInput.readUTF();
+		accountName = objectInput.readUTF();
+		emailAddress = objectInput.readUTF();
 		gender = objectInput.readUTF();
 		birthday = objectInput.readLong();
 		password = objectInput.readUTF();
 
-		home_phone = objectInput.readInt();
+		homePhone = objectInput.readInt();
 
-		mobile_phone = objectInput.readInt();
+		mobilePhone = objectInput.readInt();
 		address = objectInput.readUTF();
 		address2 = objectInput.readUTF();
 		city = objectInput.readUTF();
 		state = objectInput.readUTF();
 
 		zip = objectInput.readInt();
-		security_question = objectInput.readUTF();
-		security_answer = objectInput.readUTF();
-		accepted_tou = objectInput.readUTF();
+		securityQuestion = objectInput.readUTF();
+		securityAnswer = objectInput.readUTF();
+		acceptedTou = objectInput.readUTF();
 	}
 
 	@Override
@@ -325,32 +325,32 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 
-		if (first_name == null) {
+		if (firstName == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
-			objectOutput.writeUTF(first_name);
+			objectOutput.writeUTF(firstName);
 		}
 
-		if (last_name == null) {
+		if (lastName == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
-			objectOutput.writeUTF(last_name);
+			objectOutput.writeUTF(lastName);
 		}
 
-		if (user_name == null) {
+		if (accountName == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
-			objectOutput.writeUTF(user_name);
+			objectOutput.writeUTF(accountName);
 		}
 
-		if (email_address == null) {
+		if (emailAddress == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
-			objectOutput.writeUTF(email_address);
+			objectOutput.writeUTF(emailAddress);
 		}
 
 		if (gender == null) {
@@ -369,9 +369,9 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			objectOutput.writeUTF(password);
 		}
 
-		objectOutput.writeInt(home_phone);
+		objectOutput.writeInt(homePhone);
 
-		objectOutput.writeInt(mobile_phone);
+		objectOutput.writeInt(mobilePhone);
 
 		if (address == null) {
 			objectOutput.writeUTF("");
@@ -403,25 +403,25 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 
 		objectOutput.writeInt(zip);
 
-		if (security_question == null) {
+		if (securityQuestion == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
-			objectOutput.writeUTF(security_question);
+			objectOutput.writeUTF(securityQuestion);
 		}
 
-		if (security_answer == null) {
+		if (securityAnswer == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
-			objectOutput.writeUTF(security_answer);
+			objectOutput.writeUTF(securityAnswer);
 		}
 
-		if (accepted_tou == null) {
+		if (acceptedTou == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
-			objectOutput.writeUTF(accepted_tou);
+			objectOutput.writeUTF(acceptedTou);
 		}
 	}
 
@@ -433,22 +433,22 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public String first_name;
-	public String last_name;
-	public String user_name;
-	public String email_address;
+	public String firstName;
+	public String lastName;
+	public String accountName;
+	public String emailAddress;
 	public String gender;
 	public long birthday;
 	public String password;
-	public int home_phone;
-	public int mobile_phone;
+	public int homePhone;
+	public int mobilePhone;
 	public String address;
 	public String address2;
 	public String city;
 	public String state;
 	public int zip;
-	public String security_question;
-	public String security_answer;
-	public String accepted_tou;
+	public String securityQuestion;
+	public String securityAnswer;
+	public String acceptedTou;
 
 }

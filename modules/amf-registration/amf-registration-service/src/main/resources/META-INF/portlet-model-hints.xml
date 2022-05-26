@@ -10,22 +10,22 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="first_name" type="String" />
-		<field name="last_name" type="String" />
-		<field name="user_name" type="String" />
-		<field name="email_address" type="String" />
+		<field name="firstName" type="String" />
+		<field name="lastName" type="String" />
+		<field name="accountName" type="String" />
+		<field name="emailAddress" type="String" />
 		<field name="gender" type="String" />
 		<field name="birthday" type="Date" />
 		<field name="password" type="String" />
-		<field name="home_phone" type="int" />
-		<field name="mobile_phone" type="int" />
+		<field name="homePhone" type="int" />
+		<field name="mobilePhone" type="int" />
 		<field name="address" type="String" />
 		<field name="address2" type="String" />
 		<field name="city" type="String" />
 		<field name="state" type="String" />
 		<field name="zip" type="int" />
-		<field name="security_question" type="String" />
-		<field name="security_answer" type="String" />
-		<field name="accepted_tou" type="String" />
+		<field name="securityQuestion" type="String" />
+		<field name="securityAnswer" type="String" />
+		<field name="acceptedTou" type="String" />
 	</model>
 </model-hints>
