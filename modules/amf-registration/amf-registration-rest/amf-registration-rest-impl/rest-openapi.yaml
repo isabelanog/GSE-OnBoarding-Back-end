@@ -46,11 +46,7 @@ components:
                     description: The state.
                     type: string
                 securityQuestion:
-                    description: Must choose one of the following
-                        What is your mother's maiden nae?
-                        What is the make of you first car?
-                        What is your high school mascot?
-                        Who is your favorite actor?
+                    description: Security question.
                     type: string
                 securityAnswer:
                     description: The security answer.
