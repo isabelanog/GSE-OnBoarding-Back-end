@@ -43,22 +43,22 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 		// populate fields
 		account.setAccountId(accountId);
-		account.setFirst_name(firstname);
-		account.setLast_name(lastname);
-		account.setEmail_address(emailAddress);
-		account.setUser_name(username);
+		account.setFirstName(firstname);
+		account.setLastName(lastname);
+		account.setEmailAddress(emailAddress);
+		account.setAccountName(username);
 		account.setGender(gender);
 		account.setBirthday(birthday);
 		account.setPassword(password);
-		account.setHome_phone(homePhone);
-		account.setMobile_phone(mobilePhone);
+		account.setHomePhone(homePhone);
+		account.setMobilePhone(mobilePhone);
 		account.setAddress(address);
 		account.setAddress2(address2);
 		account.setCity(city);
 		account.setState(statezip);
-		account.setSecurity_question(securityQuestion);
-		account.setSecurity_answer(securityAnswer);
-		account.setAccepted_tou(acceptedTou);
+		account.setSecurityQuestion(securityQuestion);
+		account.setSecurityAnswer(securityAnswer);
+		account.setAcceptedTou(acceptedTou);
 
 		return accountPersistence.update(account);
 	}
@@ -82,22 +82,23 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 		// Set updated fields and modification date
 
-		account.setFirst_name(firstname);
-		account.setLast_name(lastname);
-		account.setUser_name(username);
-		account.setEmail_address(emailAddress);
+		account.setAccountId(accountId);
+		account.setFirstName(firstname);
+		account.setLastName(lastname);
+		account.setEmailAddress(emailAddress);
+		account.setAccountName(username);
 		account.setGender(gender);
 		account.setBirthday(birthday);
 		account.setPassword(password);
-		account.setHome_phone(homePhone);
-		account.setMobile_phone(mobilePhone);
+		account.setHomePhone(homePhone);
+		account.setMobilePhone(mobilePhone);
 		account.setAddress(address);
 		account.setAddress2(address2);
 		account.setCity(city);
 		account.setState(statezip);
-		account.setSecurity_question(securityQuestion);
-		account.setSecurity_answer(securityAnswer);
-		account.setAccepted_tou(acceptedTou);
+		account.setSecurityQuestion(securityQuestion);
+		account.setSecurityAnswer(securityAnswer);
+		account.setAcceptedTou(acceptedTou);
 
 		return accountPersistence.update(account);
 	}
