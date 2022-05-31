@@ -1,6 +1,6 @@
 dependencies {
 	compile project(":modules:amf-registration:amf-registration-rest:amf-registration-rest-api")
-
+	compile project(":modules:amf-registration:amf-registration-api")
 	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-annotations", version: "2.12.4"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string"

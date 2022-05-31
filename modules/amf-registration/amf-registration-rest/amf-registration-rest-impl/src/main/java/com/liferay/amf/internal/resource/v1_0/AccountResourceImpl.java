@@ -1,6 +1,7 @@
 package com.liferay.amf.internal.resource.v1_0;
 
 import com.liferay.amf.resource.v1_0.AccountResource;
+import com.liferay.amf.model.Account;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -13,4 +14,5 @@ import org.osgi.service.component.annotations.ServiceScope;
 	scope = ServiceScope.PROTOTYPE, service = AccountResource.class
 )
 public class AccountResourceImpl extends BaseAccountResourceImpl {
+
 }
