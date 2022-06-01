@@ -1,13 +1,16 @@
 package com.liferay.amf.internal.resource.v1_0;
 
-import com.liferay.amf.resource.v1_0.AccountResource;
 import com.liferay.amf.dto.v1_0.Account;
-
+import com.liferay.amf.resource.v1_0.AccountResource;
+import com.liferay.amf.service.AccountLocalService;
+import com.liferay.portal.vulcan.pagination.Page;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
+import java.util.Date;
+
 /**
  * @author me
  */
@@ -15,27 +18,37 @@ import java.util.Map;
 	properties = "OSGI-INF/liferay/rest/v1_0/account.properties",
 	scope = ServiceScope.PROTOTYPE, service = AccountResource.class
 )
-public class AccountResourceImpl extends BaseAccountResourceImpl   {
+public class AccountResourceImpl extends BaseAccountResourceImpl {
 
-	Map<Integer, Account> account = new HashMap<>();
+	@Override
+	public Account getAccount(String accountId, Account account) throws Exception {
 
-	public Account getAccount(Integer accountId) throws Exception {
-		return getAccount(accountId);
+		return _accountLocalService.getAccount(accountId, account.getFirstName(), account.getLastName(), account.getEmailAdress(),
+				account.getUserName(), account.getGenre(), account.getBirthday(), account.getBirthday(), account.getPassword(), account.getHomePhone(),
+				account.getMobilePhone(), account.getAdress1(),account.getAdress2(), account.getCity(), account.getState(), account.getSecurityQuestion(),
+				account.getSecurityAnswer(), account.getacceptedTou);
 	}
 
-	public void deleteAccount(Integer accountId) throws Exception {
-		deleteAccount(accountId);
-
-	}
-
+	@Override
 	public Account createAccount(Account account) throws Exception {
 
-		return createAccount(account);
+		return _accountLocalService.createAccount(account.getFirstName(), account.getLastName(), account.getEmailAdress(),
+				account.getUserName(), account.getGenre(), account.getBirthday(), account.getBirthday(), account.getPassword(), account.getHomePhone(),
+				account.getMobilePhone(), account.getAdress1(),account.getAdress2(), account.getCity(), account.getState(), account.getSecurityQuestion(),
+				account.getSecurityAnswer(), account.getacceptedTou);
 	}
-
-	public Account updateAccount(Integer accountId, Account account) throws Exception {
-
-		return updateAccount(accountId,account);
+	@Override
+	public void deleteAccount(String accountId) throws Exception {
+		_accountLocalService.deleteAccount(accountId);
 	}
+	@Override
+	public Account updateAccount(String accountId, Account account) throws Exception {
 
+		return _accountLocalService.updateAccount(accountId, account.getFirstName(), account.getLastName(), account.getEmailAdress(),
+				account.getUserName(), account.getGenre(), account.getBirthday(), account.getBirthday(), account.getPassword(), account.getHomePhone(),
+				account.getMobilePhone(), account.getAdress1(),account.getAdress2(), account.getCity(), account.getState(), account.getSecurityQuestion(),
+				account.getSecurityAnswer(), account.getacceptedTou);
+		}
+	@Reference
+	private AccountLocalService _accountLocalService;
 }
