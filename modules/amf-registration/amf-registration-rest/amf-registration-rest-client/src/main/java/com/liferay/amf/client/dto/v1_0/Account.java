@@ -20,6 +20,27 @@ public class Account implements Cloneable, Serializable {
 		return AccountSerDes.toDTO(json);
 	}
 
+	public String getAccountName() {
+		return accountName;
+	}
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+
+	public void setAccountName(
+		UnsafeSupplier<String, Exception> accountNameUnsafeSupplier) {
+
+		try {
+			accountName = accountNameUnsafeSupplier.get();
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	protected String accountName;
+
 	public String getAdress1() {
 		return adress1;
 	}
@@ -353,27 +374,6 @@ public class Account implements Cloneable, Serializable {
 	}
 
 	protected String termsOfUse;
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public void setUserName(
-		UnsafeSupplier<String, Exception> userNameUnsafeSupplier) {
-
-		try {
-			userName = userNameUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	protected String userName;
 
 	@Override
 	public Account clone() throws CloneNotSupportedException {

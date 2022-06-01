@@ -95,7 +95,7 @@ public abstract class BaseAccountResourceImpl
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -X 'POST' 'http://localhost:8080/o/amf-registration-rest/v1.0/account' -d $'{"adress1": ___, "adress2": ___, "birthday": ___, "city": ___, "confirmPassword": ___, "emailAdress": ___, "firstName": ___, "genre": ___, "homePhone": ___, "lastName": ___, "mobilePhone": ___, "password": ___, "securityAnswer": ___, "securityQuestion": ___, "state": ___, "termsOfUse": ___, "userName": ___}' --header 'Content-Type: application/json' -u 'test@liferay.com:test'
+	 * curl -X 'POST' 'http://localhost:8080/o/amf-registration-rest/v1.0/account' -d $'{"accountName": ___, "adress1": ___, "adress2": ___, "birthday": ___, "city": ___, "confirmPassword": ___, "emailAdress": ___, "firstName": ___, "genre": ___, "homePhone": ___, "lastName": ___, "mobilePhone": ___, "password": ___, "securityAnswer": ___, "securityQuestion": ___, "state": ___, "termsOfUse": ___}' --header 'Content-Type: application/json' -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.tags.Tags(
 		value = {@io.swagger.v3.oas.annotations.tags.Tag(name = "Account")}
@@ -214,7 +214,7 @@ public abstract class BaseAccountResourceImpl
 	/**
 	 * Invoke this method with the command line:
 	 *
-	 * curl -X 'PUT' 'http://localhost:8080/o/amf-registration-rest/v1.0/account/{accountId}' -d $'{"adress1": ___, "adress2": ___, "birthday": ___, "city": ___, "confirmPassword": ___, "emailAdress": ___, "firstName": ___, "genre": ___, "homePhone": ___, "lastName": ___, "mobilePhone": ___, "password": ___, "securityAnswer": ___, "securityQuestion": ___, "state": ___, "termsOfUse": ___, "userName": ___}' --header 'Content-Type: application/json' -u 'test@liferay.com:test'
+	 * curl -X 'PUT' 'http://localhost:8080/o/amf-registration-rest/v1.0/account/{accountId}' -d $'{"accountName": ___, "adress1": ___, "adress2": ___, "birthday": ___, "city": ___, "confirmPassword": ___, "emailAdress": ___, "firstName": ___, "genre": ___, "homePhone": ___, "lastName": ___, "mobilePhone": ___, "password": ___, "securityAnswer": ___, "securityQuestion": ___, "state": ___, "termsOfUse": ___}' --header 'Content-Type: application/json' -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {

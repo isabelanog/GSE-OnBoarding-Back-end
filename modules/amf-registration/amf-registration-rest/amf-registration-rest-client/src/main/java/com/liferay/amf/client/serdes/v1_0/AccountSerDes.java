@@ -39,6 +39,20 @@ public class AccountSerDes {
 
 		sb.append("{");
 
+		if (account.getAccountName() != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"accountName\": ");
+
+			sb.append("\"");
+
+			sb.append(_escape(account.getAccountName()));
+
+			sb.append("\"");
+		}
+
 		if (account.getAdress1() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
@@ -263,20 +277,6 @@ public class AccountSerDes {
 			sb.append("\"");
 		}
 
-		if (account.getUserName() != null) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append("\"userName\": ");
-
-			sb.append("\"");
-
-			sb.append(_escape(account.getUserName()));
-
-			sb.append("\"");
-		}
-
 		sb.append("}");
 
 		return sb.toString();
@@ -294,6 +294,13 @@ public class AccountSerDes {
 		}
 
 		Map<String, String> map = new TreeMap<>();
+
+		if (account.getAccountName() == null) {
+			map.put("accountName", null);
+		}
+		else {
+			map.put("accountName", String.valueOf(account.getAccountName()));
+		}
 
 		if (account.getAdress1() == null) {
 			map.put("adress1", null);
@@ -412,13 +419,6 @@ public class AccountSerDes {
 			map.put("termsOfUse", String.valueOf(account.getTermsOfUse()));
 		}
 
-		if (account.getUserName() == null) {
-			map.put("userName", null);
-		}
-		else {
-			map.put("userName", String.valueOf(account.getUserName()));
-		}
-
 		return map;
 	}
 
@@ -439,7 +439,12 @@ public class AccountSerDes {
 			Account account, String jsonParserFieldName,
 			Object jsonParserFieldValue) {
 
-			if (Objects.equals(jsonParserFieldName, "adress1")) {
+			if (Objects.equals(jsonParserFieldName, "accountName")) {
+				if (jsonParserFieldValue != null) {
+					account.setAccountName((String)jsonParserFieldValue);
+				}
+			}
+			else if (Objects.equals(jsonParserFieldName, "adress1")) {
 				if (jsonParserFieldValue != null) {
 					account.setAdress1((String)jsonParserFieldValue);
 				}
@@ -517,11 +522,6 @@ public class AccountSerDes {
 			else if (Objects.equals(jsonParserFieldName, "termsOfUse")) {
 				if (jsonParserFieldValue != null) {
 					account.setTermsOfUse((String)jsonParserFieldValue);
-				}
-			}
-			else if (Objects.equals(jsonParserFieldName, "userName")) {
-				if (jsonParserFieldValue != null) {
-					account.setUserName((String)jsonParserFieldValue);
 				}
 			}
 		}

@@ -3,21 +3,26 @@ package com.liferay.amf.dto.v1_0;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.vulcan.graphql.annotation.GraphQLField;
 import com.liferay.portal.vulcan.graphql.annotation.GraphQLName;
 import com.liferay.portal.vulcan.util.ObjectMapperUtil;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import javax.annotation.Generated;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+
+import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author me
@@ -32,15 +37,41 @@ import java.util.Set;
 @XmlRootElement(name = "Account")
 public class Account implements Serializable {
 
-
-
-    public static Account toDTO(String json) {
+	public static Account toDTO(String json) {
 		return ObjectMapperUtil.readValue(Account.class, json);
 	}
 
 	public static Account unsafeToDTO(String json) {
 		return ObjectMapperUtil.unsafeReadValue(Account.class, json);
 	}
+
+	@Schema(description = "The username.")
+	public String getAccountName() {
+		return accountName;
+	}
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+
+	@JsonIgnore
+	public void setAccountName(
+		UnsafeSupplier<String, Exception> accountNameUnsafeSupplier) {
+
+		try {
+			accountName = accountNameUnsafeSupplier.get();
+		}
+		catch (RuntimeException re) {
+			throw re;
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@GraphQLField(description = "The username.")
+	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
+	protected String accountName;
 
 	@Schema(description = "The adress home.")
 	public String getAdress1() {
@@ -488,34 +519,6 @@ public class Account implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String termsOfUse;
 
-	@Schema(description = "The username.")
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	@JsonIgnore
-	public void setUserName(
-		UnsafeSupplier<String, Exception> userNameUnsafeSupplier) {
-
-		try {
-			userName = userNameUnsafeSupplier.get();
-		}
-		catch (RuntimeException re) {
-			throw re;
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	@GraphQLField(description = "The username.")
-	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected String userName;
-
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
@@ -542,6 +545,20 @@ public class Account implements Serializable {
 		StringBundler sb = new StringBundler();
 
 		sb.append("{");
+
+		if (accountName != null) {
+			if (sb.length() > 1) {
+				sb.append(", ");
+			}
+
+			sb.append("\"accountName\": ");
+
+			sb.append("\"");
+
+			sb.append(_escape(accountName));
+
+			sb.append("\"");
+		}
 
 		if (adress1 != null) {
 			if (sb.length() > 1) {
@@ -763,20 +780,6 @@ public class Account implements Serializable {
 			sb.append("\"");
 
 			sb.append(_escape(termsOfUse));
-
-			sb.append("\"");
-		}
-
-		if (userName != null) {
-			if (sb.length() > 1) {
-				sb.append(", ");
-			}
-
-			sb.append("\"userName\": ");
-
-			sb.append("\"");
-
-			sb.append(_escape(userName));
 
 			sb.append("\"");
 		}

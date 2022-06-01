@@ -163,6 +163,7 @@ public abstract class BaseAccountResourceTestCase {
 
 		Account account = randomAccount();
 
+		account.setAccountName(regex);
 		account.setAdress1(regex);
 		account.setAdress2(regex);
 		account.setBirthday(regex);
@@ -179,7 +180,6 @@ public abstract class BaseAccountResourceTestCase {
 		account.setSecurityQuestion(regex);
 		account.setState(regex);
 		account.setTermsOfUse(regex);
-		account.setUserName(regex);
 
 		String json = AccountSerDes.toJSON(account);
 
@@ -187,6 +187,7 @@ public abstract class BaseAccountResourceTestCase {
 
 		account = AccountSerDes.toDTO(json);
 
+		Assert.assertEquals(regex, account.getAccountName());
 		Assert.assertEquals(regex, account.getAdress1());
 		Assert.assertEquals(regex, account.getAdress2());
 		Assert.assertEquals(regex, account.getBirthday());
@@ -203,7 +204,6 @@ public abstract class BaseAccountResourceTestCase {
 		Assert.assertEquals(regex, account.getSecurityQuestion());
 		Assert.assertEquals(regex, account.getState());
 		Assert.assertEquals(regex, account.getTermsOfUse());
-		Assert.assertEquals(regex, account.getUserName());
 	}
 
 	@Test
@@ -347,6 +347,14 @@ public abstract class BaseAccountResourceTestCase {
 		for (String additionalAssertFieldName :
 				getAdditionalAssertFieldNames()) {
 
+			if (Objects.equals("accountName", additionalAssertFieldName)) {
+				if (account.getAccountName() == null) {
+					valid = false;
+				}
+
+				continue;
+			}
+
 			if (Objects.equals("adress1", additionalAssertFieldName)) {
 				if (account.getAdress1() == null) {
 					valid = false;
@@ -475,14 +483,6 @@ public abstract class BaseAccountResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("userName", additionalAssertFieldName)) {
-				if (account.getUserName() == null) {
-					valid = false;
-				}
-
-				continue;
-			}
-
 			throw new IllegalArgumentException(
 				"Invalid additional assert field name " +
 					additionalAssertFieldName);
@@ -571,6 +571,16 @@ public abstract class BaseAccountResourceTestCase {
 
 		for (String additionalAssertFieldName :
 				getAdditionalAssertFieldNames()) {
+
+			if (Objects.equals("accountName", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						account1.getAccountName(), account2.getAccountName())) {
+
+					return false;
+				}
+
+				continue;
+			}
 
 			if (Objects.equals("adress1", additionalAssertFieldName)) {
 				if (!Objects.deepEquals(
@@ -735,16 +745,6 @@ public abstract class BaseAccountResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("userName", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getUserName(), account2.getUserName())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
 			throw new IllegalArgumentException(
 				"Invalid additional assert field name " +
 					additionalAssertFieldName);
@@ -841,6 +841,14 @@ public abstract class BaseAccountResourceTestCase {
 		sb.append(" ");
 		sb.append(operator);
 		sb.append(" ");
+
+		if (entityFieldName.equals("accountName")) {
+			sb.append("'");
+			sb.append(String.valueOf(account.getAccountName()));
+			sb.append("'");
+
+			return sb.toString();
+		}
 
 		if (entityFieldName.equals("adress1")) {
 			sb.append("'");
@@ -970,14 +978,6 @@ public abstract class BaseAccountResourceTestCase {
 			return sb.toString();
 		}
 
-		if (entityFieldName.equals("userName")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getUserName()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
 		throw new IllegalArgumentException(
 			"Invalid entity field " + entityFieldName);
 	}
@@ -1022,6 +1022,8 @@ public abstract class BaseAccountResourceTestCase {
 	protected Account randomAccount() throws Exception {
 		return new Account() {
 			{
+				accountName = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
 				adress1 = StringUtil.toLowerCase(RandomTestUtil.randomString());
 				adress2 = StringUtil.toLowerCase(RandomTestUtil.randomString());
 				birthday = StringUtil.toLowerCase(
@@ -1049,8 +1051,6 @@ public abstract class BaseAccountResourceTestCase {
 					RandomTestUtil.randomString());
 				state = StringUtil.toLowerCase(RandomTestUtil.randomString());
 				termsOfUse = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				userName = StringUtil.toLowerCase(
 					RandomTestUtil.randomString());
 			}
 		};

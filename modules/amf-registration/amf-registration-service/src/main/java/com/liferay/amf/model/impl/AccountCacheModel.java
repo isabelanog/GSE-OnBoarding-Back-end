@@ -195,11 +195,11 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			accountImpl.setGender(gender);
 		}
 
-		if (birthday == Long.MIN_VALUE) {
-			accountImpl.setBirthday(null);
+		if (birthday == null) {
+			accountImpl.setBirthday("");
 		}
 		else {
-			accountImpl.setBirthday(new Date(birthday));
+			accountImpl.setBirthday(birthday);
 		}
 
 		if (password == null) {
@@ -209,8 +209,19 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			accountImpl.setPassword(password);
 		}
 
-		accountImpl.setHomePhone(homePhone);
-		accountImpl.setMobilePhone(mobilePhone);
+		if (homePhone == null) {
+			accountImpl.setHomePhone("");
+		}
+		else {
+			accountImpl.setHomePhone(homePhone);
+		}
+
+		if (mobilePhone == null) {
+			accountImpl.setMobilePhone("");
+		}
+		else {
+			accountImpl.setMobilePhone(mobilePhone);
+		}
 
 		if (address == null) {
 			accountImpl.setAddress("");
@@ -240,7 +251,12 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			accountImpl.setState(state);
 		}
 
-		accountImpl.setZip(zip);
+		if (zip == null) {
+			accountImpl.setZip("");
+		}
+		else {
+			accountImpl.setZip(zip);
+		}
 
 		if (securityQuestion == null) {
 			accountImpl.setSecurityQuestion("");
@@ -286,18 +302,15 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 		accountName = objectInput.readUTF();
 		emailAddress = objectInput.readUTF();
 		gender = objectInput.readUTF();
-		birthday = objectInput.readLong();
+		birthday = objectInput.readUTF();
 		password = objectInput.readUTF();
-
-		homePhone = objectInput.readInt();
-
-		mobilePhone = objectInput.readInt();
+		homePhone = objectInput.readUTF();
+		mobilePhone = objectInput.readUTF();
 		address = objectInput.readUTF();
 		address2 = objectInput.readUTF();
 		city = objectInput.readUTF();
 		state = objectInput.readUTF();
-
-		zip = objectInput.readInt();
+		zip = objectInput.readUTF();
 		securityQuestion = objectInput.readUTF();
 		securityAnswer = objectInput.readUTF();
 		acceptedTou = objectInput.readUTF();
@@ -370,7 +383,12 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			objectOutput.writeUTF(gender);
 		}
 
-		objectOutput.writeLong(birthday);
+		if (birthday == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(birthday);
+		}
 
 		if (password == null) {
 			objectOutput.writeUTF("");
@@ -379,9 +397,19 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			objectOutput.writeUTF(password);
 		}
 
-		objectOutput.writeInt(homePhone);
+		if (homePhone == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(homePhone);
+		}
 
-		objectOutput.writeInt(mobilePhone);
+		if (mobilePhone == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(mobilePhone);
+		}
 
 		if (address == null) {
 			objectOutput.writeUTF("");
@@ -411,7 +439,12 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			objectOutput.writeUTF(state);
 		}
 
-		objectOutput.writeInt(zip);
+		if (zip == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(zip);
+		}
 
 		if (securityQuestion == null) {
 			objectOutput.writeUTF("");
@@ -448,15 +481,15 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 	public String accountName;
 	public String emailAddress;
 	public String gender;
-	public long birthday;
+	public String birthday;
 	public String password;
-	public int homePhone;
-	public int mobilePhone;
+	public String homePhone;
+	public String mobilePhone;
 	public String address;
 	public String address2;
 	public String city;
 	public String state;
-	public int zip;
+	public String zip;
 	public String securityQuestion;
 	public String securityAnswer;
 	public String acceptedTou;

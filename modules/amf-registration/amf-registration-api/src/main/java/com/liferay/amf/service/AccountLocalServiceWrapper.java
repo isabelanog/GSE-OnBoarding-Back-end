@@ -51,20 +51,6 @@ public class AccountLocalServiceWrapper
 		return _accountLocalService.addAccount(account);
 	}
 
-	@Override
-	public com.liferay.amf.model.Account createAccount(
-		long accountId, String firstname, String lastname, String emailAddress,
-		String username, String gender, java.util.Date birthday,
-		String password, int homePhone, int mobilePhone, String address,
-		String address2, String city, String statezip, String securityQuestion,
-		String securityAnswer, String acceptedTou) {
-
-		return _accountLocalService.createAccount(
-			accountId, firstname, lastname, emailAddress, username, gender,
-			birthday, password, homePhone, mobilePhone, address, address2, city,
-			statezip, securityQuestion, securityAnswer, acceptedTou);
-	}
-
 	/**
 	 * Creates a new account with the primary key. Does not add the account to the database.
 	 *
@@ -74,6 +60,20 @@ public class AccountLocalServiceWrapper
 	@Override
 	public com.liferay.amf.model.Account createAccount(String accountId) {
 		return _accountLocalService.createAccount(accountId);
+	}
+
+	@Override
+	public com.liferay.amf.model.Account createAccount(
+		String firstname, String lastname, String emailAddress,
+		String accountName, String gender, String birthday, String password,
+		String homePhone, String mobilePhone, String address, String address2,
+		String city, String statezip, String securityQuestion,
+		String securityAnswer) {
+
+		return _accountLocalService.createAccount(
+			firstname, lastname, emailAddress, accountName, gender, birthday,
+			password, homePhone, mobilePhone, address, address2, city, statezip,
+			securityQuestion, securityAnswer);
 	}
 
 	/**
@@ -274,22 +274,6 @@ public class AccountLocalServiceWrapper
 		return _accountLocalService.getAccount(accountId);
 	}
 
-	@Override
-	public com.liferay.amf.model.Account getAccount(
-			String accountId, String firstname, String lastname,
-			String emailAddress, String username, String gender,
-			java.util.Date birthday, String password, int homePhone,
-			int mobilePhone, String address, String address2, String city,
-			String statezip, String securityQuestion, String securityAnswer,
-			String acceptedTou)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return _accountLocalService.getAccount(
-			accountId, firstname, lastname, emailAddress, username, gender,
-			birthday, password, homePhone, mobilePhone, address, address2, city,
-			statezip, securityQuestion, securityAnswer, acceptedTou);
-	}
-
 	/**
 	 * Returns the account matching the UUID and group.
 	 *
@@ -410,18 +394,17 @@ public class AccountLocalServiceWrapper
 
 	@Override
 	public com.liferay.amf.model.Account updateAccount(
-			long accountId, String firstname, String lastname,
-			String emailAddress, String username, String gender,
-			java.util.Date birthday, String password, int homePhone,
-			int mobilePhone, String address, String address2, String city,
-			String statezip, String securityQuestion, String securityAnswer,
-			String acceptedTou)
+			String accountId, String firstname, String lastname,
+			String emailAddress, String accountName, String gender,
+			String birthday, String password, String homePhone,
+			String mobilePhone, String address, String address2, String city,
+			String statezip, String securityQuestion, String securityAnswer)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _accountLocalService.updateAccount(
-			accountId, firstname, lastname, emailAddress, username, gender,
+			accountId, firstname, lastname, emailAddress, accountName, gender,
 			birthday, password, homePhone, mobilePhone, address, address2, city,
-			statezip, securityQuestion, securityAnswer, acceptedTou);
+			statezip, securityQuestion, securityAnswer);
 	}
 
 	@Override

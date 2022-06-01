@@ -59,19 +59,6 @@ public class AccountLocalServiceUtil {
 		return getService().addAccount(account);
 	}
 
-	public static Account createAccount(
-		long accountId, String firstname, String lastname, String emailAddress,
-		String username, String gender, java.util.Date birthday,
-		String password, int homePhone, int mobilePhone, String address,
-		String address2, String city, String statezip, String securityQuestion,
-		String securityAnswer, String acceptedTou) {
-
-		return getService().createAccount(
-			accountId, firstname, lastname, emailAddress, username, gender,
-			birthday, password, homePhone, mobilePhone, address, address2, city,
-			statezip, securityQuestion, securityAnswer, acceptedTou);
-	}
-
 	/**
 	 * Creates a new account with the primary key. Does not add the account to the database.
 	 *
@@ -80,6 +67,19 @@ public class AccountLocalServiceUtil {
 	 */
 	public static Account createAccount(String accountId) {
 		return getService().createAccount(accountId);
+	}
+
+	public static Account createAccount(
+		String firstname, String lastname, String emailAddress,
+		String accountName, String gender, String birthday, String password,
+		String homePhone, String mobilePhone, String address, String address2,
+		String city, String statezip, String securityQuestion,
+		String securityAnswer) {
+
+		return getService().createAccount(
+			firstname, lastname, emailAddress, accountName, gender, birthday,
+			password, homePhone, mobilePhone, address, address2, city, statezip,
+			securityQuestion, securityAnswer);
 	}
 
 	/**
@@ -250,21 +250,6 @@ public class AccountLocalServiceUtil {
 		return getService().getAccount(accountId);
 	}
 
-	public static Account getAccount(
-			String accountId, String firstname, String lastname,
-			String emailAddress, String username, String gender,
-			java.util.Date birthday, String password, int homePhone,
-			int mobilePhone, String address, String address2, String city,
-			String statezip, String securityQuestion, String securityAnswer,
-			String acceptedTou)
-		throws PortalException {
-
-		return getService().getAccount(
-			accountId, firstname, lastname, emailAddress, username, gender,
-			birthday, password, homePhone, mobilePhone, address, address2, city,
-			statezip, securityQuestion, securityAnswer, acceptedTou);
-	}
-
 	/**
 	 * Returns the account matching the UUID and group.
 	 *
@@ -367,18 +352,17 @@ public class AccountLocalServiceUtil {
 	}
 
 	public static Account updateAccount(
-			long accountId, String firstname, String lastname,
-			String emailAddress, String username, String gender,
-			java.util.Date birthday, String password, int homePhone,
-			int mobilePhone, String address, String address2, String city,
-			String statezip, String securityQuestion, String securityAnswer,
-			String acceptedTou)
+			String accountId, String firstname, String lastname,
+			String emailAddress, String accountName, String gender,
+			String birthday, String password, String homePhone,
+			String mobilePhone, String address, String address2, String city,
+			String statezip, String securityQuestion, String securityAnswer)
 		throws PortalException {
 
 		return getService().updateAccount(
-			accountId, firstname, lastname, emailAddress, username, gender,
+			accountId, firstname, lastname, emailAddress, accountName, gender,
 			birthday, password, homePhone, mobilePhone, address, address2, city,
-			statezip, securityQuestion, securityAnswer, acceptedTou);
+			statezip, securityQuestion, securityAnswer);
 	}
 
 	public static AccountLocalService getService() {

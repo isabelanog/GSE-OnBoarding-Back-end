@@ -77,11 +77,11 @@ public class AccountModelImpl
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
 		{"firstName", Types.VARCHAR}, {"lastName", Types.VARCHAR},
 		{"accountName", Types.VARCHAR}, {"emailAddress", Types.VARCHAR},
-		{"gender", Types.VARCHAR}, {"birthday", Types.TIMESTAMP},
-		{"password_", Types.VARCHAR}, {"homePhone", Types.INTEGER},
-		{"mobilePhone", Types.INTEGER}, {"address", Types.VARCHAR},
+		{"gender", Types.VARCHAR}, {"birthday", Types.VARCHAR},
+		{"password_", Types.VARCHAR}, {"homePhone", Types.VARCHAR},
+		{"mobilePhone", Types.VARCHAR}, {"address", Types.VARCHAR},
 		{"address2", Types.VARCHAR}, {"city", Types.VARCHAR},
-		{"state_", Types.VARCHAR}, {"zip", Types.INTEGER},
+		{"state_", Types.VARCHAR}, {"zip", Types.VARCHAR},
 		{"securityQuestion", Types.VARCHAR}, {"securityAnswer", Types.VARCHAR},
 		{"acceptedTou", Types.VARCHAR}
 	};
@@ -103,22 +103,22 @@ public class AccountModelImpl
 		TABLE_COLUMNS_MAP.put("accountName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("emailAddress", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("gender", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("birthday", Types.TIMESTAMP);
+		TABLE_COLUMNS_MAP.put("birthday", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("password_", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("homePhone", Types.INTEGER);
-		TABLE_COLUMNS_MAP.put("mobilePhone", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("homePhone", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("mobilePhone", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("address", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("address2", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("city", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("state_", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("zip", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("zip", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("securityQuestion", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("securityAnswer", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("acceptedTou", Types.VARCHAR);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table AMF_Account (uuid_ VARCHAR(75) null,accountId VARCHAR(75) not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,firstName VARCHAR(75) null,lastName VARCHAR(75) null,accountName VARCHAR(75) null,emailAddress VARCHAR(75) null,gender VARCHAR(75) null,birthday DATE null,password_ VARCHAR(75) null,homePhone INTEGER,mobilePhone INTEGER,address VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,state_ VARCHAR(75) null,zip INTEGER,securityQuestion VARCHAR(75) null,securityAnswer VARCHAR(75) null,acceptedTou VARCHAR(75) null)";
+		"create table AMF_Account (uuid_ VARCHAR(75) null,accountId VARCHAR(75) not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,firstName VARCHAR(75) null,lastName VARCHAR(75) null,accountName VARCHAR(75) null,emailAddress VARCHAR(75) null,gender VARCHAR(75) null,birthday VARCHAR(75) null,password_ VARCHAR(75) null,homePhone VARCHAR(75) null,mobilePhone VARCHAR(75) null,address VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,state_ VARCHAR(75) null,zip VARCHAR(75) null,securityQuestion VARCHAR(75) null,securityAnswer VARCHAR(75) null,acceptedTou VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP = "drop table AMF_Account";
 
@@ -339,17 +339,17 @@ public class AccountModelImpl
 			"gender", (BiConsumer<Account, String>)Account::setGender);
 		attributeGetterFunctions.put("birthday", Account::getBirthday);
 		attributeSetterBiConsumers.put(
-			"birthday", (BiConsumer<Account, Date>)Account::setBirthday);
+			"birthday", (BiConsumer<Account, String>)Account::setBirthday);
 		attributeGetterFunctions.put("password", Account::getPassword);
 		attributeSetterBiConsumers.put(
 			"password", (BiConsumer<Account, String>)Account::setPassword);
 		attributeGetterFunctions.put("homePhone", Account::getHomePhone);
 		attributeSetterBiConsumers.put(
-			"homePhone", (BiConsumer<Account, Integer>)Account::setHomePhone);
+			"homePhone", (BiConsumer<Account, String>)Account::setHomePhone);
 		attributeGetterFunctions.put("mobilePhone", Account::getMobilePhone);
 		attributeSetterBiConsumers.put(
 			"mobilePhone",
-			(BiConsumer<Account, Integer>)Account::setMobilePhone);
+			(BiConsumer<Account, String>)Account::setMobilePhone);
 		attributeGetterFunctions.put("address", Account::getAddress);
 		attributeSetterBiConsumers.put(
 			"address", (BiConsumer<Account, String>)Account::setAddress);
@@ -364,7 +364,7 @@ public class AccountModelImpl
 			"state", (BiConsumer<Account, String>)Account::setState);
 		attributeGetterFunctions.put("zip", Account::getZip);
 		attributeSetterBiConsumers.put(
-			"zip", (BiConsumer<Account, Integer>)Account::setZip);
+			"zip", (BiConsumer<Account, String>)Account::setZip);
 		attributeGetterFunctions.put(
 			"securityQuestion", Account::getSecurityQuestion);
 		attributeSetterBiConsumers.put(
@@ -673,12 +673,17 @@ public class AccountModelImpl
 
 	@JSON
 	@Override
-	public Date getBirthday() {
-		return _birthday;
+	public String getBirthday() {
+		if (_birthday == null) {
+			return "";
+		}
+		else {
+			return _birthday;
+		}
 	}
 
 	@Override
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -708,12 +713,17 @@ public class AccountModelImpl
 
 	@JSON
 	@Override
-	public int getHomePhone() {
-		return _homePhone;
+	public String getHomePhone() {
+		if (_homePhone == null) {
+			return "";
+		}
+		else {
+			return _homePhone;
+		}
 	}
 
 	@Override
-	public void setHomePhone(int homePhone) {
+	public void setHomePhone(String homePhone) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -723,12 +733,17 @@ public class AccountModelImpl
 
 	@JSON
 	@Override
-	public int getMobilePhone() {
-		return _mobilePhone;
+	public String getMobilePhone() {
+		if (_mobilePhone == null) {
+			return "";
+		}
+		else {
+			return _mobilePhone;
+		}
 	}
 
 	@Override
-	public void setMobilePhone(int mobilePhone) {
+	public void setMobilePhone(String mobilePhone) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -818,12 +833,17 @@ public class AccountModelImpl
 
 	@JSON
 	@Override
-	public int getZip() {
-		return _zip;
+	public String getZip() {
+		if (_zip == null) {
+			return "";
+		}
+		else {
+			return _zip;
+		}
 	}
 
 	@Override
-	public void setZip(int zip) {
+	public void setZip(String zip) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -997,19 +1017,20 @@ public class AccountModelImpl
 		accountImpl.setEmailAddress(
 			this.<String>getColumnOriginalValue("emailAddress"));
 		accountImpl.setGender(this.<String>getColumnOriginalValue("gender"));
-		accountImpl.setBirthday(this.<Date>getColumnOriginalValue("birthday"));
+		accountImpl.setBirthday(
+			this.<String>getColumnOriginalValue("birthday"));
 		accountImpl.setPassword(
 			this.<String>getColumnOriginalValue("password_"));
 		accountImpl.setHomePhone(
-			this.<Integer>getColumnOriginalValue("homePhone"));
+			this.<String>getColumnOriginalValue("homePhone"));
 		accountImpl.setMobilePhone(
-			this.<Integer>getColumnOriginalValue("mobilePhone"));
+			this.<String>getColumnOriginalValue("mobilePhone"));
 		accountImpl.setAddress(this.<String>getColumnOriginalValue("address"));
 		accountImpl.setAddress2(
 			this.<String>getColumnOriginalValue("address2"));
 		accountImpl.setCity(this.<String>getColumnOriginalValue("city"));
 		accountImpl.setState(this.<String>getColumnOriginalValue("state_"));
-		accountImpl.setZip(this.<Integer>getColumnOriginalValue("zip"));
+		accountImpl.setZip(this.<String>getColumnOriginalValue("zip"));
 		accountImpl.setSecurityQuestion(
 			this.<String>getColumnOriginalValue("securityQuestion"));
 		accountImpl.setSecurityAnswer(
@@ -1179,13 +1200,12 @@ public class AccountModelImpl
 			accountCacheModel.gender = null;
 		}
 
-		Date birthday = getBirthday();
+		accountCacheModel.birthday = getBirthday();
 
-		if (birthday != null) {
-			accountCacheModel.birthday = birthday.getTime();
-		}
-		else {
-			accountCacheModel.birthday = Long.MIN_VALUE;
+		String birthday = accountCacheModel.birthday;
+
+		if ((birthday != null) && (birthday.length() == 0)) {
+			accountCacheModel.birthday = null;
 		}
 
 		accountCacheModel.password = getPassword();
@@ -1198,7 +1218,19 @@ public class AccountModelImpl
 
 		accountCacheModel.homePhone = getHomePhone();
 
+		String homePhone = accountCacheModel.homePhone;
+
+		if ((homePhone != null) && (homePhone.length() == 0)) {
+			accountCacheModel.homePhone = null;
+		}
+
 		accountCacheModel.mobilePhone = getMobilePhone();
+
+		String mobilePhone = accountCacheModel.mobilePhone;
+
+		if ((mobilePhone != null) && (mobilePhone.length() == 0)) {
+			accountCacheModel.mobilePhone = null;
+		}
 
 		accountCacheModel.address = getAddress();
 
@@ -1233,6 +1265,12 @@ public class AccountModelImpl
 		}
 
 		accountCacheModel.zip = getZip();
+
+		String zip = accountCacheModel.zip;
+
+		if ((zip != null) && (zip.length() == 0)) {
+			accountCacheModel.zip = null;
+		}
 
 		accountCacheModel.securityQuestion = getSecurityQuestion();
 
@@ -1362,15 +1400,15 @@ public class AccountModelImpl
 	private String _accountName;
 	private String _emailAddress;
 	private String _gender;
-	private Date _birthday;
+	private String _birthday;
 	private String _password;
-	private int _homePhone;
-	private int _mobilePhone;
+	private String _homePhone;
+	private String _mobilePhone;
 	private String _address;
 	private String _address2;
 	private String _city;
 	private String _state;
-	private int _zip;
+	private String _zip;
 	private String _securityQuestion;
 	private String _securityAnswer;
 	private String _acceptedTou;

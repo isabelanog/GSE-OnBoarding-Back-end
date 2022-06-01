@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.Serializable;
 
-import java.util.Date;
 import java.util.List;
 
 import org.osgi.annotation.versioning.ProviderType;
@@ -74,13 +73,6 @@ public interface AccountLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public Account addAccount(Account account);
 
-	public Account createAccount(
-		long accountId, String firstname, String lastname, String emailAddress,
-		String username, String gender, Date birthday, String password,
-		int homePhone, int mobilePhone, String address, String address2,
-		String city, String statezip, String securityQuestion,
-		String securityAnswer, String acceptedTou);
-
 	/**
 	 * Creates a new account with the primary key. Does not add the account to the database.
 	 *
@@ -89,6 +81,13 @@ public interface AccountLocalService
 	 */
 	@Transactional(enabled = false)
 	public Account createAccount(String accountId);
+
+	public Account createAccount(
+		String firstname, String lastname, String emailAddress,
+		String accountName, String gender, String birthday, String password,
+		String homePhone, String mobilePhone, String address, String address2,
+		String city, String statezip, String securityQuestion,
+		String securityAnswer);
 
 	/**
 	 * @throws PortalException
@@ -227,15 +226,6 @@ public interface AccountLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Account getAccount(String accountId) throws PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Account getAccount(
-			String accountId, String firstname, String lastname,
-			String emailAddress, String username, String gender, Date birthday,
-			String password, int homePhone, int mobilePhone, String address,
-			String address2, String city, String statezip,
-			String securityQuestion, String securityAnswer, String acceptedTou)
-		throws PortalException;
-
 	/**
 	 * Returns the account matching the UUID and group.
 	 *
@@ -325,11 +315,11 @@ public interface AccountLocalService
 	public Account updateAccount(Account account);
 
 	public Account updateAccount(
-			long accountId, String firstname, String lastname,
-			String emailAddress, String username, String gender, Date birthday,
-			String password, int homePhone, int mobilePhone, String address,
-			String address2, String city, String statezip,
-			String securityQuestion, String securityAnswer, String acceptedTou)
+			String accountId, String firstname, String lastname,
+			String emailAddress, String accountName, String gender,
+			String birthday, String password, String homePhone,
+			String mobilePhone, String address, String address2, String city,
+			String statezip, String securityQuestion, String securityAnswer)
 		throws PortalException;
 
 }
