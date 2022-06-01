@@ -17,7 +17,6 @@ package com.liferay.amf.service.impl;
 import com.liferay.amf.model.Account;
 import com.liferay.amf.service.base.AccountLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import org.osgi.service.component.annotations.Component;
 
@@ -34,7 +33,37 @@ import java.util.Date;
 public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 	@Override
-	public Account createAccount(long accountId, String firstname, String lastname, String emailAddress,
+	public Account getAccount(String accountId, String firstname, String lastname, String emailAddress,
+							  String username, String gender, Date birthday, String  password, int  homePhone,
+							  int mobilePhone, String address, String address2, String city, String statezip,
+							  String securityQuestion, String securityAnswer, String acceptedTou) throws PortalException {
+		//Get account by ID
+		Account account = getAccount(accountId);
+
+		account.getAccountId();
+		account.getFirstName();
+		account.getLastName();
+		account.getAccountName();
+		account.getEmailAddress();
+		account.getAccountName();
+		account.getGender();
+		account.getBirthday();
+		account.getPassword();
+		account.getHomePhone();
+		account.getMobilePhone();
+		account.getAddress();
+		account.getAddress2();
+		account.getCity();
+		account.getState();
+		account.getSecurityQuestion();
+		account.getSecurityAnswer();
+		account.getAcceptedTou();
+
+		return account;
+	}
+
+	@Override
+	public Account createAccount(String accountId, String firstname, String lastname, String emailAddress,
 								 String username, String gender, Date birthday, String  password, int  homePhone,
 								 int mobilePhone, String address, String address2, String city, String statezip,
 								 String securityQuestion, String securityAnswer, String acceptedTou) {
@@ -71,7 +100,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Account updateAccount(long accountId, String firstname, String lastname, String emailAddress,
+	public Account updateAccount(String accountId, String firstname, String lastname, String emailAddress,
 								 String username, String gender, Date birthday, String  password, int  homePhone,
 								 int mobilePhone, String address, String address2, String city, String statezip,
 								 String securityQuestion, String securityAnswer, String acceptedTou) throws PortalException {
