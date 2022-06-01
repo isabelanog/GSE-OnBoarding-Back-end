@@ -16,8 +16,6 @@ package com.liferay.amf.model.impl;
 
 import com.liferay.amf.model.Account;
 import com.liferay.amf.model.AccountModel;
-import com.liferay.expando.kernel.model.ExpandoBridge;
-import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -27,7 +25,6 @@ import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -74,7 +71,7 @@ public class AccountModelImpl
 	public static final String TABLE_NAME = "AMF_Account";
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{"uuid_", Types.VARCHAR}, {"accountId", Types.BIGINT},
+		{"uuid_", Types.VARCHAR}, {"accountId", Types.VARCHAR},
 		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
 		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
@@ -94,7 +91,7 @@ public class AccountModelImpl
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("accountId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("accountId", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
@@ -121,7 +118,7 @@ public class AccountModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table AMF_Account (uuid_ VARCHAR(75) null,accountId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,firstName VARCHAR(75) null,lastName VARCHAR(75) null,accountName VARCHAR(75) null,emailAddress VARCHAR(75) null,gender VARCHAR(75) null,birthday DATE null,password_ VARCHAR(75) null,homePhone INTEGER,mobilePhone INTEGER,address VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,state_ VARCHAR(75) null,zip INTEGER,securityQuestion VARCHAR(75) null,securityAnswer VARCHAR(75) null,acceptedTou VARCHAR(75) null)";
+		"create table AMF_Account (uuid_ VARCHAR(75) null,accountId VARCHAR(75) not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,firstName VARCHAR(75) null,lastName VARCHAR(75) null,accountName VARCHAR(75) null,emailAddress VARCHAR(75) null,gender VARCHAR(75) null,birthday DATE null,password_ VARCHAR(75) null,homePhone INTEGER,mobilePhone INTEGER,address VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,state_ VARCHAR(75) null,zip INTEGER,securityQuestion VARCHAR(75) null,securityAnswer VARCHAR(75) null,acceptedTou VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP = "drop table AMF_Account";
 
@@ -180,12 +177,12 @@ public class AccountModelImpl
 	}
 
 	@Override
-	public long getPrimaryKey() {
+	public String getPrimaryKey() {
 		return _accountId;
 	}
 
 	@Override
-	public void setPrimaryKey(long primaryKey) {
+	public void setPrimaryKey(String primaryKey) {
 		setAccountId(primaryKey);
 	}
 
@@ -196,7 +193,7 @@ public class AccountModelImpl
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey(((Long)primaryKeyObj).longValue());
+		setPrimaryKey((String)primaryKeyObj);
 	}
 
 	@Override
@@ -303,7 +300,7 @@ public class AccountModelImpl
 			"uuid", (BiConsumer<Account, String>)Account::setUuid);
 		attributeGetterFunctions.put("accountId", Account::getAccountId);
 		attributeSetterBiConsumers.put(
-			"accountId", (BiConsumer<Account, Long>)Account::setAccountId);
+			"accountId", (BiConsumer<Account, String>)Account::setAccountId);
 		attributeGetterFunctions.put("groupId", Account::getGroupId);
 		attributeSetterBiConsumers.put(
 			"groupId", (BiConsumer<Account, Long>)Account::setGroupId);
@@ -420,12 +417,17 @@ public class AccountModelImpl
 
 	@JSON
 	@Override
-	public long getAccountId() {
-		return _accountId;
+	public String getAccountId() {
+		if (_accountId == null) {
+			return "";
+		}
+		else {
+			return _accountId;
+		}
 	}
 
 	@Override
-	public void setAccountId(long accountId) {
+	public void setAccountId(String accountId) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -920,19 +922,6 @@ public class AccountModelImpl
 	}
 
 	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(
-			getCompanyId(), Account.class.getName(), getPrimaryKey());
-	}
-
-	@Override
-	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
-		ExpandoBridge expandoBridge = getExpandoBridge();
-
-		expandoBridge.setAttributes(serviceContext);
-	}
-
-	@Override
 	public Account toEscapedModel() {
 		if (_escapedModel == null) {
 			Function<InvocationHandler, Account>
@@ -988,7 +977,7 @@ public class AccountModelImpl
 
 		accountImpl.setUuid(this.<String>getColumnOriginalValue("uuid_"));
 		accountImpl.setAccountId(
-			this.<Long>getColumnOriginalValue("accountId"));
+			this.<String>getColumnOriginalValue("accountId"));
 		accountImpl.setGroupId(this.<Long>getColumnOriginalValue("groupId"));
 		accountImpl.setCompanyId(
 			this.<Long>getColumnOriginalValue("companyId"));
@@ -1056,9 +1045,9 @@ public class AccountModelImpl
 
 		Account account = (Account)object;
 
-		long primaryKey = account.getPrimaryKey();
+		String primaryKey = account.getPrimaryKey();
 
-		if (getPrimaryKey() == primaryKey) {
+		if (getPrimaryKey().equals(primaryKey)) {
 			return true;
 		}
 		else {
@@ -1068,7 +1057,7 @@ public class AccountModelImpl
 
 	@Override
 	public int hashCode() {
-		return (int)getPrimaryKey();
+		return getPrimaryKey().hashCode();
 	}
 
 	/**
@@ -1111,6 +1100,12 @@ public class AccountModelImpl
 		}
 
 		accountCacheModel.accountId = getAccountId();
+
+		String accountId = accountCacheModel.accountId;
+
+		if ((accountId != null) && (accountId.length() == 0)) {
+			accountCacheModel.accountId = null;
+		}
 
 		accountCacheModel.groupId = getGroupId();
 
@@ -1354,7 +1349,7 @@ public class AccountModelImpl
 	}
 
 	private String _uuid;
-	private long _accountId;
+	private String _accountId;
 	private long _groupId;
 	private long _companyId;
 	private long _userId;

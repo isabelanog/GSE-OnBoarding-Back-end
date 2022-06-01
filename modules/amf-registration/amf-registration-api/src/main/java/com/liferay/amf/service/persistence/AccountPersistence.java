@@ -162,7 +162,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	 * @throws NoSuchAccountException if a account with the primary key could not be found
 	 */
 	public Account[] findByUuid_PrevAndNext(
-			long accountId, String uuid,
+			String accountId, String uuid,
 			com.liferay.portal.kernel.util.OrderByComparator<Account>
 				orderByComparator)
 		throws NoSuchAccountException;
@@ -364,7 +364,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	 * @throws NoSuchAccountException if a account with the primary key could not be found
 	 */
 	public Account[] findByUuid_C_PrevAndNext(
-			long accountId, String uuid, long companyId,
+			String accountId, String uuid, long companyId,
 			com.liferay.portal.kernel.util.OrderByComparator<Account>
 				orderByComparator)
 		throws NoSuchAccountException;
@@ -406,7 +406,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	 * @param accountId the primary key for the new account
 	 * @return the new account
 	 */
-	public Account create(long accountId);
+	public Account create(String accountId);
 
 	/**
 	 * Removes the account with the primary key from the database. Also notifies the appropriate model listeners.
@@ -415,7 +415,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	 * @return the account that was removed
 	 * @throws NoSuchAccountException if a account with the primary key could not be found
 	 */
-	public Account remove(long accountId) throws NoSuchAccountException;
+	public Account remove(String accountId) throws NoSuchAccountException;
 
 	public Account updateImpl(Account account);
 
@@ -426,7 +426,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	 * @return the account
 	 * @throws NoSuchAccountException if a account with the primary key could not be found
 	 */
-	public Account findByPrimaryKey(long accountId)
+	public Account findByPrimaryKey(String accountId)
 		throws NoSuchAccountException;
 
 	/**
@@ -435,7 +435,7 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	 * @param accountId the primary key of the account
 	 * @return the account, or <code>null</code> if a account with the primary key could not be found
 	 */
-	public Account fetchByPrimaryKey(long accountId);
+	public Account fetchByPrimaryKey(String accountId);
 
 	/**
 	 * Returns all the accounts.

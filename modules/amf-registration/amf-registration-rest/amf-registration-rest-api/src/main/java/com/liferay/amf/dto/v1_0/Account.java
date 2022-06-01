@@ -3,26 +3,21 @@ package com.liferay.amf.dto.v1_0;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.vulcan.graphql.annotation.GraphQLField;
 import com.liferay.portal.vulcan.graphql.annotation.GraphQLName;
 import com.liferay.portal.vulcan.util.ObjectMapperUtil;
-
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import javax.annotation.Generated;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-
-import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author me
@@ -37,7 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Account")
 public class Account implements Serializable {
 
-	public static Account toDTO(String json) {
+
+
+    public static Account toDTO(String json) {
 		return ObjectMapperUtil.readValue(Account.class, json);
 	}
 
@@ -407,9 +404,7 @@ public class Account implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String securityAnswer;
 
-	@Schema(
-		description = "Must choose one of the following What is your mother's maiden nae? What is the make of you first car? What is your high school mascot? Who is your favorite actor?"
-	)
+	@Schema(description = "Security question.")
 	public String getSecurityQuestion() {
 		return securityQuestion;
 	}
@@ -433,9 +428,7 @@ public class Account implements Serializable {
 		}
 	}
 
-	@GraphQLField(
-		description = "Must choose one of the following What is your mother's maiden nae? What is the make of you first car? What is your high school mascot? Who is your favorite actor?"
-	)
+	@GraphQLField(description = "Security question.")
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected String securityQuestion;
 

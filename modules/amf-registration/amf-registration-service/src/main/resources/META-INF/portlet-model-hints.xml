@@ -3,7 +3,7 @@
 <model-hints>
 	<model name="com.liferay.amf.model.Account">
 		<field name="uuid" type="String" />
-		<field name="accountId" type="long" />
+		<field name="accountId" type="String" />
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />

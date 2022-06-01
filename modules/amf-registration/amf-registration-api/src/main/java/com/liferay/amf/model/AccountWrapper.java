@@ -80,7 +80,7 @@ public class AccountWrapper
 			setUuid(uuid);
 		}
 
-		Long accountId = (Long)attributes.get("accountId");
+		String accountId = (String)attributes.get("accountId");
 
 		if (accountId != null) {
 			setAccountId(accountId);
@@ -246,7 +246,7 @@ public class AccountWrapper
 	 * @return the account ID of this account
 	 */
 	@Override
-	public long getAccountId() {
+	public String getAccountId() {
 		return model.getAccountId();
 	}
 
@@ -416,7 +416,7 @@ public class AccountWrapper
 	 * @return the primary key of this account
 	 */
 	@Override
-	public long getPrimaryKey() {
+	public String getPrimaryKey() {
 		return model.getPrimaryKey();
 	}
 
@@ -521,7 +521,7 @@ public class AccountWrapper
 	 * @param accountId the account ID of this account
 	 */
 	@Override
-	public void setAccountId(long accountId) {
+	public void setAccountId(String accountId) {
 		model.setAccountId(accountId);
 	}
 
@@ -691,7 +691,7 @@ public class AccountWrapper
 	 * @param primaryKey the primary key of this account
 	 */
 	@Override
-	public void setPrimaryKey(long primaryKey) {
+	public void setPrimaryKey(String primaryKey) {
 		model.setPrimaryKey(primaryKey);
 	}
 

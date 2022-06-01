@@ -34,8 +34,8 @@ public class AccountTable extends BaseTable<AccountTable> {
 
 	public final Column<AccountTable, String> uuid = createColumn(
 		"uuid_", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, Long> accountId = createColumn(
-		"accountId", Long.class, Types.BIGINT, Column.FLAG_PRIMARY);
+	public final Column<AccountTable, String> accountId = createColumn(
+		"accountId", String.class, Types.VARCHAR, Column.FLAG_PRIMARY);
 	public final Column<AccountTable, Long> groupId = createColumn(
 		"groupId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, Long> companyId = createColumn(

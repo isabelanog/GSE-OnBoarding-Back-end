@@ -15,12 +15,8 @@
 package com.liferay.amf.service;
 
 import com.liferay.amf.model.Account;
-import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.petra.sql.dsl.query.DSLQuery;
-import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery;
-import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -78,6 +74,13 @@ public interface AccountLocalService
 	@Indexable(type = IndexableType.REINDEX)
 	public Account addAccount(Account account);
 
+	public Account createAccount(
+		long accountId, String firstname, String lastname, String emailAddress,
+		String username, String gender, Date birthday, String password,
+		int homePhone, int mobilePhone, String address, String address2,
+		String city, String statezip, String securityQuestion,
+		String securityAnswer, String acceptedTou);
+
 	/**
 	 * Creates a new account with the primary key. Does not add the account to the database.
 	 *
@@ -85,14 +88,7 @@ public interface AccountLocalService
 	 * @return the new account
 	 */
 	@Transactional(enabled = false)
-	public Account createAccount(long accountId);
-
-	public Account createAccount(
-		long accountId, String firstname, String lastname, String emailAddress,
-		String username, String gender, Date birthday, String password,
-		int homePhone, int mobilePhone, String address, String address2,
-		String city, String statezip, String securityQuestion,
-		String securityAnswer, String acceptedTou);
+	public Account createAccount(String accountId);
 
 	/**
 	 * @throws PortalException
@@ -113,6 +109,8 @@ public interface AccountLocalService
 	@Indexable(type = IndexableType.DELETE)
 	public Account deleteAccount(Account account);
 
+	public Account deleteAccount(long accountId) throws PortalException;
+
 	/**
 	 * Deletes the account with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
@@ -125,7 +123,7 @@ public interface AccountLocalService
 	 * @throws PortalException if a account with the primary key could not be found
 	 */
 	@Indexable(type = IndexableType.DELETE)
-	public Account deleteAccount(long accountId) throws PortalException;
+	public Account deleteAccount(String accountId) throws PortalException;
 
 	/**
 	 * @throws PortalException
@@ -207,7 +205,7 @@ public interface AccountLocalService
 		DynamicQuery dynamicQuery, Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Account fetchAccount(long accountId);
+	public Account fetchAccount(String accountId);
 
 	/**
 	 * Returns the account matching the UUID and group.
@@ -227,7 +225,16 @@ public interface AccountLocalService
 	 * @throws PortalException if a account with the primary key could not be found
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Account getAccount(long accountId) throws PortalException;
+	public Account getAccount(String accountId) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public Account getAccount(
+			String accountId, String firstname, String lastname,
+			String emailAddress, String username, String gender, Date birthday,
+			String password, int homePhone, int mobilePhone, String address,
+			String address2, String city, String statezip,
+			String securityQuestion, String securityAnswer, String acceptedTou)
+		throws PortalException;
 
 	/**
 	 * Returns the account matching the UUID and group.
@@ -288,16 +295,6 @@ public interface AccountLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getAccountsCount();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		PortletDataContext portletDataContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
 	 * Returns the OSGi service identifier.

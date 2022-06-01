@@ -50,14 +50,14 @@ public interface AccountModel
 	 *
 	 * @return the primary key of this account
 	 */
-	public long getPrimaryKey();
+	public String getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this account.
 	 *
 	 * @param primaryKey the primary key of this account
 	 */
-	public void setPrimaryKey(long primaryKey);
+	public void setPrimaryKey(String primaryKey);
 
 	/**
 	 * Returns the uuid of this account.
@@ -81,14 +81,15 @@ public interface AccountModel
 	 *
 	 * @return the account ID of this account
 	 */
-	public long getAccountId();
+	@AutoEscape
+	public String getAccountId();
 
 	/**
 	 * Sets the account ID of this account.
 	 *
 	 * @param accountId the account ID of this account
 	 */
-	public void setAccountId(long accountId);
+	public void setAccountId(String accountId);
 
 	/**
 	 * Returns the group ID of this account.

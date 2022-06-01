@@ -1,4 +1,6 @@
 Bundle-Name: amf-registration-rest-impl
 Bundle-SymbolicName: com.liferay.amf.impl
 Bundle-Version: 1.0.0
-Import-package: com.liferay.amf.model
+Import-Package:\
+	com.liferay.amf.dto.v1_0,\
+	com.liferay.amf.resource.v1_0

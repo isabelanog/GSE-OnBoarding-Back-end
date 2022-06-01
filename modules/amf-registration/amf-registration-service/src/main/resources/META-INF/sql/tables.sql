@@ -1,6 +1,6 @@
 create table AMF_Account (
 	uuid_ VARCHAR(75) null,
-	accountId LONG not null primary key,
+	accountId VARCHAR(75) not null primary key,
 	groupId LONG,
 	companyId LONG,
 	userId LONG,

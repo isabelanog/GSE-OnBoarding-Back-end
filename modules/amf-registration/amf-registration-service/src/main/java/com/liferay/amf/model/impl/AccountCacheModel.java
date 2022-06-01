@@ -46,7 +46,7 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 
 		AccountCacheModel accountCacheModel = (AccountCacheModel)object;
 
-		if (accountId == accountCacheModel.accountId) {
+		if (accountId.equals(accountCacheModel.accountId)) {
 			return true;
 		}
 
@@ -128,7 +128,13 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			accountImpl.setUuid(uuid);
 		}
 
-		accountImpl.setAccountId(accountId);
+		if (accountId == null) {
+			accountImpl.setAccountId("");
+		}
+		else {
+			accountImpl.setAccountId(accountId);
+		}
+
 		accountImpl.setGroupId(groupId);
 		accountImpl.setCompanyId(companyId);
 		accountImpl.setUserId(userId);
@@ -265,8 +271,7 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
-
-		accountId = objectInput.readLong();
+		accountId = objectInput.readUTF();
 
 		groupId = objectInput.readLong();
 
@@ -307,7 +312,12 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 			objectOutput.writeUTF(uuid);
 		}
 
-		objectOutput.writeLong(accountId);
+		if (accountId == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(accountId);
+		}
 
 		objectOutput.writeLong(groupId);
 
@@ -426,7 +436,7 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable {
 	}
 
 	public String uuid;
-	public long accountId;
+	public String accountId;
 	public long groupId;
 	public long companyId;
 	public long userId;
