@@ -12,7 +12,7 @@ components:
                 emailAdress:
                     description: The e-mail adress.
                     type: string
-                userName:
+                accountName:
                     description: The username.
                     type: string
                 genre:
