@@ -26,9 +26,9 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 	public Account createAccount(Account account) throws Exception {
 
 		return (Account) _accountLocalService.createAccount(account.getFirstName(), account.getLastName(),
-				account.getEmailAdress(), account.getAccountName(), account.getGenre(), account.getBirthday(),
-				account.getPassword(), account.getHomePhone(), account.getMobilePhone(), account.getAdress1(),
-				account.getAdress2(), account.getCity(), account.getState(), account.getSecurityQuestion(),
+				account.getEmailAddress(), account.getAccountName(), account.getGenre(), account.getBirthday(),
+				account.getPassword(), account.getHomePhone(), account.getMobilePhone(), account.getAddress1(),
+				account.getAddress2(), account.getCity(), account.getState(), account.getSecurityQuestion(),
 				account.getSecurityAnswer());
 	}
 
@@ -41,9 +41,9 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 	public Account updateAccount(String accountId, Account account) throws Exception {
 
 		return (Account) _accountLocalService.updateAccount(accountId, account.getFirstName(), account.getLastName(),
-				account.getEmailAdress(), account.getAccountName(), account.getGenre(), account.getBirthday(),
-				account.getPassword(), account.getHomePhone(), account.getMobilePhone(), account.getAdress1(),
-				account.getAdress2(), account.getCity(), account.getState(), account.getSecurityQuestion(),
+				account.getEmailAddress(), account.getAccountName(), account.getGenre(), account.getBirthday(),
+				account.getPassword(), account.getHomePhone(), account.getMobilePhone(), account.getAddress1(),
+				account.getAddress2(), account.getCity(), account.getState(), account.getSecurityQuestion(),
 				account.getSecurityAnswer());
 		}
 	@Reference
