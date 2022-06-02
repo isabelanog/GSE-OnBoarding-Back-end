@@ -164,12 +164,12 @@ public abstract class BaseAccountResourceTestCase {
 		Account account = randomAccount();
 
 		account.setAccountName(regex);
-		account.setAdress1(regex);
-		account.setAdress2(regex);
+		account.setAddress1(regex);
+		account.setAddress2(regex);
 		account.setBirthday(regex);
 		account.setCity(regex);
 		account.setConfirmPassword(regex);
-		account.setEmailAdress(regex);
+		account.setEmailAddress(regex);
 		account.setFirstName(regex);
 		account.setGenre(regex);
 		account.setHomePhone(regex);
@@ -188,12 +188,12 @@ public abstract class BaseAccountResourceTestCase {
 		account = AccountSerDes.toDTO(json);
 
 		Assert.assertEquals(regex, account.getAccountName());
-		Assert.assertEquals(regex, account.getAdress1());
-		Assert.assertEquals(regex, account.getAdress2());
+		Assert.assertEquals(regex, account.getAddress1());
+		Assert.assertEquals(regex, account.getAddress2());
 		Assert.assertEquals(regex, account.getBirthday());
 		Assert.assertEquals(regex, account.getCity());
 		Assert.assertEquals(regex, account.getConfirmPassword());
-		Assert.assertEquals(regex, account.getEmailAdress());
+		Assert.assertEquals(regex, account.getEmailAddress());
 		Assert.assertEquals(regex, account.getFirstName());
 		Assert.assertEquals(regex, account.getGenre());
 		Assert.assertEquals(regex, account.getHomePhone());
@@ -355,16 +355,16 @@ public abstract class BaseAccountResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("adress1", additionalAssertFieldName)) {
-				if (account.getAdress1() == null) {
+			if (Objects.equals("address1", additionalAssertFieldName)) {
+				if (account.getAddress1() == null) {
 					valid = false;
 				}
 
 				continue;
 			}
 
-			if (Objects.equals("adress2", additionalAssertFieldName)) {
-				if (account.getAdress2() == null) {
+			if (Objects.equals("address2", additionalAssertFieldName)) {
+				if (account.getAddress2() == null) {
 					valid = false;
 				}
 
@@ -395,8 +395,8 @@ public abstract class BaseAccountResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("emailAdress", additionalAssertFieldName)) {
-				if (account.getEmailAdress() == null) {
+			if (Objects.equals("emailAddress", additionalAssertFieldName)) {
+				if (account.getEmailAddress() == null) {
 					valid = false;
 				}
 
@@ -582,9 +582,9 @@ public abstract class BaseAccountResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("adress1", additionalAssertFieldName)) {
+			if (Objects.equals("address1", additionalAssertFieldName)) {
 				if (!Objects.deepEquals(
-						account1.getAdress1(), account2.getAdress1())) {
+						account1.getAddress1(), account2.getAddress1())) {
 
 					return false;
 				}
@@ -592,9 +592,9 @@ public abstract class BaseAccountResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("adress2", additionalAssertFieldName)) {
+			if (Objects.equals("address2", additionalAssertFieldName)) {
 				if (!Objects.deepEquals(
-						account1.getAdress2(), account2.getAdress2())) {
+						account1.getAddress2(), account2.getAddress2())) {
 
 					return false;
 				}
@@ -633,9 +633,10 @@ public abstract class BaseAccountResourceTestCase {
 				continue;
 			}
 
-			if (Objects.equals("emailAdress", additionalAssertFieldName)) {
+			if (Objects.equals("emailAddress", additionalAssertFieldName)) {
 				if (!Objects.deepEquals(
-						account1.getEmailAdress(), account2.getEmailAdress())) {
+						account1.getEmailAddress(),
+						account2.getEmailAddress())) {
 
 					return false;
 				}
@@ -850,17 +851,17 @@ public abstract class BaseAccountResourceTestCase {
 			return sb.toString();
 		}
 
-		if (entityFieldName.equals("adress1")) {
+		if (entityFieldName.equals("address1")) {
 			sb.append("'");
-			sb.append(String.valueOf(account.getAdress1()));
+			sb.append(String.valueOf(account.getAddress1()));
 			sb.append("'");
 
 			return sb.toString();
 		}
 
-		if (entityFieldName.equals("adress2")) {
+		if (entityFieldName.equals("address2")) {
 			sb.append("'");
-			sb.append(String.valueOf(account.getAdress2()));
+			sb.append(String.valueOf(account.getAddress2()));
 			sb.append("'");
 
 			return sb.toString();
@@ -890,9 +891,9 @@ public abstract class BaseAccountResourceTestCase {
 			return sb.toString();
 		}
 
-		if (entityFieldName.equals("emailAdress")) {
+		if (entityFieldName.equals("emailAddress")) {
 			sb.append("'");
-			sb.append(String.valueOf(account.getEmailAdress()));
+			sb.append(String.valueOf(account.getEmailAddress()));
 			sb.append("'");
 
 			return sb.toString();
@@ -1024,14 +1025,16 @@ public abstract class BaseAccountResourceTestCase {
 			{
 				accountName = StringUtil.toLowerCase(
 					RandomTestUtil.randomString());
-				adress1 = StringUtil.toLowerCase(RandomTestUtil.randomString());
-				adress2 = StringUtil.toLowerCase(RandomTestUtil.randomString());
+				address1 = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
+				address2 = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
 				birthday = StringUtil.toLowerCase(
 					RandomTestUtil.randomString());
 				city = StringUtil.toLowerCase(RandomTestUtil.randomString());
 				confirmPassword = StringUtil.toLowerCase(
 					RandomTestUtil.randomString());
-				emailAdress =
+				emailAddress =
 					StringUtil.toLowerCase(RandomTestUtil.randomString()) +
 						"@liferay.com";
 				firstName = StringUtil.toLowerCase(

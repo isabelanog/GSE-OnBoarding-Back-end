@@ -74,20 +74,20 @@ public class Account implements Serializable {
 	protected String accountName;
 
 	@Schema(description = "The adress home.")
-	public String getAdress1() {
-		return adress1;
+	public String getAddress1() {
+		return address1;
 	}
 
-	public void setAdress1(String adress1) {
-		this.adress1 = adress1;
+	public void setAddress1(String address1) {
+		this.address1 = address1;
 	}
 
 	@JsonIgnore
-	public void setAdress1(
-		UnsafeSupplier<String, Exception> adress1UnsafeSupplier) {
+	public void setAddress1(
+		UnsafeSupplier<String, Exception> address1UnsafeSupplier) {
 
 		try {
-			adress1 = adress1UnsafeSupplier.get();
+			address1 = address1UnsafeSupplier.get();
 		}
 		catch (RuntimeException re) {
 			throw re;
@@ -99,23 +99,23 @@ public class Account implements Serializable {
 
 	@GraphQLField(description = "The adress home.")
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected String adress1;
+	protected String address1;
 
 	@Schema(description = "The alternative adress.")
-	public String getAdress2() {
-		return adress2;
+	public String getAddress2() {
+		return address2;
 	}
 
-	public void setAdress2(String adress2) {
-		this.adress2 = adress2;
+	public void setAddress2(String address2) {
+		this.address2 = address2;
 	}
 
 	@JsonIgnore
-	public void setAdress2(
-		UnsafeSupplier<String, Exception> adress2UnsafeSupplier) {
+	public void setAddress2(
+		UnsafeSupplier<String, Exception> address2UnsafeSupplier) {
 
 		try {
-			adress2 = adress2UnsafeSupplier.get();
+			address2 = address2UnsafeSupplier.get();
 		}
 		catch (RuntimeException re) {
 			throw re;
@@ -127,7 +127,7 @@ public class Account implements Serializable {
 
 	@GraphQLField(description = "The alternative adress.")
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected String adress2;
+	protected String address2;
 
 	@Schema(description = "The birthday day.")
 	public String getBirthday() {
@@ -212,20 +212,20 @@ public class Account implements Serializable {
 	protected String confirmPassword;
 
 	@Schema(description = "The e-mail adress.")
-	public String getEmailAdress() {
-		return emailAdress;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 
-	public void setEmailAdress(String emailAdress) {
-		this.emailAdress = emailAdress;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
 	@JsonIgnore
-	public void setEmailAdress(
-		UnsafeSupplier<String, Exception> emailAdressUnsafeSupplier) {
+	public void setEmailAddress(
+		UnsafeSupplier<String, Exception> emailAddressUnsafeSupplier) {
 
 		try {
-			emailAdress = emailAdressUnsafeSupplier.get();
+			emailAddress = emailAddressUnsafeSupplier.get();
 		}
 		catch (RuntimeException re) {
 			throw re;
@@ -237,7 +237,7 @@ public class Account implements Serializable {
 
 	@GraphQLField(description = "The e-mail adress.")
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
-	protected String emailAdress;
+	protected String emailAddress;
 
 	@Schema(description = "The first name.")
 	public String getFirstName() {
@@ -560,30 +560,30 @@ public class Account implements Serializable {
 			sb.append("\"");
 		}
 
-		if (adress1 != null) {
+		if (address1 != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"adress1\": ");
+			sb.append("\"address1\": ");
 
 			sb.append("\"");
 
-			sb.append(_escape(adress1));
+			sb.append(_escape(address1));
 
 			sb.append("\"");
 		}
 
-		if (adress2 != null) {
+		if (address2 != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"adress2\": ");
+			sb.append("\"address2\": ");
 
 			sb.append("\"");
 
-			sb.append(_escape(adress2));
+			sb.append(_escape(address2));
 
 			sb.append("\"");
 		}
@@ -630,16 +630,16 @@ public class Account implements Serializable {
 			sb.append("\"");
 		}
 
-		if (emailAdress != null) {
+		if (emailAddress != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"emailAdress\": ");
+			sb.append("\"emailAddress\": ");
 
 			sb.append("\"");
 
-			sb.append(_escape(emailAdress));
+			sb.append(_escape(emailAddress));
 
 			sb.append("\"");
 		}

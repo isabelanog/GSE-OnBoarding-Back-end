@@ -53,30 +53,30 @@ public class AccountSerDes {
 			sb.append("\"");
 		}
 
-		if (account.getAdress1() != null) {
+		if (account.getAddress1() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"adress1\": ");
+			sb.append("\"address1\": ");
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getAdress1()));
+			sb.append(_escape(account.getAddress1()));
 
 			sb.append("\"");
 		}
 
-		if (account.getAdress2() != null) {
+		if (account.getAddress2() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"adress2\": ");
+			sb.append("\"address2\": ");
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getAdress2()));
+			sb.append(_escape(account.getAddress2()));
 
 			sb.append("\"");
 		}
@@ -123,16 +123,16 @@ public class AccountSerDes {
 			sb.append("\"");
 		}
 
-		if (account.getEmailAdress() != null) {
+		if (account.getEmailAddress() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
 
-			sb.append("\"emailAdress\": ");
+			sb.append("\"emailAddress\": ");
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getEmailAdress()));
+			sb.append(_escape(account.getEmailAddress()));
 
 			sb.append("\"");
 		}
@@ -302,18 +302,18 @@ public class AccountSerDes {
 			map.put("accountName", String.valueOf(account.getAccountName()));
 		}
 
-		if (account.getAdress1() == null) {
-			map.put("adress1", null);
+		if (account.getAddress1() == null) {
+			map.put("address1", null);
 		}
 		else {
-			map.put("adress1", String.valueOf(account.getAdress1()));
+			map.put("address1", String.valueOf(account.getAddress1()));
 		}
 
-		if (account.getAdress2() == null) {
-			map.put("adress2", null);
+		if (account.getAddress2() == null) {
+			map.put("address2", null);
 		}
 		else {
-			map.put("adress2", String.valueOf(account.getAdress2()));
+			map.put("address2", String.valueOf(account.getAddress2()));
 		}
 
 		if (account.getBirthday() == null) {
@@ -339,11 +339,11 @@ public class AccountSerDes {
 				String.valueOf(account.getConfirmPassword()));
 		}
 
-		if (account.getEmailAdress() == null) {
-			map.put("emailAdress", null);
+		if (account.getEmailAddress() == null) {
+			map.put("emailAddress", null);
 		}
 		else {
-			map.put("emailAdress", String.valueOf(account.getEmailAdress()));
+			map.put("emailAddress", String.valueOf(account.getEmailAddress()));
 		}
 
 		if (account.getFirstName() == null) {
@@ -444,14 +444,14 @@ public class AccountSerDes {
 					account.setAccountName((String)jsonParserFieldValue);
 				}
 			}
-			else if (Objects.equals(jsonParserFieldName, "adress1")) {
+			else if (Objects.equals(jsonParserFieldName, "address1")) {
 				if (jsonParserFieldValue != null) {
-					account.setAdress1((String)jsonParserFieldValue);
+					account.setAddress1((String)jsonParserFieldValue);
 				}
 			}
-			else if (Objects.equals(jsonParserFieldName, "adress2")) {
+			else if (Objects.equals(jsonParserFieldName, "address2")) {
 				if (jsonParserFieldValue != null) {
-					account.setAdress2((String)jsonParserFieldValue);
+					account.setAddress2((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "birthday")) {
@@ -469,9 +469,9 @@ public class AccountSerDes {
 					account.setConfirmPassword((String)jsonParserFieldValue);
 				}
 			}
-			else if (Objects.equals(jsonParserFieldName, "emailAdress")) {
+			else if (Objects.equals(jsonParserFieldName, "emailAddress")) {
 				if (jsonParserFieldValue != null) {
-					account.setEmailAdress((String)jsonParserFieldValue);
+					account.setEmailAddress((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "firstName")) {

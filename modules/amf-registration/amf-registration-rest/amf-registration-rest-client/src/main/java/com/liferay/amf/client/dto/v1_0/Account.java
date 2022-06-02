@@ -41,47 +41,47 @@ public class Account implements Cloneable, Serializable {
 
 	protected String accountName;
 
-	public String getAdress1() {
-		return adress1;
+	public String getAddress1() {
+		return address1;
 	}
 
-	public void setAdress1(String adress1) {
-		this.adress1 = adress1;
+	public void setAddress1(String address1) {
+		this.address1 = address1;
 	}
 
-	public void setAdress1(
-		UnsafeSupplier<String, Exception> adress1UnsafeSupplier) {
+	public void setAddress1(
+		UnsafeSupplier<String, Exception> address1UnsafeSupplier) {
 
 		try {
-			adress1 = adress1UnsafeSupplier.get();
+			address1 = address1UnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	protected String adress1;
+	protected String address1;
 
-	public String getAdress2() {
-		return adress2;
+	public String getAddress2() {
+		return address2;
 	}
 
-	public void setAdress2(String adress2) {
-		this.adress2 = adress2;
+	public void setAddress2(String address2) {
+		this.address2 = address2;
 	}
 
-	public void setAdress2(
-		UnsafeSupplier<String, Exception> adress2UnsafeSupplier) {
+	public void setAddress2(
+		UnsafeSupplier<String, Exception> address2UnsafeSupplier) {
 
 		try {
-			adress2 = adress2UnsafeSupplier.get();
+			address2 = address2UnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	protected String adress2;
+	protected String address2;
 
 	public String getBirthday() {
 		return birthday;
@@ -144,26 +144,26 @@ public class Account implements Cloneable, Serializable {
 
 	protected String confirmPassword;
 
-	public String getEmailAdress() {
-		return emailAdress;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 
-	public void setEmailAdress(String emailAdress) {
-		this.emailAdress = emailAdress;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
-	public void setEmailAdress(
-		UnsafeSupplier<String, Exception> emailAdressUnsafeSupplier) {
+	public void setEmailAddress(
+		UnsafeSupplier<String, Exception> emailAddressUnsafeSupplier) {
 
 		try {
-			emailAdress = emailAdressUnsafeSupplier.get();
+			emailAddress = emailAddressUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	protected String emailAdress;
+	protected String emailAddress;
 
 	public String getFirstName() {
 		return firstName;
