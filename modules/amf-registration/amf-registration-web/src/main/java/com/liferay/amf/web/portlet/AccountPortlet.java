@@ -1,6 +1,6 @@
-package com.liferay.amf.portlet;
+package com.liferay.amf.web.portlet;
 
-import com.liferay.amf.constants.AmfRegistrationWebPortletKeys;
+import com.liferay.amf.web.constants.AccountPortletKeys;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
@@ -17,14 +17,14 @@ import org.osgi.service.component.annotations.Component;
 		"com.liferay.portlet.display-category=category.sample",
 		"com.liferay.portlet.header-portlet-css=/css/main.css",
 		"com.liferay.portlet.instanceable=true",
-		"javax.portlet.display-name=AmfRegistrationWeb",
+		"javax.portlet.display-name=Account",
 		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/view.jsp",
-		"javax.portlet.name=" + AmfRegistrationWebPortletKeys.AMFREGISTRATIONWEB,
+		"javax.portlet.name=" + AccountPortletKeys.ACCOUNT,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user"
 	},
 	service = Portlet.class
 )
-public class AmfRegistrationWebPortlet extends MVCPortlet {
+public class AccountPortlet extends MVCPortlet {
 }

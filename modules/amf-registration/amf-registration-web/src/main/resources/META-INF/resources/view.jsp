@@ -1,5 +1,5 @@
 <%@ include file="/init.jsp" %>
 
 <p>
-	<b><liferay-ui:message key="amf-registration.caption"/></b>
+	<b><liferay-ui:message key="account.caption"/></b>
 </p>
