@@ -74,12 +74,12 @@ public class AccountLocalServiceUtil {
 		String accountName, String gender, String birthday, String password,
 		String homePhone, String mobilePhone, String address, String address2,
 		String city, String statezip, String securityQuestion,
-		String securityAnswer) {
+		String securityAnswer, String acceptedTou) {
 
 		return getService().createAccount(
 			firstname, lastname, emailAddress, accountName, gender, birthday,
 			password, homePhone, mobilePhone, address, address2, city, statezip,
-			securityQuestion, securityAnswer);
+			securityQuestion, securityAnswer, acceptedTou);
 	}
 
 	/**
@@ -352,11 +352,13 @@ public class AccountLocalServiceUtil {
 	}
 
 	public static Account updateAccount(
-			String accountId, String firstname, String lastname,
+
+			long accountId, String firstname, String lastname,
 			String emailAddress, String accountName, String gender,
 			String birthday, String password, String homePhone,
 			String mobilePhone, String address, String address2, String city,
-			String statezip, String securityQuestion, String securityAnswer)
+			String statezip, String securityQuestion, String securityAnswer,
+			String acceptedTou)
 		throws PortalException {
 
 		return getService().updateAccount(

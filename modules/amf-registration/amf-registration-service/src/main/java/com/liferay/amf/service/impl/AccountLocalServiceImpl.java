@@ -33,6 +33,7 @@ import java.util.Date;
 public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 	@Override
+<<<<<<< HEAD
 	public Account getAccount(String accountId) throws PortalException {
 		//Get account by ID
 		Account account = getAccount(accountId);
@@ -69,6 +70,19 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 		// populate fields
 
+=======
+	public Account createAccount(String firstname, String lastname, String emailAddress,
+								 String accountName, String gender, String birthday, String  password, String homePhone,
+								 String mobilePhone, String address, String address2, String city, String statezip,
+								 String securityQuestion, String securityAnswer, String acceptedTou) {
+
+
+		// populate fields
+		long accountId = counterLocalService.increment(Account.class.getName());
+		// Create account
+
+		Account account = createAccount(accountId);
+		account.setAccountId(accountId);
 		account.setFirstName(firstname);
 		account.setLastName(lastname);
 		account.setEmailAddress(emailAddress);
@@ -98,10 +112,9 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 	}
 
 	@Override
-
 	public Account updateAccount(long accountId, String firstname, String lastname, String emailAddress,
-								 String accountName, String gender, Date birthday, String  password, int  homePhone,
-								 int mobilePhone, String address, String address2, String city, String statezip,
+								 String accountName, String gender, String birthday, String  password, String homePhone,
+								 String mobilePhone, String address, String address2, String city, String statezip,
 								 String securityQuestion, String securityAnswer, String acceptedTou) throws PortalException {
 
 		// Get the Account by Id

@@ -68,12 +68,12 @@ public class AccountLocalServiceWrapper
 		String accountName, String gender, String birthday, String password,
 		String homePhone, String mobilePhone, String address, String address2,
 		String city, String statezip, String securityQuestion,
-		String securityAnswer) {
+		String securityAnswer, String acceptedTou) {
 
 		return _accountLocalService.createAccount(
 			firstname, lastname, emailAddress, accountName, gender, birthday,
 			password, homePhone, mobilePhone, address, address2, city, statezip,
-			securityQuestion, securityAnswer);
+			securityQuestion, securityAnswer, acceptedTou);
 	}
 
 	/**
@@ -394,11 +394,12 @@ public class AccountLocalServiceWrapper
 
 	@Override
 	public com.liferay.amf.model.Account updateAccount(
-			String accountId, String firstname, String lastname,
+			long accountId, String firstname, String lastname,
 			String emailAddress, String accountName, String gender,
 			String birthday, String password, String homePhone,
 			String mobilePhone, String address, String address2, String city,
-			String statezip, String securityQuestion, String securityAnswer)
+			String statezip, String securityQuestion, String securityAnswer,
+			String acceptedTou)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _accountLocalService.updateAccount(
