@@ -20,6 +20,8 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import org.osgi.service.component.annotations.Component;
 
+import java.util.Date;
+
 
 /**
  * @author Brian Wing Shun Chan
@@ -57,16 +59,16 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Account createAccount(String firstname, String lastname, String emailAddress,
-								 String accountName, String gender, String birthday, String  password, String  homePhone,
-								 String mobilePhone, String address, String address2, String city, String statezip,
-								 String securityQuestion, String securityAnswer) {
+	public Account createAccount(long accountId, String firstname, String lastname, String emailAddress,
+								 String accountName, String gender, Date birthday, String  password, int  homePhone,
+								 int mobilePhone, String address, String address2, String city, String statezip,
+								 String securityQuestion, String securityAnswer, String acceptedTou) {
 		// Create account
 		long accountId = counterLocalService.increment(Account.class.getName());
 		Account account = createAccount(String.valueOf(accountId));
 
 		// populate fields
-		account.setAccountId(String.valueOf(accountId));
+
 		account.setFirstName(firstname);
 		account.setLastName(lastname);
 		account.setEmailAddress(emailAddress);
@@ -82,6 +84,8 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		account.setState(statezip);
 		account.setSecurityQuestion(securityQuestion);
 		account.setSecurityAnswer(securityAnswer);
+		account.setAcceptedTou(acceptedTou);
+
 
 		return accountPersistence.update(account);
 	}
@@ -94,10 +98,11 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Account updateAccount(String accountId, String firstname, String lastname, String emailAddress,
-								 String accountName, String gender, String birthday, String  password, String  homePhone,
-								 String mobilePhone, String address, String address2, String city, String statezip,
-								 String securityQuestion, String securityAnswer) throws PortalException {
+
+	public Account updateAccount(long accountId, String firstname, String lastname, String emailAddress,
+								 String accountName, String gender, Date birthday, String  password, int  homePhone,
+								 int mobilePhone, String address, String address2, String city, String statezip,
+								 String securityQuestion, String securityAnswer, String acceptedTou) throws PortalException {
 
 		// Get the Account by Id
 
@@ -121,6 +126,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		account.setState(statezip);
 		account.setSecurityQuestion(securityQuestion);
 		account.setSecurityAnswer(securityAnswer);
+		account.setAcceptedTou(acceptedTou);
 
 		return accountPersistence.update(account);
 	}
