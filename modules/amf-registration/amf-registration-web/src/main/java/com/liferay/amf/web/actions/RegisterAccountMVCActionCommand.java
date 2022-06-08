@@ -47,7 +47,7 @@ public class RegisterAccountMVCActionCommand extends BaseMVCActionCommand {
                 homePhone,mobilePhone,address,address2,city,statezip,securityQuestion,securitysecurityAnswer,
                 acceptedTou);
 
-      System.out.println("Account created sucefully");
+      System.out.println("Account created");
 
     }
     @Reference
