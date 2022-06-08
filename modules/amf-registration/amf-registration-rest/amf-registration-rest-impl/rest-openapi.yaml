@@ -10,7 +10,7 @@ components:
                     description: The last name.
                     type: string
                 emailAddress:
-                    description: The e-mail adress.
+                    description: The e-mail address.
                     type: string
                 accountName:
                     description: The username.
@@ -34,10 +34,10 @@ components:
                     description: The mobile phone.
                     type: string
                 address1:
-                    description: The adress home.
+                    description: The address home.
                     type: string
                 address2:
-                    description: The alternative adress.
+                    description: The alternative address.
                     type: string
                 city:
                     description: The zip code.
@@ -54,12 +54,13 @@ components:
                 termsOfUse:
                     description: The terms of use.
                     type: string
-
 info:
     description:
         "The Sample API made with rest builder. A Java client JAR is available for use with the group ID 'com.liferay',
         artifact ID 'com.liferay.sample.client', and version '1.0.0'.. A Java client JAR is available for use with the
-        group ID 'com.liferay', artifact ID 'com.liferay.amf.client', and version '1.0.0'."
+        group ID 'com.liferay', artifact ID 'com.liferay.amf.client', and version '1.0.0'.. A Java client JAR is
+        available for use with the group ID 'com.liferay', artifact ID 'com.liferay.amf.rest.client', and version
+        '1.0.0'."
     license:
         name: "Apache 2.0"
         url: "http://www.apache.org/licenses/LICENSE-2.0.html"

@@ -1,5 +1,5 @@
 apiDir: "../amf-registration-rest-api/src/main/java"
-apiPackagePath: "com.liferay.amf"
+apiPackagePath: "com.liferay.amf.rest"
 application:
     baseURI: "/amf-registration-rest"
     className: "AmfRegistrationRestApplication"

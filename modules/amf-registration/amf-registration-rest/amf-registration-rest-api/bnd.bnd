@@ -2,5 +2,5 @@ Bundle-Name: amf-registration-rest-api
 Bundle-SymbolicName: com.liferay.amf.rest.api
 Bundle-Version: 1.0.0
 Export-Package:\
-	com.liferay.amf.dto.v1_0,\
-	com.liferay.amf.resource.v1_0
+	com.liferay.amf.rest.dto.v1_0,\
+	com.liferay.amf.rest.resource.v1_0
