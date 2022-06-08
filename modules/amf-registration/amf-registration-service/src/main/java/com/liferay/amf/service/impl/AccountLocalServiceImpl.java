@@ -33,55 +33,20 @@ import java.util.Date;
 public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 	@Override
-<<<<<<< HEAD
-	public Account getAccount(String accountId) throws PortalException {
-		//Get account by ID
-		Account account = getAccount(accountId);
-
-		account.getAccountId();
-		account.getFirstName();
-		account.getLastName();
-		account.getAccountName();
-		account.getEmailAddress();
-		account.getAccountName();
-		account.getGender();
-		account.getBirthday();
-		account.getPassword();
-		account.getHomePhone();
-		account.getMobilePhone();
-		account.getAddress();
-		account.getAddress2();
-		account.getCity();
-		account.getState();
-		account.getSecurityQuestion();
-		account.getSecurityAnswer();
-
-		return account;
-	}
-
-	@Override
-	public Account createAccount(long accountId, String firstname, String lastname, String emailAddress,
-								 String accountName, String gender, Date birthday, String  password, int  homePhone,
-								 int mobilePhone, String address, String address2, String city, String statezip,
-								 String securityQuestion, String securityAnswer, String acceptedTou) {
-		// Create account
-		long accountId = counterLocalService.increment(Account.class.getName());
-		Account account = createAccount(String.valueOf(accountId));
-
-		// populate fields
-
-=======
 	public Account createAccount(String firstname, String lastname, String emailAddress,
 								 String accountName, String gender, String birthday, String  password, String homePhone,
 								 String mobilePhone, String address, String address2, String city, String statezip,
 								 String securityQuestion, String securityAnswer, String acceptedTou) {
 
 
-		// populate fields
+		// Generate primary key for the Account
 		long accountId = counterLocalService.increment(Account.class.getName());
+
 		// Create account
 
 		Account account = createAccount(accountId);
+
+		//populate fields
 		account.setAccountId(accountId);
 		account.setFirstName(firstname);
 		account.setLastName(lastname);
@@ -101,7 +66,9 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		account.setAcceptedTou(acceptedTou);
 
 
-		return accountPersistence.update(account);
+		// Persistt Account to database
+
+		return super.addAccount(account);
 	}
 	@Override
 	public Account deleteAccount(long accountId) throws PortalException {
