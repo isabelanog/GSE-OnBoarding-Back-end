@@ -29,7 +29,7 @@
 		<column name="accountName" type="String" />
 		<column name="emailAddress" type="String" />
 		<column name="gender" type="String" />
-		<column name="birthday" type="String" />
+		<column name="birthday" type="Date" />
 		<column name="password" type="String" />
 		<column name="homePhone" type="String" />
 		<column name="mobilePhone" type="String" />
