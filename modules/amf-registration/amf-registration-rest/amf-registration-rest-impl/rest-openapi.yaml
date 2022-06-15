@@ -1,6 +1,6 @@
 components:
     schemas:
-        Account:
+        AccountDTO:
             description: A sample api of Acme Movie Fanatics (AMF).
             properties:
                 firstName:
@@ -87,14 +87,14 @@ paths:
                         application/json:
                             schema:
                                 items:
-                                    $ref: "#/components/schemas/Account"
+                                    $ref: "#/components/schemas/AccountDTO"
                                 type: array
                         application/xml:
                             schema:
                                 items:
-                                    $ref: "#/components/schemas/Account"
+                                    $ref: "#/components/schemas/AccountDTO"
                                 type: array
-                    description: "Successfully returned datas of account"
+                    description: "Successfully returned datas of accountDTO"
                 400:
                     description: Invalid request
                     content:
@@ -117,19 +117,19 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: "#/components/schemas/Account"
+                            $ref: "#/components/schemas/AccountDTO"
                     application/xml:
                         schema:
-                            $ref: "#/components/schemas/Account"
+                            $ref: "#/components/schemas/AccountDTO"
             responses:
                 201:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/Account"
+                                $ref: "#/components/schemas/AccountDTO"
                         application/xml:
                             schema:
-                                $ref: "#/components/schemas/Account"
+                                $ref: "#/components/schemas/AccountDTO"
                     description: "Successfully created account"
             tags: [ "Account" ]
     "/account/{accountId}":
@@ -146,10 +146,10 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/Account"
+                                $ref: "#/components/schemas/AccountDTO"
                         application/xml:
                             schema:
-                                $ref: "#/components/schemas/Account"
+                                $ref: "#/components/schemas/AccountDTO"
                     description: "Successfully returned datas of account"
             tags: ["Account"]
         delete:
@@ -179,18 +179,18 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: "#/components/schemas/Account"
+                            $ref: "#/components/schemas/AccountDTO"
                     application/xml:
                         schema:
-                            $ref: "#/components/schemas/Account"
+                            $ref: "#/components/schemas/AccountDTO"
             responses:
                 200:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/Account"
+                                $ref: "#/components/schemas/AccountDTO"
                         application/xml:
                             schema:
-                                $ref: "#/components/schemas/Account"
+                                $ref: "#/components/schemas/AccountDTO"
                     description: "Successfully returned datas of account"
             tags: [ "Account" ]
