@@ -1,6 +1,6 @@
 package com.liferay.amf.rest.internal.resource.v1_0;
 
-import com.liferay.amf.rest.dto.v1_0.Account;
+import com.liferay.amf.rest.dto.v1_0.AccountDTO;
 import com.liferay.amf.rest.resource.v1_0.AccountResource;
 
 import com.liferay.amf.service.AccountLocalService;
@@ -18,27 +18,25 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class AccountResourceImpl extends BaseAccountResourceImpl {
 
 	@Override
-	public Account createAccount(Account account) throws Exception {
-		
+	public AccountDTO createAccount(AccountDTO accountDTO) throws Exception {
 		_accountLocalService.createAccount(
-			account.getFirstName(),
-			account.getLastName(),
-			account.getEmailAddress(),
-			account.getAccountName(),
-			account.getGenre(),
-			account.getBirthday(),
-			account.getPassword(),
-			account.getHomePhone(),
-			account.getMobilePhone(),
-			account.getAddress1(),
-			account.getAddress2(),
-			account.getCity(),
-			account.getState(),
-			account.getSecurityQuestion(),
-			account.getSecurityAnswer()
-		);
+				accountDTO.getFirstName(),
+				accountDTO.getLastName(),
+				accountDTO.getEmailAddress(),
+				accountDTO.getAccountName(),
+				accountDTO.getAddress1(),
+				accountDTO.getAddress2(),
+				accountDTO.getGenre(),
+				accountDTO.getBirthday(),
+				accountDTO.getPassword(),
+				accountDTO.getSecurityQuestion(),
+				accountDTO.getSecurityAnswer(),
+				accountDTO.getHomePhone(),
+				accountDTO.getMobilePhone(),
+				accountDTO.getCity(),
+				accountDTO.getState());
+	return accountDTO;
 
-		return account;
 	}
 	
 	@Reference
