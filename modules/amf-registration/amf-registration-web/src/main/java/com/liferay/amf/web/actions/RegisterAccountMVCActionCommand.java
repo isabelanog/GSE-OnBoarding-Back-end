@@ -42,14 +42,12 @@ public class RegisterAccountMVCActionCommand extends BaseMVCActionCommand {
         String securitysecurityAnswer = ParamUtil.getString(actionRequest, "securityAnswer");
         String acceptedTou = ParamUtil.getString(actionRequest, "acceptedTou");
 
-//        //Call the service to add a new Account
+       //Call the service to add a new Account
         _accountLocalService.createAccount(firstName,lastName,emailAddress,accountName,gender,birthday,password,
                 homePhone,mobilePhone,address,address2,city,statezip,securityQuestion,securitysecurityAnswer,
                 acceptedTou);
 
-      System.out.println("Account created");
-
-    }
+          }
     @Reference
     private AccountLocalService _accountLocalService;
 }
