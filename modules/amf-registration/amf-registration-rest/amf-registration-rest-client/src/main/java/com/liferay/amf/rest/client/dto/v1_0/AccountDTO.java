@@ -1,7 +1,7 @@
 package com.liferay.amf.rest.client.dto.v1_0;
 
 import com.liferay.amf.rest.client.function.UnsafeSupplier;
-import com.liferay.amf.rest.client.serdes.v1_0.AccountSerDes;
+import com.liferay.amf.rest.client.serdes.v1_0.AccountDTOSerDes;
 
 import java.io.Serializable;
 
@@ -14,10 +14,10 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class Account implements Cloneable, Serializable {
+public class AccountDTO implements Cloneable, Serializable {
 
-	public static Account toDTO(String json) {
-		return AccountSerDes.toDTO(json);
+	public static AccountDTO toDTO(String json) {
+		return AccountDTOSerDes.toDTO(json);
 	}
 
 	public String getAccountName() {
@@ -376,8 +376,8 @@ public class Account implements Cloneable, Serializable {
 	protected String termsOfUse;
 
 	@Override
-	public Account clone() throws CloneNotSupportedException {
-		return (Account)super.clone();
+	public AccountDTO clone() throws CloneNotSupportedException {
+		return (AccountDTO)super.clone();
 	}
 
 	@Override
@@ -386,13 +386,13 @@ public class Account implements Cloneable, Serializable {
 			return true;
 		}
 
-		if (!(object instanceof Account)) {
+		if (!(object instanceof AccountDTO)) {
 			return false;
 		}
 
-		Account account = (Account)object;
+		AccountDTO accountDTO = (AccountDTO)object;
 
-		return Objects.equals(toString(), account.toString());
+		return Objects.equals(toString(), accountDTO.toString());
 	}
 
 	@Override
@@ -403,7 +403,7 @@ public class Account implements Cloneable, Serializable {
 	}
 
 	public String toString() {
-		return AccountSerDes.toJSON(this);
+		return AccountDTOSerDes.toJSON(this);
 	}
 
 }

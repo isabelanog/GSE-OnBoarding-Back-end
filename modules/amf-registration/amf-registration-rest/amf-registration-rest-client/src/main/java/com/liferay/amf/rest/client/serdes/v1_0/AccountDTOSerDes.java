@@ -1,6 +1,6 @@
 package com.liferay.amf.rest.client.serdes.v1_0;
 
-import com.liferay.amf.rest.client.dto.v1_0.Account;
+import com.liferay.amf.rest.client.dto.v1_0.AccountDTO;
 import com.liferay.amf.rest.client.json.BaseJSONParser;
 
 import java.util.Iterator;
@@ -16,22 +16,22 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public class AccountSerDes {
+public class AccountDTOSerDes {
 
-	public static Account toDTO(String json) {
-		AccountJSONParser accountJSONParser = new AccountJSONParser();
+	public static AccountDTO toDTO(String json) {
+		AccountDTOJSONParser accountDTOJSONParser = new AccountDTOJSONParser();
 
-		return accountJSONParser.parseToDTO(json);
+		return accountDTOJSONParser.parseToDTO(json);
 	}
 
-	public static Account[] toDTOs(String json) {
-		AccountJSONParser accountJSONParser = new AccountJSONParser();
+	public static AccountDTO[] toDTOs(String json) {
+		AccountDTOJSONParser accountDTOJSONParser = new AccountDTOJSONParser();
 
-		return accountJSONParser.parseToDTOs(json);
+		return accountDTOJSONParser.parseToDTOs(json);
 	}
 
-	public static String toJSON(Account account) {
-		if (account == null) {
+	public static String toJSON(AccountDTO accountDTO) {
+		if (accountDTO == null) {
 			return "null";
 		}
 
@@ -39,7 +39,7 @@ public class AccountSerDes {
 
 		sb.append("{");
 
-		if (account.getAccountName() != null) {
+		if (accountDTO.getAccountName() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -48,12 +48,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getAccountName()));
+			sb.append(_escape(accountDTO.getAccountName()));
 
 			sb.append("\"");
 		}
 
-		if (account.getAddress1() != null) {
+		if (accountDTO.getAddress1() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -62,12 +62,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getAddress1()));
+			sb.append(_escape(accountDTO.getAddress1()));
 
 			sb.append("\"");
 		}
 
-		if (account.getAddress2() != null) {
+		if (accountDTO.getAddress2() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -76,12 +76,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getAddress2()));
+			sb.append(_escape(accountDTO.getAddress2()));
 
 			sb.append("\"");
 		}
 
-		if (account.getBirthday() != null) {
+		if (accountDTO.getBirthday() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -90,12 +90,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getBirthday()));
+			sb.append(_escape(accountDTO.getBirthday()));
 
 			sb.append("\"");
 		}
 
-		if (account.getCity() != null) {
+		if (accountDTO.getCity() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -104,12 +104,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getCity()));
+			sb.append(_escape(accountDTO.getCity()));
 
 			sb.append("\"");
 		}
 
-		if (account.getConfirmPassword() != null) {
+		if (accountDTO.getConfirmPassword() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -118,12 +118,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getConfirmPassword()));
+			sb.append(_escape(accountDTO.getConfirmPassword()));
 
 			sb.append("\"");
 		}
 
-		if (account.getEmailAddress() != null) {
+		if (accountDTO.getEmailAddress() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -132,12 +132,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getEmailAddress()));
+			sb.append(_escape(accountDTO.getEmailAddress()));
 
 			sb.append("\"");
 		}
 
-		if (account.getFirstName() != null) {
+		if (accountDTO.getFirstName() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -146,12 +146,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getFirstName()));
+			sb.append(_escape(accountDTO.getFirstName()));
 
 			sb.append("\"");
 		}
 
-		if (account.getGenre() != null) {
+		if (accountDTO.getGenre() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -160,12 +160,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getGenre()));
+			sb.append(_escape(accountDTO.getGenre()));
 
 			sb.append("\"");
 		}
 
-		if (account.getHomePhone() != null) {
+		if (accountDTO.getHomePhone() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -174,12 +174,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getHomePhone()));
+			sb.append(_escape(accountDTO.getHomePhone()));
 
 			sb.append("\"");
 		}
 
-		if (account.getLastName() != null) {
+		if (accountDTO.getLastName() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -188,12 +188,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getLastName()));
+			sb.append(_escape(accountDTO.getLastName()));
 
 			sb.append("\"");
 		}
 
-		if (account.getMobilePhone() != null) {
+		if (accountDTO.getMobilePhone() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -202,12 +202,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getMobilePhone()));
+			sb.append(_escape(accountDTO.getMobilePhone()));
 
 			sb.append("\"");
 		}
 
-		if (account.getPassword() != null) {
+		if (accountDTO.getPassword() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -216,12 +216,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getPassword()));
+			sb.append(_escape(accountDTO.getPassword()));
 
 			sb.append("\"");
 		}
 
-		if (account.getSecurityAnswer() != null) {
+		if (accountDTO.getSecurityAnswer() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -230,12 +230,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getSecurityAnswer()));
+			sb.append(_escape(accountDTO.getSecurityAnswer()));
 
 			sb.append("\"");
 		}
 
-		if (account.getSecurityQuestion() != null) {
+		if (accountDTO.getSecurityQuestion() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -244,12 +244,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getSecurityQuestion()));
+			sb.append(_escape(accountDTO.getSecurityQuestion()));
 
 			sb.append("\"");
 		}
 
-		if (account.getState() != null) {
+		if (accountDTO.getState() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -258,12 +258,12 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getState()));
+			sb.append(_escape(accountDTO.getState()));
 
 			sb.append("\"");
 		}
 
-		if (account.getTermsOfUse() != null) {
+		if (accountDTO.getTermsOfUse() != null) {
 			if (sb.length() > 1) {
 				sb.append(", ");
 			}
@@ -272,7 +272,7 @@ public class AccountSerDes {
 
 			sb.append("\"");
 
-			sb.append(_escape(account.getTermsOfUse()));
+			sb.append(_escape(accountDTO.getTermsOfUse()));
 
 			sb.append("\"");
 		}
@@ -283,245 +283,249 @@ public class AccountSerDes {
 	}
 
 	public static Map<String, Object> toMap(String json) {
-		AccountJSONParser accountJSONParser = new AccountJSONParser();
+		AccountDTOJSONParser accountDTOJSONParser = new AccountDTOJSONParser();
 
-		return accountJSONParser.parseToMap(json);
+		return accountDTOJSONParser.parseToMap(json);
 	}
 
-	public static Map<String, String> toMap(Account account) {
-		if (account == null) {
+	public static Map<String, String> toMap(AccountDTO accountDTO) {
+		if (accountDTO == null) {
 			return null;
 		}
 
 		Map<String, String> map = new TreeMap<>();
 
-		if (account.getAccountName() == null) {
+		if (accountDTO.getAccountName() == null) {
 			map.put("accountName", null);
 		}
 		else {
-			map.put("accountName", String.valueOf(account.getAccountName()));
+			map.put("accountName", String.valueOf(accountDTO.getAccountName()));
 		}
 
-		if (account.getAddress1() == null) {
+		if (accountDTO.getAddress1() == null) {
 			map.put("address1", null);
 		}
 		else {
-			map.put("address1", String.valueOf(account.getAddress1()));
+			map.put("address1", String.valueOf(accountDTO.getAddress1()));
 		}
 
-		if (account.getAddress2() == null) {
+		if (accountDTO.getAddress2() == null) {
 			map.put("address2", null);
 		}
 		else {
-			map.put("address2", String.valueOf(account.getAddress2()));
+			map.put("address2", String.valueOf(accountDTO.getAddress2()));
 		}
 
-		if (account.getBirthday() == null) {
+		if (accountDTO.getBirthday() == null) {
 			map.put("birthday", null);
 		}
 		else {
-			map.put("birthday", String.valueOf(account.getBirthday()));
+			map.put("birthday", String.valueOf(accountDTO.getBirthday()));
 		}
 
-		if (account.getCity() == null) {
+		if (accountDTO.getCity() == null) {
 			map.put("city", null);
 		}
 		else {
-			map.put("city", String.valueOf(account.getCity()));
+			map.put("city", String.valueOf(accountDTO.getCity()));
 		}
 
-		if (account.getConfirmPassword() == null) {
+		if (accountDTO.getConfirmPassword() == null) {
 			map.put("confirmPassword", null);
 		}
 		else {
 			map.put(
 				"confirmPassword",
-				String.valueOf(account.getConfirmPassword()));
+				String.valueOf(accountDTO.getConfirmPassword()));
 		}
 
-		if (account.getEmailAddress() == null) {
+		if (accountDTO.getEmailAddress() == null) {
 			map.put("emailAddress", null);
 		}
 		else {
-			map.put("emailAddress", String.valueOf(account.getEmailAddress()));
+			map.put(
+				"emailAddress", String.valueOf(accountDTO.getEmailAddress()));
 		}
 
-		if (account.getFirstName() == null) {
+		if (accountDTO.getFirstName() == null) {
 			map.put("firstName", null);
 		}
 		else {
-			map.put("firstName", String.valueOf(account.getFirstName()));
+			map.put("firstName", String.valueOf(accountDTO.getFirstName()));
 		}
 
-		if (account.getGenre() == null) {
+		if (accountDTO.getGenre() == null) {
 			map.put("genre", null);
 		}
 		else {
-			map.put("genre", String.valueOf(account.getGenre()));
+			map.put("genre", String.valueOf(accountDTO.getGenre()));
 		}
 
-		if (account.getHomePhone() == null) {
+		if (accountDTO.getHomePhone() == null) {
 			map.put("homePhone", null);
 		}
 		else {
-			map.put("homePhone", String.valueOf(account.getHomePhone()));
+			map.put("homePhone", String.valueOf(accountDTO.getHomePhone()));
 		}
 
-		if (account.getLastName() == null) {
+		if (accountDTO.getLastName() == null) {
 			map.put("lastName", null);
 		}
 		else {
-			map.put("lastName", String.valueOf(account.getLastName()));
+			map.put("lastName", String.valueOf(accountDTO.getLastName()));
 		}
 
-		if (account.getMobilePhone() == null) {
+		if (accountDTO.getMobilePhone() == null) {
 			map.put("mobilePhone", null);
 		}
 		else {
-			map.put("mobilePhone", String.valueOf(account.getMobilePhone()));
+			map.put("mobilePhone", String.valueOf(accountDTO.getMobilePhone()));
 		}
 
-		if (account.getPassword() == null) {
+		if (accountDTO.getPassword() == null) {
 			map.put("password", null);
 		}
 		else {
-			map.put("password", String.valueOf(account.getPassword()));
+			map.put("password", String.valueOf(accountDTO.getPassword()));
 		}
 
-		if (account.getSecurityAnswer() == null) {
+		if (accountDTO.getSecurityAnswer() == null) {
 			map.put("securityAnswer", null);
 		}
 		else {
 			map.put(
-				"securityAnswer", String.valueOf(account.getSecurityAnswer()));
+				"securityAnswer",
+				String.valueOf(accountDTO.getSecurityAnswer()));
 		}
 
-		if (account.getSecurityQuestion() == null) {
+		if (accountDTO.getSecurityQuestion() == null) {
 			map.put("securityQuestion", null);
 		}
 		else {
 			map.put(
 				"securityQuestion",
-				String.valueOf(account.getSecurityQuestion()));
+				String.valueOf(accountDTO.getSecurityQuestion()));
 		}
 
-		if (account.getState() == null) {
+		if (accountDTO.getState() == null) {
 			map.put("state", null);
 		}
 		else {
-			map.put("state", String.valueOf(account.getState()));
+			map.put("state", String.valueOf(accountDTO.getState()));
 		}
 
-		if (account.getTermsOfUse() == null) {
+		if (accountDTO.getTermsOfUse() == null) {
 			map.put("termsOfUse", null);
 		}
 		else {
-			map.put("termsOfUse", String.valueOf(account.getTermsOfUse()));
+			map.put("termsOfUse", String.valueOf(accountDTO.getTermsOfUse()));
 		}
 
 		return map;
 	}
 
-	public static class AccountJSONParser extends BaseJSONParser<Account> {
+	public static class AccountDTOJSONParser
+		extends BaseJSONParser<AccountDTO> {
 
 		@Override
-		protected Account createDTO() {
-			return new Account();
+		protected AccountDTO createDTO() {
+			return new AccountDTO();
 		}
 
 		@Override
-		protected Account[] createDTOArray(int size) {
-			return new Account[size];
+		protected AccountDTO[] createDTOArray(int size) {
+			return new AccountDTO[size];
 		}
 
 		@Override
 		protected void setField(
-			Account account, String jsonParserFieldName,
+			AccountDTO accountDTO, String jsonParserFieldName,
 			Object jsonParserFieldValue) {
 
 			if (Objects.equals(jsonParserFieldName, "accountName")) {
 				if (jsonParserFieldValue != null) {
-					account.setAccountName((String)jsonParserFieldValue);
+					accountDTO.setAccountName((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "address1")) {
 				if (jsonParserFieldValue != null) {
-					account.setAddress1((String)jsonParserFieldValue);
+					accountDTO.setAddress1((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "address2")) {
 				if (jsonParserFieldValue != null) {
-					account.setAddress2((String)jsonParserFieldValue);
+					accountDTO.setAddress2((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "birthday")) {
 				if (jsonParserFieldValue != null) {
-					account.setBirthday((String)jsonParserFieldValue);
+					accountDTO.setBirthday((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "city")) {
 				if (jsonParserFieldValue != null) {
-					account.setCity((String)jsonParserFieldValue);
+					accountDTO.setCity((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "confirmPassword")) {
 				if (jsonParserFieldValue != null) {
-					account.setConfirmPassword((String)jsonParserFieldValue);
+					accountDTO.setConfirmPassword((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "emailAddress")) {
 				if (jsonParserFieldValue != null) {
-					account.setEmailAddress((String)jsonParserFieldValue);
+					accountDTO.setEmailAddress((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "firstName")) {
 				if (jsonParserFieldValue != null) {
-					account.setFirstName((String)jsonParserFieldValue);
+					accountDTO.setFirstName((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "genre")) {
 				if (jsonParserFieldValue != null) {
-					account.setGenre((String)jsonParserFieldValue);
+					accountDTO.setGenre((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "homePhone")) {
 				if (jsonParserFieldValue != null) {
-					account.setHomePhone((String)jsonParserFieldValue);
+					accountDTO.setHomePhone((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "lastName")) {
 				if (jsonParserFieldValue != null) {
-					account.setLastName((String)jsonParserFieldValue);
+					accountDTO.setLastName((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "mobilePhone")) {
 				if (jsonParserFieldValue != null) {
-					account.setMobilePhone((String)jsonParserFieldValue);
+					accountDTO.setMobilePhone((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "password")) {
 				if (jsonParserFieldValue != null) {
-					account.setPassword((String)jsonParserFieldValue);
+					accountDTO.setPassword((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "securityAnswer")) {
 				if (jsonParserFieldValue != null) {
-					account.setSecurityAnswer((String)jsonParserFieldValue);
+					accountDTO.setSecurityAnswer((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "securityQuestion")) {
 				if (jsonParserFieldValue != null) {
-					account.setSecurityQuestion((String)jsonParserFieldValue);
+					accountDTO.setSecurityQuestion(
+						(String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "state")) {
 				if (jsonParserFieldValue != null) {
-					account.setState((String)jsonParserFieldValue);
+					accountDTO.setState((String)jsonParserFieldValue);
 				}
 			}
 			else if (Objects.equals(jsonParserFieldName, "termsOfUse")) {
 				if (jsonParserFieldValue != null) {
-					account.setTermsOfUse((String)jsonParserFieldValue);
+					accountDTO.setTermsOfUse((String)jsonParserFieldValue);
 				}
 			}
 		}

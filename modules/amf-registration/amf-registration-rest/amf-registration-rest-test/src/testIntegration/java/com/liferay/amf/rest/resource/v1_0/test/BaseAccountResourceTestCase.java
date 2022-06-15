@@ -1,18 +1,9 @@
 package com.liferay.amf.rest.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
-
-import com.liferay.amf.rest.client.dto.v1_0.Account;
+import com.liferay.amf.rest.client.dto.v1_0.AccountDTO;
 import com.liferay.amf.rest.client.http.HttpInvoker;
 import com.liferay.amf.rest.client.pagination.Page;
 import com.liferay.amf.rest.client.resource.v1_0.AccountResource;
-import com.liferay.amf.rest.client.serdes.v1_0.AccountSerDes;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -27,7 +18,6 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.test.rule.Inject;
@@ -105,108 +95,6 @@ public abstract class BaseAccountResourceTestCase {
 	}
 
 	@Test
-	public void testClientSerDesToDTO() throws Exception {
-		ObjectMapper objectMapper = new ObjectMapper() {
-			{
-				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
-				configure(
-					SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
-				enable(SerializationFeature.INDENT_OUTPUT);
-				setDateFormat(new ISO8601DateFormat());
-				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-				setSerializationInclusion(JsonInclude.Include.NON_NULL);
-				setVisibility(
-					PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-				setVisibility(
-					PropertyAccessor.GETTER, JsonAutoDetect.Visibility.NONE);
-			}
-		};
-
-		Account account1 = randomAccount();
-
-		String json = objectMapper.writeValueAsString(account1);
-
-		Account account2 = AccountSerDes.toDTO(json);
-
-		Assert.assertTrue(equals(account1, account2));
-	}
-
-	@Test
-	public void testClientSerDesToJSON() throws Exception {
-		ObjectMapper objectMapper = new ObjectMapper() {
-			{
-				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
-				configure(
-					SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
-				setDateFormat(new ISO8601DateFormat());
-				setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-				setSerializationInclusion(JsonInclude.Include.NON_NULL);
-				setVisibility(
-					PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-				setVisibility(
-					PropertyAccessor.GETTER, JsonAutoDetect.Visibility.NONE);
-			}
-		};
-
-		Account account = randomAccount();
-
-		String json1 = objectMapper.writeValueAsString(account);
-		String json2 = AccountSerDes.toJSON(account);
-
-		Assert.assertEquals(
-			objectMapper.readTree(json1), objectMapper.readTree(json2));
-	}
-
-	@Test
-	public void testEscapeRegexInStringFields() throws Exception {
-		String regex = "^[0-9]+(\\.[0-9]{1,2})\"?";
-
-		Account account = randomAccount();
-
-		account.setAccountName(regex);
-		account.setAddress1(regex);
-		account.setAddress2(regex);
-		account.setBirthday(regex);
-		account.setCity(regex);
-		account.setConfirmPassword(regex);
-		account.setEmailAddress(regex);
-		account.setFirstName(regex);
-		account.setGenre(regex);
-		account.setHomePhone(regex);
-		account.setLastName(regex);
-		account.setMobilePhone(regex);
-		account.setPassword(regex);
-		account.setSecurityAnswer(regex);
-		account.setSecurityQuestion(regex);
-		account.setState(regex);
-		account.setTermsOfUse(regex);
-
-		String json = AccountSerDes.toJSON(account);
-
-		Assert.assertFalse(json.contains(regex));
-
-		account = AccountSerDes.toDTO(json);
-
-		Assert.assertEquals(regex, account.getAccountName());
-		Assert.assertEquals(regex, account.getAddress1());
-		Assert.assertEquals(regex, account.getAddress2());
-		Assert.assertEquals(regex, account.getBirthday());
-		Assert.assertEquals(regex, account.getCity());
-		Assert.assertEquals(regex, account.getConfirmPassword());
-		Assert.assertEquals(regex, account.getEmailAddress());
-		Assert.assertEquals(regex, account.getFirstName());
-		Assert.assertEquals(regex, account.getGenre());
-		Assert.assertEquals(regex, account.getHomePhone());
-		Assert.assertEquals(regex, account.getLastName());
-		Assert.assertEquals(regex, account.getMobilePhone());
-		Assert.assertEquals(regex, account.getPassword());
-		Assert.assertEquals(regex, account.getSecurityAnswer());
-		Assert.assertEquals(regex, account.getSecurityQuestion());
-		Assert.assertEquals(regex, account.getState());
-		Assert.assertEquals(regex, account.getTermsOfUse());
-	}
-
-	@Test
 	public void testGetAllAccount() throws Exception {
 		Page<Account> page = accountResource.getAllAccount(null, null);
 
@@ -233,23 +121,6 @@ public abstract class BaseAccountResourceTestCase {
 	}
 
 	@Test
-	public void testCreateAccount() throws Exception {
-		Account randomAccount = randomAccount();
-
-		Account postAccount = testCreateAccount_addAccount(randomAccount);
-
-		assertEquals(randomAccount, postAccount);
-		assertValid(postAccount);
-	}
-
-	protected Account testCreateAccount_addAccount(Account account)
-		throws Exception {
-
-		throw new UnsupportedOperationException(
-			"This method needs to be implemented");
-	}
-
-	@Test
 	public void testDeleteAccount() throws Exception {
 		Assert.assertTrue(false);
 	}
@@ -260,29 +131,59 @@ public abstract class BaseAccountResourceTestCase {
 	}
 
 	@Test
+	public void testCreateAccount() throws Exception {
+		Assert.assertTrue(true);
+	}
+
+	@Test
 	public void testGetAccount() throws Exception {
-		Assert.assertTrue(false);
+		Account postAccount = testGetAccount_addAccount();
+
+		AccountDTO postAccountDTO = testGetAccount_addAccountDTO(
+			postAccount.getId(), randomAccountDTO());
+
+		AccountDTO getAccountDTO = accountResource.getAccount(
+			postAccount.getId());
+
+		assertEquals(postAccountDTO, getAccountDTO);
+		assertValid(getAccountDTO);
 	}
 
-	@Test
-	public void testGraphQLGetAccount() throws Exception {
-		Assert.assertTrue(true);
-	}
+	protected AccountDTO testGetAccount_addAccountDTO(
+			long accountId, AccountDTO accountDTO)
+		throws Exception {
 
-	@Test
-	public void testGraphQLGetAccountNotFound() throws Exception {
-		Assert.assertTrue(true);
+		throw new UnsupportedOperationException(
+			"This method needs to be implemented");
 	}
 
 	@Test
 	public void testUpdateAccount() throws Exception {
-		Assert.assertTrue(false);
+		Account postAccount = testPutAccount_addAccount();
+
+		testUpdateAccount_addAccountDTO(
+			postAccount.getId(), randomAccountDTO());
+
+		AccountDTO randomAccountDTO = randomAccountDTO();
+
+		AccountDTO putAccountDTO = accountResource.updateAccount(
+			postAccount.getId(), randomAccountDTO);
+
+		assertEquals(randomAccountDTO, putAccountDTO);
+		assertValid(putAccountDTO);
 	}
 
-	protected void assertContains(Account account, List<Account> accounts) {
+	protected AccountDTO testUpdateAccount_addAccountDTO(
+			long accountId, AccountDTO accountDTO)
+		throws Exception {
+
+		return accountResource.updateAccount(accountId, accountDTO);
+	}
+
+	protected void assertContains(Object account, List<Object> accounts) {
 		boolean contains = false;
 
-		for (Account item : accounts) {
+		for (Object item : accounts) {
 			if (equals(account, item)) {
 				contains = true;
 
@@ -301,34 +202,42 @@ public abstract class BaseAccountResourceTestCase {
 			expectedHttpResponseStatusCode, actualHttpResponse.getStatusCode());
 	}
 
-	protected void assertEquals(Account account1, Account account2) {
+	protected void assertEquals(Object account1, Object account2) {
 		Assert.assertTrue(
 			account1 + " does not equal " + account2,
 			equals(account1, account2));
 	}
 
 	protected void assertEquals(
-		List<Account> accounts1, List<Account> accounts2) {
+		List<Object> accounts1, List<Object> accounts2) {
 
 		Assert.assertEquals(accounts1.size(), accounts2.size());
 
 		for (int i = 0; i < accounts1.size(); i++) {
-			Account account1 = accounts1.get(i);
-			Account account2 = accounts2.get(i);
+			Object account1 = accounts1.get(i);
+			Object account2 = accounts2.get(i);
 
 			assertEquals(account1, account2);
 		}
 	}
 
+	protected void assertEquals(
+		AccountDTO accountDTO1, AccountDTO accountDTO2) {
+
+		Assert.assertTrue(
+			accountDTO1 + " does not equal " + accountDTO2,
+			equals(accountDTO1, accountDTO2));
+	}
+
 	protected void assertEqualsIgnoringOrder(
-		List<Account> accounts1, List<Account> accounts2) {
+		List<Object> accounts1, List<Object> accounts2) {
 
 		Assert.assertEquals(accounts1.size(), accounts2.size());
 
-		for (Account account1 : accounts1) {
+		for (Object account1 : accounts1) {
 			boolean contains = false;
 
-			for (Account account2 : accounts2) {
+			for (Object account2 : accounts2) {
 				if (equals(account1, account2)) {
 					contains = true;
 
@@ -341,14 +250,45 @@ public abstract class BaseAccountResourceTestCase {
 		}
 	}
 
-	protected void assertValid(Account account) throws Exception {
+	protected void assertValid(Object account) throws Exception {
 		boolean valid = true;
 
 		for (String additionalAssertFieldName :
 				getAdditionalAssertFieldNames()) {
 
+			throw new IllegalArgumentException(
+				"Invalid additional assert field name " +
+					additionalAssertFieldName);
+		}
+
+		Assert.assertTrue(valid);
+	}
+
+	protected void assertValid(Page<Object> page) {
+		boolean valid = false;
+
+		java.util.Collection<Object> accounts = page.getItems();
+
+		int size = accounts.size();
+
+		if ((page.getLastPage() > 0) && (page.getPage() > 0) &&
+			(page.getPageSize() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
+	protected void assertValid(AccountDTO accountDTO) {
+		boolean valid = true;
+
+		for (String additionalAssertFieldName :
+				getAdditionalAccountDTOAssertFieldNames()) {
+
 			if (Objects.equals("accountName", additionalAssertFieldName)) {
-				if (account.getAccountName() == null) {
+				if (accountDTO.getAccountName() == null) {
 					valid = false;
 				}
 
@@ -356,7 +296,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("address1", additionalAssertFieldName)) {
-				if (account.getAddress1() == null) {
+				if (accountDTO.getAddress1() == null) {
 					valid = false;
 				}
 
@@ -364,7 +304,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("address2", additionalAssertFieldName)) {
-				if (account.getAddress2() == null) {
+				if (accountDTO.getAddress2() == null) {
 					valid = false;
 				}
 
@@ -372,7 +312,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("birthday", additionalAssertFieldName)) {
-				if (account.getBirthday() == null) {
+				if (accountDTO.getBirthday() == null) {
 					valid = false;
 				}
 
@@ -380,7 +320,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("city", additionalAssertFieldName)) {
-				if (account.getCity() == null) {
+				if (accountDTO.getCity() == null) {
 					valid = false;
 				}
 
@@ -388,7 +328,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("confirmPassword", additionalAssertFieldName)) {
-				if (account.getConfirmPassword() == null) {
+				if (accountDTO.getConfirmPassword() == null) {
 					valid = false;
 				}
 
@@ -396,7 +336,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("emailAddress", additionalAssertFieldName)) {
-				if (account.getEmailAddress() == null) {
+				if (accountDTO.getEmailAddress() == null) {
 					valid = false;
 				}
 
@@ -404,7 +344,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("firstName", additionalAssertFieldName)) {
-				if (account.getFirstName() == null) {
+				if (accountDTO.getFirstName() == null) {
 					valid = false;
 				}
 
@@ -412,7 +352,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("genre", additionalAssertFieldName)) {
-				if (account.getGenre() == null) {
+				if (accountDTO.getGenre() == null) {
 					valid = false;
 				}
 
@@ -420,7 +360,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("homePhone", additionalAssertFieldName)) {
-				if (account.getHomePhone() == null) {
+				if (accountDTO.getHomePhone() == null) {
 					valid = false;
 				}
 
@@ -428,7 +368,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("lastName", additionalAssertFieldName)) {
-				if (account.getLastName() == null) {
+				if (accountDTO.getLastName() == null) {
 					valid = false;
 				}
 
@@ -436,7 +376,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("mobilePhone", additionalAssertFieldName)) {
-				if (account.getMobilePhone() == null) {
+				if (accountDTO.getMobilePhone() == null) {
 					valid = false;
 				}
 
@@ -444,7 +384,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("password", additionalAssertFieldName)) {
-				if (account.getPassword() == null) {
+				if (accountDTO.getPassword() == null) {
 					valid = false;
 				}
 
@@ -452,7 +392,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("securityAnswer", additionalAssertFieldName)) {
-				if (account.getSecurityAnswer() == null) {
+				if (accountDTO.getSecurityAnswer() == null) {
 					valid = false;
 				}
 
@@ -460,7 +400,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("securityQuestion", additionalAssertFieldName)) {
-				if (account.getSecurityQuestion() == null) {
+				if (accountDTO.getSecurityQuestion() == null) {
 					valid = false;
 				}
 
@@ -468,7 +408,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("state", additionalAssertFieldName)) {
-				if (account.getState() == null) {
+				if (accountDTO.getState() == null) {
 					valid = false;
 				}
 
@@ -476,7 +416,7 @@ public abstract class BaseAccountResourceTestCase {
 			}
 
 			if (Objects.equals("termsOfUse", additionalAssertFieldName)) {
-				if (account.getTermsOfUse() == null) {
+				if (accountDTO.getTermsOfUse() == null) {
 					valid = false;
 				}
 
@@ -491,42 +431,16 @@ public abstract class BaseAccountResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
-	protected void assertValid(Page<Account> page) {
-		boolean valid = false;
-
-		java.util.Collection<Account> accounts = page.getItems();
-
-		int size = accounts.size();
-
-		if ((page.getLastPage() > 0) && (page.getPage() > 0) &&
-			(page.getPageSize() > 0) && (page.getTotalCount() > 0) &&
-			(size > 0)) {
-
-			valid = true;
-		}
-
-		Assert.assertTrue(valid);
+	protected String[] getAdditionalAssertFieldNames() {
+		return new String[0];
 	}
 
-	protected String[] getAdditionalAssertFieldNames() {
+	protected String[] getAdditionalAccountDTOAssertFieldNames() {
 		return new String[0];
 	}
 
 	protected List<GraphQLField> getGraphQLFields() throws Exception {
 		List<GraphQLField> graphQLFields = new ArrayList<>();
-
-		for (java.lang.reflect.Field field :
-				getDeclaredFields(
-					com.liferay.amf.rest.dto.v1_0.Account.class)) {
-
-			if (!ArrayUtil.contains(
-					getAdditionalAssertFieldNames(), field.getName())) {
-
-				continue;
-			}
-
-			graphQLFields.addAll(getGraphQLFields(field));
-		}
 
 		return graphQLFields;
 	}
@@ -565,187 +479,13 @@ public abstract class BaseAccountResourceTestCase {
 		return new String[0];
 	}
 
-	protected boolean equals(Account account1, Account account2) {
+	protected boolean equals(Object account1, Object account2) {
 		if (account1 == account2) {
 			return true;
 		}
 
 		for (String additionalAssertFieldName :
 				getAdditionalAssertFieldNames()) {
-
-			if (Objects.equals("accountName", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getAccountName(), account2.getAccountName())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("address1", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getAddress1(), account2.getAddress1())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("address2", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getAddress2(), account2.getAddress2())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("birthday", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getBirthday(), account2.getBirthday())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("city", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getCity(), account2.getCity())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("confirmPassword", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getConfirmPassword(),
-						account2.getConfirmPassword())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("emailAddress", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getEmailAddress(),
-						account2.getEmailAddress())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("firstName", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getFirstName(), account2.getFirstName())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("genre", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getGenre(), account2.getGenre())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("homePhone", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getHomePhone(), account2.getHomePhone())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("lastName", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getLastName(), account2.getLastName())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("mobilePhone", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getMobilePhone(), account2.getMobilePhone())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("password", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getPassword(), account2.getPassword())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("securityAnswer", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getSecurityAnswer(),
-						account2.getSecurityAnswer())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("securityQuestion", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getSecurityQuestion(),
-						account2.getSecurityQuestion())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("state", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getState(), account2.getState())) {
-
-					return false;
-				}
-
-				continue;
-			}
-
-			if (Objects.equals("termsOfUse", additionalAssertFieldName)) {
-				if (!Objects.deepEquals(
-						account1.getTermsOfUse(), account2.getTermsOfUse())) {
-
-					return false;
-				}
-
-				continue;
-			}
 
 			throw new IllegalArgumentException(
 				"Invalid additional assert field name " +
@@ -779,6 +519,201 @@ public abstract class BaseAccountResourceTestCase {
 		}
 
 		return false;
+	}
+
+	protected boolean equals(AccountDTO accountDTO1, AccountDTO accountDTO2) {
+		if (accountDTO1 == accountDTO2) {
+			return true;
+		}
+
+		for (String additionalAssertFieldName :
+				getAdditionalAccountDTOAssertFieldNames()) {
+
+			if (Objects.equals("accountName", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getAccountName(),
+						accountDTO2.getAccountName())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("address1", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getAddress1(), accountDTO2.getAddress1())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("address2", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getAddress2(), accountDTO2.getAddress2())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("birthday", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getBirthday(), accountDTO2.getBirthday())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("city", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getCity(), accountDTO2.getCity())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("confirmPassword", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getConfirmPassword(),
+						accountDTO2.getConfirmPassword())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("emailAddress", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getEmailAddress(),
+						accountDTO2.getEmailAddress())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("firstName", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getFirstName(),
+						accountDTO2.getFirstName())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("genre", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getGenre(), accountDTO2.getGenre())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("homePhone", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getHomePhone(),
+						accountDTO2.getHomePhone())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("lastName", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getLastName(), accountDTO2.getLastName())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("mobilePhone", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getMobilePhone(),
+						accountDTO2.getMobilePhone())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("password", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getPassword(), accountDTO2.getPassword())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("securityAnswer", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getSecurityAnswer(),
+						accountDTO2.getSecurityAnswer())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("securityQuestion", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getSecurityQuestion(),
+						accountDTO2.getSecurityQuestion())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("state", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getState(), accountDTO2.getState())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			if (Objects.equals("termsOfUse", additionalAssertFieldName)) {
+				if (!Objects.deepEquals(
+						accountDTO1.getTermsOfUse(),
+						accountDTO2.getTermsOfUse())) {
+
+					return false;
+				}
+
+				continue;
+			}
+
+			throw new IllegalArgumentException(
+				"Invalid additional assert field name " +
+					additionalAssertFieldName);
+		}
+
+		return true;
 	}
 
 	protected java.lang.reflect.Field[] getDeclaredFields(Class clazz)
@@ -832,7 +767,7 @@ public abstract class BaseAccountResourceTestCase {
 	}
 
 	protected String getFilterString(
-		EntityField entityField, String operator, Account account) {
+		EntityField entityField, String operator, Object account) {
 
 		StringBundler sb = new StringBundler();
 
@@ -843,142 +778,6 @@ public abstract class BaseAccountResourceTestCase {
 		sb.append(" ");
 		sb.append(operator);
 		sb.append(" ");
-
-		if (entityFieldName.equals("accountName")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getAccountName()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("address1")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getAddress1()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("address2")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getAddress2()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("birthday")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getBirthday()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("city")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getCity()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("confirmPassword")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getConfirmPassword()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("emailAddress")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getEmailAddress()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("firstName")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getFirstName()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("genre")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getGenre()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("homePhone")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getHomePhone()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("lastName")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getLastName()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("mobilePhone")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getMobilePhone()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("password")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getPassword()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("securityAnswer")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getSecurityAnswer()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("securityQuestion")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getSecurityQuestion()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("state")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getState()));
-			sb.append("'");
-
-			return sb.toString();
-		}
-
-		if (entityFieldName.equals("termsOfUse")) {
-			sb.append("'");
-			sb.append(String.valueOf(account.getTermsOfUse()));
-			sb.append("'");
-
-			return sb.toString();
-		}
 
 		throw new IllegalArgumentException(
 			"Invalid entity field " + entityFieldName);
@@ -1021,53 +820,28 @@ public abstract class BaseAccountResourceTestCase {
 			invoke(queryGraphQLField.toString()));
 	}
 
-	protected Account randomAccount() throws Exception {
-		return new Account() {
+	protected AccountDTO randomAccountDTO() throws Exception {
+		return new AccountDTO() {
 			{
-				accountName = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				address1 = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				address2 = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				birthday = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				city = StringUtil.toLowerCase(RandomTestUtil.randomString());
-				confirmPassword = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				emailAddress =
-					StringUtil.toLowerCase(RandomTestUtil.randomString()) +
-						"@liferay.com";
-				firstName = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				genre = StringUtil.toLowerCase(RandomTestUtil.randomString());
-				homePhone = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				lastName = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				mobilePhone = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				password = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				securityAnswer = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				securityQuestion = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				state = StringUtil.toLowerCase(RandomTestUtil.randomString());
-				termsOfUse = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
+				accountName = RandomTestUtil.randomString();
+				address1 = RandomTestUtil.randomString();
+				address2 = RandomTestUtil.randomString();
+				birthday = RandomTestUtil.randomString();
+				city = RandomTestUtil.randomString();
+				confirmPassword = RandomTestUtil.randomString();
+				emailAddress = RandomTestUtil.randomString();
+				firstName = RandomTestUtil.randomString();
+				genre = RandomTestUtil.randomString();
+				homePhone = RandomTestUtil.randomString();
+				lastName = RandomTestUtil.randomString();
+				mobilePhone = RandomTestUtil.randomString();
+				password = RandomTestUtil.randomString();
+				securityAnswer = RandomTestUtil.randomString();
+				securityQuestion = RandomTestUtil.randomString();
+				state = RandomTestUtil.randomString();
+				termsOfUse = RandomTestUtil.randomString();
 			}
 		};
-	}
-
-	protected Account randomIrrelevantAccount() throws Exception {
-		Account randomIrrelevantAccount = randomAccount();
-
-		return randomIrrelevantAccount;
-	}
-
-	protected Account randomPatchAccount() throws Exception {
-		return randomAccount();
 	}
 
 	protected AccountResource accountResource;

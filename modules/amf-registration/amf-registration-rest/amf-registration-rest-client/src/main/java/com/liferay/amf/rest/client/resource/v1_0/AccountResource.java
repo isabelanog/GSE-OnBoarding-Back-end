@@ -1,10 +1,10 @@
 package com.liferay.amf.rest.client.resource.v1_0;
 
-import com.liferay.amf.rest.client.dto.v1_0.Account;
+import com.liferay.amf.rest.client.dto.v1_0.AccountDTO;
 import com.liferay.amf.rest.client.http.HttpInvoker;
 import com.liferay.amf.rest.client.pagination.Page;
 import com.liferay.amf.rest.client.problem.Problem;
-import com.liferay.amf.rest.client.serdes.v1_0.AccountSerDes;
+import com.liferay.amf.rest.client.serdes.v1_0.AccountDTOSerDes;
 
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -25,16 +25,17 @@ public interface AccountResource {
 		return new Builder();
 	}
 
-	public Page<Account> getAllAccount(Integer pageNumber, Integer pageSize)
+	public Page<AccountDTO> getAllAccount(Integer pageNumber, Integer pageSize)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse getAllAccountHttpResponse(
 			Integer pageNumber, Integer pageSize)
 		throws Exception;
 
-	public Account createAccount(Account account) throws Exception;
+	public AccountDTO createAccount(AccountDTO accountDTO) throws Exception;
 
-	public HttpInvoker.HttpResponse createAccountHttpResponse(Account account)
+	public HttpInvoker.HttpResponse createAccountHttpResponse(
+			AccountDTO accountDTO)
 		throws Exception;
 
 	public void deleteAccount(String accountId) throws Exception;
@@ -49,16 +50,16 @@ public interface AccountResource {
 			String callbackURL, Object object)
 		throws Exception;
 
-	public Account getAccount(String accountId) throws Exception;
+	public AccountDTO getAccount(String accountId) throws Exception;
 
 	public HttpInvoker.HttpResponse getAccountHttpResponse(String accountId)
 		throws Exception;
 
-	public Account updateAccount(String accountId, Account account)
+	public AccountDTO updateAccount(String accountId, AccountDTO accountDTO)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse updateAccountHttpResponse(
-			String accountId, Account account)
+			String accountId, AccountDTO accountDTO)
 		throws Exception;
 
 	public static class Builder {
@@ -132,7 +133,8 @@ public interface AccountResource {
 
 	public static class AccountResourceImpl implements AccountResource {
 
-		public Page<Account> getAllAccount(Integer pageNumber, Integer pageSize)
+		public Page<AccountDTO> getAllAccount(
+				Integer pageNumber, Integer pageSize)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse = getAllAccountHttpResponse(
@@ -164,7 +166,7 @@ public interface AccountResource {
 			}
 
 			try {
-				return Page.of(content, AccountSerDes::toDTO);
+				return Page.of(content, AccountDTOSerDes::toDTO);
 			}
 			catch (Exception e) {
 				_logger.log(
@@ -218,9 +220,11 @@ public interface AccountResource {
 			return httpInvoker.invoke();
 		}
 
-		public Account createAccount(Account account) throws Exception {
+		public AccountDTO createAccount(AccountDTO accountDTO)
+			throws Exception {
+
 			HttpInvoker.HttpResponse httpResponse = createAccountHttpResponse(
-				account);
+				accountDTO);
 
 			String content = httpResponse.getContent();
 
@@ -248,7 +252,7 @@ public interface AccountResource {
 			}
 
 			try {
-				return AccountSerDes.toDTO(content);
+				return AccountDTOSerDes.toDTO(content);
 			}
 			catch (Exception e) {
 				_logger.log(
@@ -260,12 +264,12 @@ public interface AccountResource {
 		}
 
 		public HttpInvoker.HttpResponse createAccountHttpResponse(
-				Account account)
+				AccountDTO accountDTO)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-			httpInvoker.body(account.toString(), "application/json");
+			httpInvoker.body(accountDTO.toString(), "application/json");
 
 			if (_builder._locale != null) {
 				httpInvoker.header(
@@ -450,7 +454,7 @@ public interface AccountResource {
 			return httpInvoker.invoke();
 		}
 
-		public Account getAccount(String accountId) throws Exception {
+		public AccountDTO getAccount(String accountId) throws Exception {
 			HttpInvoker.HttpResponse httpResponse = getAccountHttpResponse(
 				accountId);
 
@@ -480,7 +484,7 @@ public interface AccountResource {
 			}
 
 			try {
-				return AccountSerDes.toDTO(content);
+				return AccountDTOSerDes.toDTO(content);
 			}
 			catch (Exception e) {
 				_logger.log(
@@ -528,11 +532,11 @@ public interface AccountResource {
 			return httpInvoker.invoke();
 		}
 
-		public Account updateAccount(String accountId, Account account)
+		public AccountDTO updateAccount(String accountId, AccountDTO accountDTO)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse = updateAccountHttpResponse(
-				accountId, account);
+				accountId, accountDTO);
 
 			String content = httpResponse.getContent();
 
@@ -560,7 +564,7 @@ public interface AccountResource {
 			}
 
 			try {
-				return AccountSerDes.toDTO(content);
+				return AccountDTOSerDes.toDTO(content);
 			}
 			catch (Exception e) {
 				_logger.log(
@@ -572,12 +576,12 @@ public interface AccountResource {
 		}
 
 		public HttpInvoker.HttpResponse updateAccountHttpResponse(
-				String accountId, Account account)
+				String accountId, AccountDTO accountDTO)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-			httpInvoker.body(account.toString(), "application/json");
+			httpInvoker.body(accountDTO.toString(), "application/json");
 
 			if (_builder._locale != null) {
 				httpInvoker.header(

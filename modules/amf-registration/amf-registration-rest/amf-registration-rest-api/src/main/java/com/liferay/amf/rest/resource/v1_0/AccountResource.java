@@ -1,6 +1,6 @@
 package com.liferay.amf.rest.resource.v1_0;
 
-import com.liferay.amf.rest.dto.v1_0.Account;
+import com.liferay.amf.rest.dto.v1_0.AccountDTO;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ResourceActionLocalService;
@@ -42,19 +42,19 @@ public interface AccountResource {
 		return FactoryHolder.factory.create();
 	}
 
-	public Page<Account> getAllAccount(Integer pageNumber, Integer pageSize)
+	public Page<AccountDTO> getAllAccount(Integer pageNumber, Integer pageSize)
 		throws Exception;
 
-	public Account createAccount(Account account) throws Exception;
+	public AccountDTO createAccount(AccountDTO accountDTO) throws Exception;
 
 	public void deleteAccount(String accountId) throws Exception;
 
 	public Response deleteAccountBatch(String callbackURL, Object object)
 		throws Exception;
 
-	public Account getAccount(String accountId) throws Exception;
+	public AccountDTO getAccount(String accountId) throws Exception;
 
-	public Account updateAccount(String accountId, Account account)
+	public AccountDTO updateAccount(String accountId, AccountDTO accountDTO)
 		throws Exception;
 
 	public default void setContextAcceptLanguage(
