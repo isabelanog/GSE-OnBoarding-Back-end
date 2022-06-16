@@ -50,14 +50,14 @@ public interface AccountModel
 	 *
 	 * @return the primary key of this account
 	 */
-	public long getPrimaryKey();
+	public String getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this account.
 	 *
 	 * @param primaryKey the primary key of this account
 	 */
-	public void setPrimaryKey(long primaryKey);
+	public void setPrimaryKey(String primaryKey);
 
 	/**
 	 * Returns the uuid of this account.
@@ -81,14 +81,15 @@ public interface AccountModel
 	 *
 	 * @return the account ID of this account
 	 */
-	public long getAccountId();
+	@AutoEscape
+	public String getAccountId();
 
 	/**
 	 * Sets the account ID of this account.
 	 *
 	 * @param accountId the account ID of this account
 	 */
-	public void setAccountId(long accountId);
+	public void setAccountId(String accountId);
 
 	/**
 	 * Returns the group ID of this account.
@@ -283,14 +284,15 @@ public interface AccountModel
 	 *
 	 * @return the birthday of this account
 	 */
-	public Date getBirthday();
+	@AutoEscape
+	public String getBirthday();
 
 	/**
 	 * Sets the birthday of this account.
 	 *
 	 * @param birthday the birthday of this account
 	 */
-	public void setBirthday(Date birthday);
+	public void setBirthday(String birthday);
 
 	/**
 	 * Returns the password of this account.
@@ -312,28 +314,30 @@ public interface AccountModel
 	 *
 	 * @return the home phone of this account
 	 */
-	public int getHomePhone();
+	@AutoEscape
+	public String getHomePhone();
 
 	/**
 	 * Sets the home phone of this account.
 	 *
 	 * @param homePhone the home phone of this account
 	 */
-	public void setHomePhone(int homePhone);
+	public void setHomePhone(String homePhone);
 
 	/**
 	 * Returns the mobile phone of this account.
 	 *
 	 * @return the mobile phone of this account
 	 */
-	public int getMobilePhone();
+	@AutoEscape
+	public String getMobilePhone();
 
 	/**
 	 * Sets the mobile phone of this account.
 	 *
 	 * @param mobilePhone the mobile phone of this account
 	 */
-	public void setMobilePhone(int mobilePhone);
+	public void setMobilePhone(String mobilePhone);
 
 	/**
 	 * Returns the address of this account.
@@ -400,14 +404,15 @@ public interface AccountModel
 	 *
 	 * @return the zip of this account
 	 */
-	public int getZip();
+	@AutoEscape
+	public String getZip();
 
 	/**
 	 * Sets the zip of this account.
 	 *
 	 * @param zip the zip of this account
 	 */
-	public void setZip(int zip);
+	public void setZip(String zip);
 
 	/**
 	 * Returns the security question of this account.

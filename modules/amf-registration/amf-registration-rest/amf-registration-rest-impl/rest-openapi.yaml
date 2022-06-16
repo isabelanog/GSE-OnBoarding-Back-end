@@ -1,0 +1,196 @@
+components:
+    schemas:
+        AccountDTO:
+            description: A sample api of Acme Movie Fanatics (AMF).
+            properties:
+                firstName:
+                    description: The first name.
+                    type: string
+                lastName:
+                    description: The last name.
+                    type: string
+                emailAddress:
+                    description: The e-mail address.
+                    type: string
+                accountName:
+                    description: The username.
+                    type: string
+                genre:
+                    description: The genre.
+                    type: string
+                birthday:
+                    description: The birthday day.
+                    type: string
+                password:
+                    description: The password.
+                    type: string
+                confirmPassword:
+                    description: The password.
+                    type: string
+                homePhone:
+                    description: The home phone.
+                    type: string
+                mobilePhone:
+                    description: The mobile phone.
+                    type: string
+                address1:
+                    description: The address home.
+                    type: string
+                address2:
+                    description: The alternative address.
+                    type: string
+                city:
+                    description: The zip code.
+                    type: string
+                state:
+                    description: The state.
+                    type: string
+                securityQuestion:
+                    description: Security question.
+                    type: string
+                securityAnswer:
+                    description: The security answer.
+                    type: string
+                termsOfUse:
+                    description: The terms of use.
+                    type: string
+info:
+    description:
+        "The Sample API made with rest builder. A Java client JAR is available for use with the group ID 'com.liferay',
+        artifact ID 'com.liferay.sample.client', and version '1.0.0'.. A Java client JAR is available for use with the
+        group ID 'com.liferay', artifact ID 'com.liferay.amf.client', and version '1.0.0'.. A Java client JAR is
+        available for use with the group ID 'com.liferay', artifact ID 'com.liferay.amf.rest.client', and version
+        '1.0.0'."
+    license:
+        name: "Apache 2.0"
+        url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+    title: "Acme Movie Fanatics (AMF)  API"
+    version: v1.0
+openapi: 3.0.1
+paths:
+    "/account":
+        get:
+            description: Return all accounts
+            operationId: getAllAccount
+            parameters:
+                - in: query
+                  name: pageNumber
+                  schema:
+                      type: integer
+                - in: query
+                  name: pageSize
+                  schema:
+                      type: integer
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/AccountDTO"
+                                type: array
+                        application/xml:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/AccountDTO"
+                                type: array
+                    description: "Successfully returned datas of accountDTO"
+                400:
+                    description: Invalid request
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                        application/xml:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+            tags: [ "Account" ]
+        post:
+            operationId: createAccount
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/AccountDTO"
+                    application/xml:
+                        schema:
+                            $ref: "#/components/schemas/AccountDTO"
+            responses:
+                201:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/AccountDTO"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/AccountDTO"
+                    description: "Successfully created account"
+            tags: [ "Account" ]
+    "/account/{accountId}":
+        get:
+            operationId: getAccount
+            parameters:
+                - in: path
+                  name: accountId
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/AccountDTO"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/AccountDTO"
+                    description: "Successfully returned datas of account"
+            tags: ["Account"]
+        delete:
+            operationId: deleteAccount
+            parameters:
+                - in: path
+                  name: accountId
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                204:
+                    content:
+                        application/json: { }
+                        application/xml: { }
+                    description: "Successfully deteled account"
+            tags: [ "Account" ]
+        put:
+            operationId: updateAccount
+            parameters:
+                - in: path
+                  name: accountId
+                  required: true
+                  schema:
+                      type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/AccountDTO"
+                    application/xml:
+                        schema:
+                            $ref: "#/components/schemas/AccountDTO"
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/AccountDTO"
+                        application/xml:
+                            schema:
+                                $ref: "#/components/schemas/AccountDTO"
+                    description: "Successfully returned datas of account"
+            tags: [ "Account" ]
