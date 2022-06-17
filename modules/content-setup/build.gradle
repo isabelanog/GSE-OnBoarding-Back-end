@@ -1,0 +1,4 @@
+dependencies {
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+	compile group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.3"
+}
