@@ -34,7 +34,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 	@Override
 	public Account createAccount(String firstname, String lastname, String emailAddress,
-								 String accountName, String gender, String birthday, String  password, String homePhone,
+								 String accountName, String gender, Date birthday, String  password, String homePhone,
 								 String mobilePhone, String address, String address2, String city, String statezip,
 								 String securityQuestion, String securityAnswer, String acceptedTou) {
 
@@ -80,7 +80,7 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 	@Override
 	public Account updateAccount(long accountId, String firstname, String lastname, String emailAddress,
-								 String accountName, String gender, String birthday, String  password, String homePhone,
+								 String accountName, String gender, Date birthday, String  password, String homePhone,
 								 String mobilePhone, String address, String address2, String city, String statezip,
 								 String securityQuestion, String securityAnswer, String acceptedTou) throws PortalException {
 

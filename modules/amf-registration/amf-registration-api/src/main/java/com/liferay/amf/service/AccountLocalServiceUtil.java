@@ -71,9 +71,9 @@ public class AccountLocalServiceUtil {
 
 	public static Account createAccount(
 		String firstname, String lastname, String emailAddress,
-		String accountName, String gender, String birthday, String password,
-		String homePhone, String mobilePhone, String address, String address2,
-		String city, String statezip, String securityQuestion,
+		String accountName, String gender, java.util.Date birthday,
+		String password, String homePhone, String mobilePhone, String address,
+		String address2, String city, String statezip, String securityQuestion,
 		String securityAnswer, String acceptedTou) {
 
 		return getService().createAccount(
@@ -355,7 +355,7 @@ public class AccountLocalServiceUtil {
 
 			long accountId, String firstname, String lastname,
 			String emailAddress, String accountName, String gender,
-			String birthday, String password, String homePhone,
+			java.util.Date birthday, String password, String homePhone,
 			String mobilePhone, String address, String address2, String city,
 			String statezip, String securityQuestion, String securityAnswer,
 			String acceptedTou)

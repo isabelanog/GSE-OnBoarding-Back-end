@@ -77,7 +77,7 @@ public class AccountModelImpl
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
 		{"firstName", Types.VARCHAR}, {"lastName", Types.VARCHAR},
 		{"accountName", Types.VARCHAR}, {"emailAddress", Types.VARCHAR},
-		{"gender", Types.VARCHAR}, {"birthday", Types.VARCHAR},
+		{"gender", Types.VARCHAR}, {"birthday", Types.TIMESTAMP},
 		{"password_", Types.VARCHAR}, {"homePhone", Types.VARCHAR},
 		{"mobilePhone", Types.VARCHAR}, {"address", Types.VARCHAR},
 		{"address2", Types.VARCHAR}, {"city", Types.VARCHAR},
@@ -103,7 +103,7 @@ public class AccountModelImpl
 		TABLE_COLUMNS_MAP.put("accountName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("emailAddress", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("gender", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("birthday", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("birthday", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("password_", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("homePhone", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("mobilePhone", Types.VARCHAR);
@@ -118,7 +118,7 @@ public class AccountModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table AMF_Account (uuid_ VARCHAR(75) null,accountId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,firstName VARCHAR(75) null,lastName VARCHAR(75) null,accountName VARCHAR(75) null,emailAddress VARCHAR(75) null,gender VARCHAR(75) null,birthday VARCHAR(75) null,password_ VARCHAR(75) null,homePhone VARCHAR(75) null,mobilePhone VARCHAR(75) null,address VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,state_ VARCHAR(75) null,zip VARCHAR(75) null,securityQuestion VARCHAR(75) null,securityAnswer VARCHAR(75) null,acceptedTou VARCHAR(75) null)";
+		"create table AMF_Account (uuid_ VARCHAR(75) null,accountId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,firstName VARCHAR(75) null,lastName VARCHAR(75) null,accountName VARCHAR(75) null,emailAddress VARCHAR(75) null,gender VARCHAR(75) null,birthday DATE null,password_ VARCHAR(75) null,homePhone VARCHAR(75) null,mobilePhone VARCHAR(75) null,address VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,state_ VARCHAR(75) null,zip VARCHAR(75) null,securityQuestion VARCHAR(75) null,securityAnswer VARCHAR(75) null,acceptedTou VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP = "drop table AMF_Account";
 
@@ -339,7 +339,7 @@ public class AccountModelImpl
 			"gender", (BiConsumer<Account, String>)Account::setGender);
 		attributeGetterFunctions.put("birthday", Account::getBirthday);
 		attributeSetterBiConsumers.put(
-			"birthday", (BiConsumer<Account, String>)Account::setBirthday);
+			"birthday", (BiConsumer<Account, Date>)Account::setBirthday);
 		attributeGetterFunctions.put("password", Account::getPassword);
 		attributeSetterBiConsumers.put(
 			"password", (BiConsumer<Account, String>)Account::setPassword);
@@ -673,17 +673,12 @@ public class AccountModelImpl
 
 	@JSON
 	@Override
-	public String getBirthday() {
-		if (_birthday == null) {
-			return "";
-		}
-		else {
-			return _birthday;
-		}
+	public Date getBirthday() {
+		return _birthday;
 	}
 
 	@Override
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -1017,8 +1012,7 @@ public class AccountModelImpl
 		accountImpl.setEmailAddress(
 			this.<String>getColumnOriginalValue("emailAddress"));
 		accountImpl.setGender(this.<String>getColumnOriginalValue("gender"));
-		accountImpl.setBirthday(
-			this.<String>getColumnOriginalValue("birthday"));
+		accountImpl.setBirthday(this.<Date>getColumnOriginalValue("birthday"));
 		accountImpl.setPassword(
 			this.<String>getColumnOriginalValue("password_"));
 		accountImpl.setHomePhone(
@@ -1200,12 +1194,13 @@ public class AccountModelImpl
 			accountCacheModel.gender = null;
 		}
 
-		accountCacheModel.birthday = getBirthday();
+		Date birthday = getBirthday();
 
-		String birthday = accountCacheModel.birthday;
-
-		if ((birthday != null) && (birthday.length() == 0)) {
-			accountCacheModel.birthday = null;
+		if (birthday != null) {
+			accountCacheModel.birthday = birthday.getTime();
+		}
+		else {
+			accountCacheModel.birthday = Long.MIN_VALUE;
 		}
 
 		accountCacheModel.password = getPassword();
@@ -1400,7 +1395,7 @@ public class AccountModelImpl
 	private String _accountName;
 	private String _emailAddress;
 	private String _gender;
-	private String _birthday;
+	private Date _birthday;
 	private String _password;
 	private String _homePhone;
 	private String _mobilePhone;
