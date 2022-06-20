@@ -8,7 +8,7 @@
 
 		<!-- PK fields --> 
 
-		<column name="accountId" primary="true" type="String" />
+		<column name="accountId" primary="true" type="long" />
 
 		<!-- Group instance -->
 
@@ -31,8 +31,8 @@
 		<column name="gender" type="String" />
 		<column name="birthday" type="Date" />
 		<column name="password" type="String" />
-		<column name="homePhone" type="String" />
-		<column name="mobilePhone" type="String" />
+		<column name="homePhone" type="int" />
+		<column name="mobilePhone" type="int" />
 		<column name="address" type="String" />
 		<column name="address2" type="String" />
 		<column name="city" type="String" />
