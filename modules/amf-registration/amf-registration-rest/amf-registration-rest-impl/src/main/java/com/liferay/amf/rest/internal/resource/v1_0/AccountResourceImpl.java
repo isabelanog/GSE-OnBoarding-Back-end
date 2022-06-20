@@ -22,23 +22,25 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 		_accountLocalService.createAccount(
 				accountDTO.getFirstName(),
 				accountDTO.getLastName(),
-				accountDTO.getEmailAddress(),
 				accountDTO.getAccountName(),
+				accountDTO.getEmailAddress(),
 				accountDTO.getAddress1(),
 				accountDTO.getAddress2(),
-				accountDTO.getGenre(),
-				accountDTO.getBirthday(),
 				accountDTO.getPassword(),
+				accountDTO.getConfirmPassword(),
 				accountDTO.getSecurityQuestion(),
 				accountDTO.getSecurityAnswer(),
+				accountDTO.getGenre(),
 				accountDTO.getHomePhone(),
 				accountDTO.getMobilePhone(),
 				accountDTO.getCity(),
-				accountDTO.getState());
+				accountDTO.getState(),
+				accountDTO.getBirthday()
+
+				);
 	return accountDTO;
 
 	}
-	
 	@Reference
 	private AccountLocalService _accountLocalService;
 
