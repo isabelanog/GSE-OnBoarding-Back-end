@@ -34,8 +34,8 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 	@Override
 	public Account createAccount(String firstname, String lastname, String emailAddress,
-								 String accountName, String gender, Date birthday, String  password, String homePhone,
-								 String mobilePhone, String address, String address2, String city, String statezip,
+								 String accountName, String gender, Date birthday, String  password, int homePhone,
+								 int mobilePhone, String address, String address2, String city, String statezip,
 								 String securityQuestion, String securityAnswer, String acceptedTou) {
 
 
@@ -47,16 +47,16 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		Account account = createAccount(accountId);
 
 		//populate fields
-		account.setAccountId(accountId);
+		account.setAccountId(String.valueOf(accountId));
 		account.setFirstName(firstname);
 		account.setLastName(lastname);
 		account.setEmailAddress(emailAddress);
 		account.setAccountName(accountName);
 		account.setGender(gender);
-		account.setBirthday(birthday);
+		account.setBirthday(String.valueOf(birthday));
 		account.setPassword(password);
-		account.setHomePhone(homePhone);
-		account.setMobilePhone(mobilePhone);
+		account.setHomePhone(String.valueOf(homePhone));
+		account.setMobilePhone(String.valueOf(mobilePhone));
 		account.setAddress(address);
 		account.setAddress2(address2);
 		account.setCity(city);
@@ -90,13 +90,13 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 		// Set updated fields and modification date
 
-		account.setAccountId(accountId);
+		account.setAccountId(String.valueOf(accountId));
 		account.setFirstName(firstname);
 		account.setLastName(lastname);
 		account.setEmailAddress(emailAddress);
 		account.setAccountName(accountName);
 		account.setGender(gender);
-		account.setBirthday(birthday);
+		account.setBirthday(String.valueOf(birthday));
 		account.setPassword(password);
 		account.setHomePhone(homePhone);
 		account.setMobilePhone(mobilePhone);

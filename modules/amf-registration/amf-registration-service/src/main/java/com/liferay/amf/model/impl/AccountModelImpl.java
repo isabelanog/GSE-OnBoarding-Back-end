@@ -16,6 +16,8 @@ package com.liferay.amf.model.impl;
 
 import com.liferay.amf.model.Account;
 import com.liferay.amf.model.AccountModel;
+import com.liferay.expando.kernel.model.ExpandoBridge;
+import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
@@ -25,6 +27,7 @@ import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -71,15 +74,15 @@ public class AccountModelImpl
 	public static final String TABLE_NAME = "AMF_Account";
 
 	public static final Object[][] TABLE_COLUMNS = {
-		{"uuid_", Types.VARCHAR}, {"accountId", Types.VARCHAR},
+		{"uuid_", Types.VARCHAR}, {"accountId", Types.BIGINT},
 		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
 		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
 		{"firstName", Types.VARCHAR}, {"lastName", Types.VARCHAR},
 		{"accountName", Types.VARCHAR}, {"emailAddress", Types.VARCHAR},
 		{"gender", Types.VARCHAR}, {"birthday", Types.TIMESTAMP},
-		{"password_", Types.VARCHAR}, {"homePhone", Types.VARCHAR},
-		{"mobilePhone", Types.VARCHAR}, {"address", Types.VARCHAR},
+		{"password_", Types.VARCHAR}, {"homePhone", Types.INTEGER},
+		{"mobilePhone", Types.INTEGER}, {"address", Types.VARCHAR},
 		{"address2", Types.VARCHAR}, {"city", Types.VARCHAR},
 		{"state_", Types.VARCHAR}, {"zip", Types.VARCHAR},
 		{"securityQuestion", Types.VARCHAR}, {"securityAnswer", Types.VARCHAR},
@@ -91,7 +94,7 @@ public class AccountModelImpl
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("accountId", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("accountId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
@@ -105,8 +108,8 @@ public class AccountModelImpl
 		TABLE_COLUMNS_MAP.put("gender", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("birthday", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("password_", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("homePhone", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("mobilePhone", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("homePhone", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("mobilePhone", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("address", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("address2", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("city", Types.VARCHAR);
@@ -118,7 +121,7 @@ public class AccountModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table AMF_Account (uuid_ VARCHAR(75) null,accountId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,firstName VARCHAR(75) null,lastName VARCHAR(75) null,accountName VARCHAR(75) null,emailAddress VARCHAR(75) null,gender VARCHAR(75) null,birthday DATE null,password_ VARCHAR(75) null,homePhone VARCHAR(75) null,mobilePhone VARCHAR(75) null,address VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,state_ VARCHAR(75) null,zip VARCHAR(75) null,securityQuestion VARCHAR(75) null,securityAnswer VARCHAR(75) null,acceptedTou VARCHAR(75) null)";
+		"create table AMF_Account (uuid_ VARCHAR(75) null,accountId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,firstName VARCHAR(75) null,lastName VARCHAR(75) null,accountName VARCHAR(75) null,emailAddress VARCHAR(75) null,gender VARCHAR(75) null,birthday DATE null,password_ VARCHAR(75) null,homePhone INTEGER,mobilePhone INTEGER,address VARCHAR(75) null,address2 VARCHAR(75) null,city VARCHAR(75) null,state_ VARCHAR(75) null,zip VARCHAR(75) null,securityQuestion VARCHAR(75) null,securityAnswer VARCHAR(75) null,acceptedTou VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP = "drop table AMF_Account";
 
@@ -177,12 +180,12 @@ public class AccountModelImpl
 	}
 
 	@Override
-	public String getPrimaryKey() {
+	public long getPrimaryKey() {
 		return _accountId;
 	}
 
 	@Override
-	public void setPrimaryKey(String primaryKey) {
+	public void setPrimaryKey(long primaryKey) {
 		setAccountId(primaryKey);
 	}
 
@@ -193,7 +196,7 @@ public class AccountModelImpl
 
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
-		setPrimaryKey((String)primaryKeyObj);
+		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
 
 	@Override
@@ -300,7 +303,7 @@ public class AccountModelImpl
 			"uuid", (BiConsumer<Account, String>)Account::setUuid);
 		attributeGetterFunctions.put("accountId", Account::getAccountId);
 		attributeSetterBiConsumers.put(
-			"accountId", (BiConsumer<Account, String>)Account::setAccountId);
+			"accountId", (BiConsumer<Account, Long>)Account::setAccountId);
 		attributeGetterFunctions.put("groupId", Account::getGroupId);
 		attributeSetterBiConsumers.put(
 			"groupId", (BiConsumer<Account, Long>)Account::setGroupId);
@@ -345,11 +348,11 @@ public class AccountModelImpl
 			"password", (BiConsumer<Account, String>)Account::setPassword);
 		attributeGetterFunctions.put("homePhone", Account::getHomePhone);
 		attributeSetterBiConsumers.put(
-			"homePhone", (BiConsumer<Account, String>)Account::setHomePhone);
+			"homePhone", (BiConsumer<Account, Integer>)Account::setHomePhone);
 		attributeGetterFunctions.put("mobilePhone", Account::getMobilePhone);
 		attributeSetterBiConsumers.put(
 			"mobilePhone",
-			(BiConsumer<Account, String>)Account::setMobilePhone);
+			(BiConsumer<Account, Integer>)Account::setMobilePhone);
 		attributeGetterFunctions.put("address", Account::getAddress);
 		attributeSetterBiConsumers.put(
 			"address", (BiConsumer<Account, String>)Account::setAddress);
@@ -417,17 +420,12 @@ public class AccountModelImpl
 
 	@JSON
 	@Override
-	public String getAccountId() {
-		if (_accountId == null) {
-			return "";
-		}
-		else {
-			return _accountId;
-		}
+	public long getAccountId() {
+		return _accountId;
 	}
 
 	@Override
-	public void setAccountId(String accountId) {
+	public void setAccountId(long accountId) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -708,17 +706,12 @@ public class AccountModelImpl
 
 	@JSON
 	@Override
-	public String getHomePhone() {
-		if (_homePhone == null) {
-			return "";
-		}
-		else {
-			return _homePhone;
-		}
+	public int getHomePhone() {
+		return _homePhone;
 	}
 
 	@Override
-	public void setHomePhone(String homePhone) {
+	public void setHomePhone(int homePhone) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -728,17 +721,12 @@ public class AccountModelImpl
 
 	@JSON
 	@Override
-	public String getMobilePhone() {
-		if (_mobilePhone == null) {
-			return "";
-		}
-		else {
-			return _mobilePhone;
-		}
+	public int getMobilePhone() {
+		return _mobilePhone;
 	}
 
 	@Override
-	public void setMobilePhone(String mobilePhone) {
+	public void setMobilePhone(int mobilePhone) {
 		if (_columnOriginalValues == Collections.EMPTY_MAP) {
 			_setColumnOriginalValues();
 		}
@@ -937,6 +925,19 @@ public class AccountModelImpl
 	}
 
 	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), Account.class.getName(), getPrimaryKey());
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
+		ExpandoBridge expandoBridge = getExpandoBridge();
+
+		expandoBridge.setAttributes(serviceContext);
+	}
+
+	@Override
 	public Account toEscapedModel() {
 		if (_escapedModel == null) {
 			Function<InvocationHandler, Account>
@@ -992,7 +993,7 @@ public class AccountModelImpl
 
 		accountImpl.setUuid(this.<String>getColumnOriginalValue("uuid_"));
 		accountImpl.setAccountId(
-			this.<String>getColumnOriginalValue("accountId"));
+			this.<Long>getColumnOriginalValue("accountId"));
 		accountImpl.setGroupId(this.<Long>getColumnOriginalValue("groupId"));
 		accountImpl.setCompanyId(
 			this.<Long>getColumnOriginalValue("companyId"));
@@ -1016,9 +1017,9 @@ public class AccountModelImpl
 		accountImpl.setPassword(
 			this.<String>getColumnOriginalValue("password_"));
 		accountImpl.setHomePhone(
-			this.<String>getColumnOriginalValue("homePhone"));
+			this.<Integer>getColumnOriginalValue("homePhone"));
 		accountImpl.setMobilePhone(
-			this.<String>getColumnOriginalValue("mobilePhone"));
+			this.<Integer>getColumnOriginalValue("mobilePhone"));
 		accountImpl.setAddress(this.<String>getColumnOriginalValue("address"));
 		accountImpl.setAddress2(
 			this.<String>getColumnOriginalValue("address2"));
@@ -1060,9 +1061,9 @@ public class AccountModelImpl
 
 		Account account = (Account)object;
 
-		String primaryKey = account.getPrimaryKey();
+		long primaryKey = account.getPrimaryKey();
 
-		if (getPrimaryKey().equals(primaryKey)) {
+		if (getPrimaryKey() == primaryKey) {
 			return true;
 		}
 		else {
@@ -1072,7 +1073,7 @@ public class AccountModelImpl
 
 	@Override
 	public int hashCode() {
-		return getPrimaryKey().hashCode();
+		return (int)getPrimaryKey();
 	}
 
 	/**
@@ -1115,12 +1116,6 @@ public class AccountModelImpl
 		}
 
 		accountCacheModel.accountId = getAccountId();
-
-		String accountId = accountCacheModel.accountId;
-
-		if ((accountId != null) && (accountId.length() == 0)) {
-			accountCacheModel.accountId = null;
-		}
 
 		accountCacheModel.groupId = getGroupId();
 
@@ -1213,19 +1208,7 @@ public class AccountModelImpl
 
 		accountCacheModel.homePhone = getHomePhone();
 
-		String homePhone = accountCacheModel.homePhone;
-
-		if ((homePhone != null) && (homePhone.length() == 0)) {
-			accountCacheModel.homePhone = null;
-		}
-
 		accountCacheModel.mobilePhone = getMobilePhone();
-
-		String mobilePhone = accountCacheModel.mobilePhone;
-
-		if ((mobilePhone != null) && (mobilePhone.length() == 0)) {
-			accountCacheModel.mobilePhone = null;
-		}
 
 		accountCacheModel.address = getAddress();
 
@@ -1382,7 +1365,7 @@ public class AccountModelImpl
 	}
 
 	private String _uuid;
-	private String _accountId;
+	private long _accountId;
 	private long _groupId;
 	private long _companyId;
 	private long _userId;
@@ -1397,8 +1380,8 @@ public class AccountModelImpl
 	private String _gender;
 	private Date _birthday;
 	private String _password;
-	private String _homePhone;
-	private String _mobilePhone;
+	private int _homePhone;
+	private int _mobilePhone;
 	private String _address;
 	private String _address2;
 	private String _city;

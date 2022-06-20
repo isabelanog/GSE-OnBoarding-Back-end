@@ -3,7 +3,7 @@
 <model-hints>
 	<model name="com.liferay.amf.model.Account">
 		<field name="uuid" type="String" />
-		<field name="accountId" type="String" />
+		<field name="accountId" type="long" />
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
@@ -17,8 +17,8 @@
 		<field name="gender" type="String" />
 		<field name="birthday" type="Date" />
 		<field name="password" type="String" />
-		<field name="homePhone" type="String" />
-		<field name="mobilePhone" type="String" />
+		<field name="homePhone" type="int" />
+		<field name="mobilePhone" type="int" />
 		<field name="address" type="String" />
 		<field name="address2" type="String" />
 		<field name="city" type="String" />

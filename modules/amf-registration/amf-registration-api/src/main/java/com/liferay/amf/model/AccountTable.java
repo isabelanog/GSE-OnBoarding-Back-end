@@ -34,8 +34,8 @@ public class AccountTable extends BaseTable<AccountTable> {
 
 	public final Column<AccountTable, String> uuid = createColumn(
 		"uuid_", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, String> accountId = createColumn(
-		"accountId", String.class, Types.VARCHAR, Column.FLAG_PRIMARY);
+	public final Column<AccountTable, Long> accountId = createColumn(
+		"accountId", Long.class, Types.BIGINT, Column.FLAG_PRIMARY);
 	public final Column<AccountTable, Long> groupId = createColumn(
 		"groupId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, Long> companyId = createColumn(
@@ -62,10 +62,10 @@ public class AccountTable extends BaseTable<AccountTable> {
 		"birthday", Date.class, Types.TIMESTAMP, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, String> password = createColumn(
 		"password_", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, String> homePhone = createColumn(
-		"homePhone", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
-	public final Column<AccountTable, String> mobilePhone = createColumn(
-		"mobilePhone", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
+	public final Column<AccountTable, Integer> homePhone = createColumn(
+		"homePhone", Integer.class, Types.INTEGER, Column.FLAG_DEFAULT);
+	public final Column<AccountTable, Integer> mobilePhone = createColumn(
+		"mobilePhone", Integer.class, Types.INTEGER, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, String> address = createColumn(
 		"address", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 	public final Column<AccountTable, String> address2 = createColumn(

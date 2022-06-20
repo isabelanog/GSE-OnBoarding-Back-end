@@ -1,6 +1,6 @@
 create table AMF_Account (
 	uuid_ VARCHAR(75) null,
-	accountId VARCHAR(75) not null primary key,
+	accountId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
 	userId LONG,
@@ -14,8 +14,8 @@ create table AMF_Account (
 	gender VARCHAR(75) null,
 	birthday DATE null,
 	password_ VARCHAR(75) null,
-	homePhone VARCHAR(75) null,
-	mobilePhone VARCHAR(75) null,
+	homePhone INTEGER,
+	mobilePhone INTEGER,
 	address VARCHAR(75) null,
 	address2 VARCHAR(75) null,
 	city VARCHAR(75) null,

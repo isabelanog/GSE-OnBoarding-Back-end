@@ -20,7 +20,7 @@ components:
                     type: string
                 birthday:
                     description: The birthday day.
-                    type: string
+                    type: Date
                 password:
                     description: The password.
                     type: string
