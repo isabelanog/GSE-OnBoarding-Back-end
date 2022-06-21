@@ -391,7 +391,7 @@ public class AccountPersistenceImpl
 	 */
 	@Override
 	public Account[] findByUuid_PrevAndNext(
-			String accountId, String uuid,
+			long accountId, String uuid,
 			OrderByComparator<Account> orderByComparator)
 		throws NoSuchAccountException {
 
@@ -1199,7 +1199,7 @@ public class AccountPersistenceImpl
 	 */
 	@Override
 	public Account[] findByUuid_C_PrevAndNext(
-			String accountId, String uuid, long companyId,
+			long accountId, String uuid, long companyId,
 			OrderByComparator<Account> orderByComparator)
 		throws NoSuchAccountException {
 
@@ -1460,7 +1460,7 @@ public class AccountPersistenceImpl
 		setModelClass(Account.class);
 
 		setModelImplClass(AccountImpl.class);
-		setModelPKClass(String.class);
+		setModelPKClass(long.class);
 
 		setTable(AccountTable.INSTANCE);
 	}
@@ -1563,7 +1563,7 @@ public class AccountPersistenceImpl
 	 * @return the new account
 	 */
 	@Override
-	public Account create(String accountId) {
+	public Account create(long accountId) {
 		Account account = new AccountImpl();
 
 		account.setNew(true);
@@ -1586,7 +1586,7 @@ public class AccountPersistenceImpl
 	 * @throws NoSuchAccountException if a account with the primary key could not be found
 	 */
 	@Override
-	public Account remove(String accountId) throws NoSuchAccountException {
+	public Account remove(long accountId) throws NoSuchAccountException {
 		return remove((Serializable)accountId);
 	}
 
@@ -1777,7 +1777,7 @@ public class AccountPersistenceImpl
 	 * @throws NoSuchAccountException if a account with the primary key could not be found
 	 */
 	@Override
-	public Account findByPrimaryKey(String accountId)
+	public Account findByPrimaryKey(long accountId)
 		throws NoSuchAccountException {
 
 		return findByPrimaryKey((Serializable)accountId);
@@ -1790,7 +1790,7 @@ public class AccountPersistenceImpl
 	 * @return the account, or <code>null</code> if a account with the primary key could not be found
 	 */
 	@Override
-	public Account fetchByPrimaryKey(String accountId) {
+	public Account fetchByPrimaryKey(long accountId) {
 		return fetchByPrimaryKey((Serializable)accountId);
 	}
 

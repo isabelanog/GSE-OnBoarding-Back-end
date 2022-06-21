@@ -36,17 +36,17 @@ public interface Account extends AccountModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.amf.model.impl.AccountImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<Account, String> ACCOUNT_ID_ACCESSOR =
-		new Accessor<Account, String>() {
+	public static final Accessor<Account, Long> ACCOUNT_ID_ACCESSOR =
+		new Accessor<Account, Long>() {
 
 			@Override
-			public String get(Account account) {
+			public Long get(Account account) {
 				return account.getAccountId();
 			}
 
 			@Override
-			public Class<String> getAttributeClass() {
-				return String.class;
+			public Class<Long> getAttributeClass() {
+				return Long.class;
 			}
 
 			@Override

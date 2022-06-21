@@ -253,7 +253,7 @@ public class AccountUtil {
 	 * @throws NoSuchAccountException if a account with the primary key could not be found
 	 */
 	public static Account[] findByUuid_PrevAndNext(
-			String accountId, String uuid,
+			long accountId, String uuid,
 			OrderByComparator<Account> orderByComparator)
 		throws com.liferay.amf.exception.NoSuchAccountException {
 
@@ -497,7 +497,7 @@ public class AccountUtil {
 	 * @throws NoSuchAccountException if a account with the primary key could not be found
 	 */
 	public static Account[] findByUuid_C_PrevAndNext(
-			String accountId, String uuid, long companyId,
+			long accountId, String uuid, long companyId,
 			OrderByComparator<Account> orderByComparator)
 		throws com.liferay.amf.exception.NoSuchAccountException {
 
@@ -550,7 +550,7 @@ public class AccountUtil {
 	 * @param accountId the primary key for the new account
 	 * @return the new account
 	 */
-	public static Account create(String accountId) {
+	public static Account create(long accountId) {
 		return getPersistence().create(accountId);
 	}
 
@@ -561,7 +561,7 @@ public class AccountUtil {
 	 * @return the account that was removed
 	 * @throws NoSuchAccountException if a account with the primary key could not be found
 	 */
-	public static Account remove(String accountId)
+	public static Account remove(long accountId)
 		throws com.liferay.amf.exception.NoSuchAccountException {
 
 		return getPersistence().remove(accountId);
@@ -578,7 +578,7 @@ public class AccountUtil {
 	 * @return the account
 	 * @throws NoSuchAccountException if a account with the primary key could not be found
 	 */
-	public static Account findByPrimaryKey(String accountId)
+	public static Account findByPrimaryKey(long accountId)
 		throws com.liferay.amf.exception.NoSuchAccountException {
 
 		return getPersistence().findByPrimaryKey(accountId);
@@ -590,7 +590,7 @@ public class AccountUtil {
 	 * @param accountId the primary key of the account
 	 * @return the account, or <code>null</code> if a account with the primary key could not be found
 	 */
-	public static Account fetchByPrimaryKey(String accountId) {
+	public static Account fetchByPrimaryKey(long accountId) {
 		return getPersistence().fetchByPrimaryKey(accountId);
 	}
 

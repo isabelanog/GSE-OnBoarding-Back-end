@@ -50,14 +50,14 @@ public interface AccountModel
 	 *
 	 * @return the primary key of this account
 	 */
-	public String getPrimaryKey();
+	public long getPrimaryKey();
 
 	/**
 	 * Sets the primary key of this account.
 	 *
 	 * @param primaryKey the primary key of this account
 	 */
-	public void setPrimaryKey(String primaryKey);
+	public void setPrimaryKey(long primaryKey);
 
 	/**
 	 * Returns the uuid of this account.
@@ -81,15 +81,14 @@ public interface AccountModel
 	 *
 	 * @return the account ID of this account
 	 */
-	@AutoEscape
-	public String getAccountId();
+	public long getAccountId();
 
 	/**
 	 * Sets the account ID of this account.
 	 *
 	 * @param accountId the account ID of this account
 	 */
-	public void setAccountId(String accountId);
+	public void setAccountId(long accountId);
 
 	/**
 	 * Returns the group ID of this account.
@@ -284,15 +283,14 @@ public interface AccountModel
 	 *
 	 * @return the birthday of this account
 	 */
-	@AutoEscape
-	public String getBirthday();
+	public Date getBirthday();
 
 	/**
 	 * Sets the birthday of this account.
 	 *
 	 * @param birthday the birthday of this account
 	 */
-	public void setBirthday(String birthday);
+	public void setBirthday(Date birthday);
 
 	/**
 	 * Returns the password of this account.
@@ -314,30 +312,28 @@ public interface AccountModel
 	 *
 	 * @return the home phone of this account
 	 */
-	@AutoEscape
-	public String getHomePhone();
+	public int getHomePhone();
 
 	/**
 	 * Sets the home phone of this account.
 	 *
 	 * @param homePhone the home phone of this account
 	 */
-	public void setHomePhone(String homePhone);
+	public void setHomePhone(int homePhone);
 
 	/**
 	 * Returns the mobile phone of this account.
 	 *
 	 * @return the mobile phone of this account
 	 */
-	@AutoEscape
-	public String getMobilePhone();
+	public int getMobilePhone();
 
 	/**
 	 * Sets the mobile phone of this account.
 	 *
 	 * @param mobilePhone the mobile phone of this account
 	 */
-	public void setMobilePhone(String mobilePhone);
+	public void setMobilePhone(int mobilePhone);
 
 	/**
 	 * Returns the address of this account.
