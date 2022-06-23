@@ -1,5 +1,6 @@
 package com.liferay.site.setup.upgrade;
 
+import com.liferay.headless.admin.user.dto.v1_0.Site;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
@@ -22,11 +23,52 @@ public class CreatePortalSite extends UpgradeProcess {
                 GroupConstants.TYPE_SITE_OPEN);
 
         _siteSetupHelper.addPage(
-                site.getGroupId(), false,
+                site.getGroupId(),
+                false,
                 SiteSetupConstants.PAGE_ONE_NAME,
+                SiteSetupConstants.PAGE_ONE_TITLE,
                 SiteSetupConstants.PAGE_ONE_DESCRIPTION,
-                SiteSetupConstants.PAGE_ONE_URL);
-        )
+                GroupConstants.TYPE_SITE_OPEN,
+                false,
+                SiteSetupConstants.PAGE_ONE_URL,
+                SiteSetupConstants.LAYOUT_1_COLUMN
+        );
+
+        _siteSetupHelper.addPage(
+                site.getGroupId(),
+                false,
+                SiteSetupConstants.PAGE_TWO_NAME,
+                SiteSetupConstants.PAGE_TWO_TITLE,
+                SiteSetupConstants.PAGE_TWO_DESCRIPTION,
+                GroupConstants.TYPE_SITE_OPEN,
+                false,
+                SiteSetupConstants.PAGE_TWO_URL,
+                SiteSetupConstants.LAYOUT_1_COLUMN
+        );
+
+        _siteSetupHelper.addPage(
+                site.getGroupId(),
+                false,
+                SiteSetupConstants.PAGE_THREE_NAME,
+                SiteSetupConstants.PAGE_THREE_TITLE,
+                SiteSetupConstants.PAGE_THREE_DESCRIPTION,
+                GroupConstants.TYPE_SITE_OPEN,
+                false,
+                SiteSetupConstants.PAGE_THREE_URL,
+                SiteSetupConstants.LAYOUT_1_COLUMN
+        );
+
+        _siteSetupHelper.addPage(
+                site.getGroupId(),
+                false,
+                SiteSetupConstants.HIDDEN_PAGE_NAME,
+                SiteSetupConstants.HIDDEN_PAGE_TITLE,
+                SiteSetupConstants.HIDDEN_PAGE_DESCRIPTION,
+                GroupConstants.TYPE_SITE_OPEN,
+                true,
+                SiteSetupConstants.HIDDEN_PAGE_URL,
+                SiteSetupConstants.LAYOUT_1_COLUMN
+        );
     }
     @Reference
     SiteSetupHelper _siteSetupHelper;
