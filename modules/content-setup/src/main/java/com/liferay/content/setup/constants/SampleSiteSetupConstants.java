@@ -12,14 +12,6 @@ public class SampleSiteSetupConstants {
 
     public static final int LAYOUT_1_COLUMN = 1;
 
-    public static final String PAGE_ONE_NAME = "Page one";
-
-    public static final String PAGE_ONE_TITLE = "Title";
-
-    public static final String PAGE_ONE_DESCRIPTION = "Description one";
-
-    public static final String PAGE_ONE_URL = "/pageone";
-
     public static final String HIDDEN_PAGE_NAME = "Page Hidden";
 
     public static final String HIDDEN_PAGE_TITLE = "Title";
