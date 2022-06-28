@@ -6,6 +6,8 @@ public class SampleSiteSetupConstants {
 
     public static final String SAMPLE_PAGE_DESCRIPTION = "Sample Site Description";
 
+    public static final String BUNDLE_SYMBOLIC_NAME = "com.liferay.content.setup";
+
     public static final String SAMPLE_PAGE_URL = "/home";
 
     public static final int LAYOUT_1_COLUMN = 1;
