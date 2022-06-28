@@ -1,3 +1,4 @@
 dependencies {
 	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+	compileOnly group: "com.liferay", name: "org.apache.felix.gogo.runtime", version: "1.1.0.LIFERAY-PATCHED-2"
 }

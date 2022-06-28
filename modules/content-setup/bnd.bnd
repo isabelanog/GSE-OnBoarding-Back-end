@@ -1,4 +1,3 @@
 Bundle-Name: content-setup
 Bundle-SymbolicName: com.liferay.content.setup
 Bundle-Version: 1.0.0
-Export-Package: com.liferay.content.setup.api
