@@ -18,7 +18,7 @@ public class SampleSiteSetupHelper {
 
     public Layout addPage(Long groupId, Boolean privatePage, long parentLayoutId,
                           String pageName, String title, String description,
-                          int type, Boolean hidden, String friendlyURL, int columnLayout)
+                          String type, Boolean hidden, String friendlyURL, int columnLayout)
         throws Exception {
 
         Layout layout = _layoutLocalService.fetchLayoutByFriendlyURL(groupId, privatePage,friendlyURL);
