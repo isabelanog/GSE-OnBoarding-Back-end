@@ -1,11 +1,11 @@
 package com.liferay.content.setup.helper;
 
 
+import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.service.*;
 import com.liferay.portal.kernel.util.Portal;
@@ -53,11 +53,22 @@ public class SampleSiteSetupHelper {
 
         long userId = _userLocalService.getDefaultUserId(companyId);
 
-        group = _groupLocalService.addGroup(
-                userId, GroupConstants.DEFAULT_PARENT_GROUP_ID,
-                Group.class.getName(), userId, GroupConstants.DEFAULT_LIVE_GROUP_ID, null, null,
-                type, true, GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, friendlyURL, true,
-                false, true, new ServiceContext());
+        long groupId = _counterLocalService.increment(Group.class.getName());
+
+        group = _groupLocalService.createGroup(groupId);
+
+        group.setCreatorUserId(userId);
+        group.setParentGroupId(0);
+        group.setName(name);
+        group.setDescription(description);
+        group.setType(type);
+        group.setManualMembership(true);
+        group.setMembershipRestriction(0);
+        group.setFriendlyURL(friendlyURL);
+        group.setInheritContent(false);
+        group.setActive(true);
+
+        _groupLocalService.updateGroup(group);
 
         _log.info("Site created: " + name);
 
@@ -68,6 +79,8 @@ public class SampleSiteSetupHelper {
     @Reference
     private LayoutLocalService _layoutLocalService;
 
+    @Reference
+    private CounterLocalService _counterLocalService;
     @Reference
     private GroupLocalService _groupLocalService;
 
