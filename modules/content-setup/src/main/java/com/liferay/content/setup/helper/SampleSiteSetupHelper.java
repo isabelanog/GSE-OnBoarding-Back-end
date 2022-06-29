@@ -6,12 +6,18 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.service.*;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 @Component(immediate = true, service = SampleSiteSetupHelper.class)
 public class SampleSiteSetupHelper {
@@ -64,24 +70,22 @@ public class SampleSiteSetupHelper {
 
         long groupId = _counterLocalService.increment(Group.class.getName());
 
-        group = _groupLocalService.createGroup(groupId);
+        Map<Locale,String> nameMap = new HashMap<>();
+        Map<Locale,String> descriptionMap = new HashMap<>();
 
-        group.setCreatorUserId(userId);
-        group.setParentGroupId(0);
-        group.setName(name);
-        group.setDescription(description);
-        group.setType(type);
-        group.setManualMembership(true);
-        group.setMembershipRestriction(0);
-        group.setFriendlyURL(friendlyURL);
-        group.setInheritContent(false);
-        group.setActive(true);
+        nameMap.put(LocaleUtil.getDefault(), name);
+        descriptionMap.put(LocaleUtil.getDefault(),description);
 
-        _groupLocalService.updateGroup(group);
+        group = _groupLocalService.addGroup(
+                userId, GroupConstants.DEFAULT_PARENT_GROUP_ID,
+                Group.class.getName(), userId, GroupConstants.DEFAULT_LIVE_GROUP_ID,
+                nameMap, descriptionMap, type, true,
+                GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, friendlyURL, true,
+                false, true, new ServiceContext());
 
         _log.info("Site created: " + name);
 
-        return group;
+        return _groupLocalService.addGroup(group);
     }
 
     private static final Log _log = LogFactoryUtil.getLog(SampleSiteSetupHelper.class);
