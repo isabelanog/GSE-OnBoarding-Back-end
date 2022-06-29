@@ -16,15 +16,24 @@ import org.osgi.service.component.annotations.Reference;
 @Component(immediate = true, service = SampleSiteSetupHelper.class)
 public class SampleSiteSetupHelper {
 
-    public Layout addPage(Long groupId, Boolean privatePage, long parentLayoutId,
-                          String pageName, String title, String description,
-                          String type, Boolean hidden, String friendlyURL, int columnLayout)
+    public Layout addPage(Long groupId, Boolean privatePage, Long parentLayoutId,
+                          String pageName, String title, String description, String type,
+                          Boolean hidden, String friendlyUrl, String columnLayout)
         throws Exception {
 
-        Layout layout = _layoutLocalService.fetchLayoutByFriendlyURL(groupId, privatePage,friendlyURL);
+        return addPage(groupId, privatePage, parentLayoutId, pageName, title, description,
+                type, hidden, friendlyUrl, columnLayout, null);
+    }
+
+    public Layout addPage(Long groupId, Boolean privatePage, Long parentLayoutId,
+                          String pageName, String title, String description, String type,
+                          Boolean hidden, String friendlyUrl, String columnLayout,
+                          String layoutPageTemplateEntryKey) throws Exception {
+
+        Layout layout = _layoutLocalService.fetchLayoutByFriendlyURL(groupId, privatePage,friendlyUrl);
 
         if (Validator.isNotNull(layout)) {
-            _log.info("Page with the friendly URL "+ friendlyURL + " already existis");
+            _log.info("Page with the friendly URL "+ friendlyUrl + " already existis");
             return layout;
         }
 
@@ -32,7 +41,7 @@ public class SampleSiteSetupHelper {
         long adminUserId = _userLocalService.getDefaultUserId(defaultCompanyId);
 
         layout = _layoutLocalService.addLayout(adminUserId, groupId, privatePage, parentLayoutId,
-                pageName, title, description, type, hidden, friendlyURL, new ServiceContext());
+                pageName, title, description, type, hidden, friendlyUrl, new ServiceContext());
 
         return layout;
     }
