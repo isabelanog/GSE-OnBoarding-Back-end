@@ -68,7 +68,6 @@ public class SampleSiteSetupHelper {
 
         long userId = _userLocalService.getDefaultUserId(companyId);
 
-        long groupId = _counterLocalService.increment(Group.class.getName());
 
         Map<Locale,String> nameMap = new HashMap<>();
         Map<Locale,String> descriptionMap = new HashMap<>();

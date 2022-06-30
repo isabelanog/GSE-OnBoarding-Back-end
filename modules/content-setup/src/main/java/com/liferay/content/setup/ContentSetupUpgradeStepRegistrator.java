@@ -14,8 +14,8 @@ public class ContentSetupUpgradeStepRegistrator implements UpgradeStepRegistrato
     @Override
     public void register(Registry registry) {
 
-        registry.register("1.0.0","1.1.0", new DummyUpgradeProcess());
-        registry.register("1.1.0","1.2.0", new CreateSampleSiteUpgradeProcess(_sampleSiteSetupHelper));
+        registry.register("0.0.0","1.0.0", new DummyUpgradeProcess());
+        registry.register("1.0.0","1.1.0", new CreateSampleSiteUpgradeProcess(_sampleSiteSetupHelper));
     }
 
     @Reference
