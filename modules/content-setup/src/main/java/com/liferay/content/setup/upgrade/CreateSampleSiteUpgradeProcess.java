@@ -15,11 +15,24 @@ public class CreateSampleSiteUpgradeProcess extends UpgradeProcess {
     protected void doUpgrade() throws Exception {
 
         Group sampleSite = _sampleSiteSetupHelper.addSite(
-                SampleSiteSetupConstants.SAMPLE_PAGE_NAME,
-                SampleSiteSetupConstants.SAMPLE_PAGE_DESCRIPTION,
-                SampleSiteSetupConstants.SAMPLE_PAGE_URL,
+                SampleSiteSetupConstants.SAMPLE_SITE_NAME,
+                SampleSiteSetupConstants.SAMPLE_SITE_DESCRIPTION,
+                SampleSiteSetupConstants.SAMPLE_SITE_URL,
                 GroupConstants.TYPE_SITE_OPEN
         );
+
+        _sampleSiteSetupHelper.addPage(
+                sampleSite.getGroupId(), false,
+                LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+                SampleSiteSetupConstants.SAMPLE_PAGE_NAME,
+                SampleSiteSetupConstants.SAMPLE_PAGE_TITLE,
+                SampleSiteSetupConstants.SAMPLE_PAGE_DESCRIPTION,
+                LayoutConstants.TYPE_CONTENT,
+                false,
+                SampleSiteSetupConstants.SAMPLE_PAGE_URL,
+                SampleSiteSetupConstants.LAYOUT_1_COLUMN
+        );
+
 
        _sampleSiteSetupHelper.addPage(
                sampleSite.getGroupId(), false,
