@@ -39,7 +39,7 @@ public class SampleSiteSetupHelper {
         Layout layout = _layoutLocalService.fetchLayoutByFriendlyURL(groupId, privatePage,friendlyUrl);
 
         if (Validator.isNotNull(layout)) {
-            _log.info("Page with the friendly URL "+ friendlyUrl + " already existis");
+            _log.info("Page with the friendly URL "+ friendlyUrl + " already exists");
             return layout;
         }
 
@@ -75,16 +75,14 @@ public class SampleSiteSetupHelper {
         nameMap.put(LocaleUtil.getDefault(), name);
         descriptionMap.put(LocaleUtil.getDefault(),description);
 
-        group = _groupLocalService.addGroup(
+        _log.info("Site created: " + name);
+
+        return _groupLocalService.addGroup(
                 userId, GroupConstants.DEFAULT_PARENT_GROUP_ID,
                 Group.class.getName(), userId, GroupConstants.DEFAULT_LIVE_GROUP_ID,
                 nameMap, descriptionMap, type, true,
                 GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, friendlyURL, true,
                 false, true, new ServiceContext());
-
-        _log.info("Site created: " + name);
-
-        return _groupLocalService.addGroup(group);
     }
 
     private static final Log _log = LogFactoryUtil.getLog(SampleSiteSetupHelper.class);

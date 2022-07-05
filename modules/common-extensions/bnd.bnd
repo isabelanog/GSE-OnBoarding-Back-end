@@ -1,0 +1,4 @@
+Bundle-Name: common-extensions
+Bundle-SymbolicName: com.liferay.common.extensions
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.common.extensions.preaction
